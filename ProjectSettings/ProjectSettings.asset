@@ -145,6 +145,9 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - {fileID: 6739340513422659950, guid: 9de730712022965438ba2555bcc23001, type: 2}
+  - {fileID: 1698645924806332998, guid: 71df31e3f6a5ab645a71c3dbadc62447, type: 2}
+  - {fileID: 11400000, guid: b3470d8cc9078604cba91d8c0f8f1531, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -166,7 +169,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.AntonRock.crosslog
+    Android: com.AntonRock.grooVR
     Standalone: com.Unity-Technologies.com.unity.template.urp-blank
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
@@ -452,9 +455,7 @@ PlayerSettings:
       m_Height: 36
       m_Kind: 1
       m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 7ae77d3fcdabb5b43822cbc6fbee9f72, type: 3}
-      - {fileID: 2800000, guid: 7ae77d3fcdabb5b43822cbc6fbee9f72, type: 3}
+    - m_Textures: []
       m_Width: 432
       m_Height: 432
       m_Kind: 2
