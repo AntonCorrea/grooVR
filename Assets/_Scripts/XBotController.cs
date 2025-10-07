@@ -24,6 +24,7 @@ public class XBotController : MonoBehaviour
     private bool guidingPlayer = false;
     private bool talking = false;
 
+    public CubeMatrixController matrix;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -122,6 +123,7 @@ public class XBotController : MonoBehaviour
             case xBotActions.showLeftHand:
                 animator.SetTrigger("HandUp_Left");               
                 Talk("Levanta la mano izquierda (palma arriba) para activar el menú.", 2);
+                matrix.StartEffect();
                 break;
         }
     }

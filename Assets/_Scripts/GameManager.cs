@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public List<Grid> grids;
     public XBotController xbot;
-
+    public HandMenu handMenu;
     public void StartGrids()
     {
         foreach(Grid grid in grids)
@@ -20,5 +20,15 @@ public class GameManager : MonoBehaviour
     {
         StartGrids();
         xbot.SetActions(xBotActions.waitToMoveToGreet);
+    }
+
+    public void ShowHandMenu()
+    {
+        handMenu.Show();
+    }
+
+    public void HideHandMenu()
+    {
+        handMenu.Hide();
     }
 }
