@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5768826538615578262}
   - component: {fileID: 6068458241622586666}
   - component: {fileID: 5004840443639400011}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1036014570233023808}
   - component: {fileID: 2761334882350539928}
   - component: {fileID: 811698957615711107}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 4666920064396364490}
   - component: {fileID: 2022945390284806081}
   - component: {fileID: 3066152030196686279}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: MenuCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6279800763261496093}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

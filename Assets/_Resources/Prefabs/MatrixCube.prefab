@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 35332984196384194}
   - component: {fileID: 3238298192196979358}
   - component: {fileID: 186983696810563178}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: MatrixCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
