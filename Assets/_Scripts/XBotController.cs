@@ -32,6 +32,11 @@ public class XBotController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         dialogueSystem = GetComponent<DialogueSystem>();
         SetActions(xBotActions.idle);
+        Invoke("StartDialogue", 1f);
+    }
+
+    void StartDialogue()
+    {
         Talk("Presiona el boton para iniciar la experiencia", 0);
     }
 

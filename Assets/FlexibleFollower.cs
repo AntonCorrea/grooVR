@@ -2,67 +2,47 @@ using UnityEngine;
 
 public class FlexibleFollower : MonoBehaviour
 {
-    [Header("Follow Settings")]
-    public Transform followTarget;      // Object to follow (position)
-    public Vector3 positionOffset = Vector3.zero; // Offset from target
-    public bool smoothFollow = true;    // Whether to move smoothly
-    public float followSpeed = 5f;      // Speed of smooth following
+    [Header("Target Settings")]
+    public Transform target;                  // The object to follow
+    public bool followPosition = true;        // Should follow position?
+    public bool followRotation = false;       // Should follow rotation?
 
-    [Header("Look Settings")]
-    public bool lookAtTarget = false;   // Whether to look at a target
-    public Transform lookTarget;        // Object to look at
-    public Vector3 lookOffset = Vector3.zero; // Offset for look direction
+    [Header("Offset & Pivot")]
+    public Vector3 positionOffset = Vector3.zero;  // Local offset from the target
+    public Vector3 pivotOffset = Vector3.zero;     // Offset around which to pivot
+    public Vector3 rotationOffset = Vector3.zero;
 
-    [Header("Update Settings")]
-    public bool useFixedUpdate = false; // Option for physics-based follow
+    [Header("Smoothing")]
+    public float positionSmoothSpeed = 10f;   // Higher = snappier
+    public float rotationSmoothSpeed = 10f;   // Higher = snappier
 
-    void Update()
+    void LateUpdate()
     {
-        if (!useFixedUpdate)
-            FollowBehaviour();
-    }
+        if (target == null)
+            return;
 
-    void FixedUpdate()
-    {
-        if (useFixedUpdate)
-            FollowBehaviour();
-    }
+        // Compute desired position with pivot and offset
+        Vector3 desiredPosition = target.TransformPoint(pivotOffset + positionOffset);
 
-    private void FollowBehaviour()
-    {
-        if (followTarget)
+        if (followPosition)
         {
-            Vector3 desiredPosition = followTarget.position + positionOffset;
-
-            if (smoothFollow)
-            {
-                transform.position = Vector3.Lerp(transform.position, desiredPosition, followSpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.position = desiredPosition;
-            }
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * positionSmoothSpeed);
         }
 
-        if (lookAtTarget)
+        if (followRotation)
         {
-            Vector3 lookPosition = lookTarget.position + lookOffset;
-            Vector3 direction = lookPosition - transform.position;
-
-            if (direction.sqrMagnitude > 0.0001f)
-                transform.rotation = Quaternion.LookRotation(direction);
+            Quaternion desiredRotation = target.rotation * Quaternion.Euler(rotationOffset); 
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSmoothSpeed);
         }
     }
 
-    // Optional: Draw gizmos to visualize follow/look targets
+    // Optional: visualize pivot in Scene view
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.cyan;
-        if (followTarget)
-            Gizmos.DrawLine(transform.position, followTarget.position + positionOffset);
-
-        Gizmos.color = Color.yellow;
-        if (lookAtTarget)
-            Gizmos.DrawLine(transform.position, lookTarget.position + lookOffset);
+        if (target != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(target.TransformPoint(pivotOffset), 0.1f);
+        }
     }
 }
