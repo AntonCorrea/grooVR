@@ -3,22 +3,22 @@ using UnityEngine;
 public class HandMenu : MonoBehaviour
 {
     CubeMatrixController matrix;
-    MenuController menu;
+    MenuController menuController;
 
     private void Start()
     {
         matrix = GetComponentInChildren<CubeMatrixController>();
-        menu = GetComponentInChildren<MenuController>();
+        menuController = GetComponentInChildren<MenuController>();
     }
     public void Show()
     {
         matrix.StartEffect();
-        menu.Show();
+        menuController.Show();
     }
 
     public void Hide()
     {
         matrix.EndEffect();
-        menu.Hide();
+        menuController.Hide();
     }
 }

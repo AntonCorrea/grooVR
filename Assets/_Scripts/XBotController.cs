@@ -140,6 +140,7 @@ public class XBotController : MonoBehaviour
         // Trigger next stage event here
     }
 
+    //replace with game manager
     IEnumerator InvokeWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);

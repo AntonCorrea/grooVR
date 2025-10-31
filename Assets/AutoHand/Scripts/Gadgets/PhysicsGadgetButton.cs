@@ -15,7 +15,7 @@ namespace Autohand{
 
         Vector3 startPos;
         Vector3 pressedPos;
-        float pressedValue;
+        public float pressedValue;
 
         Rigidbody body;
 
@@ -34,7 +34,7 @@ namespace Autohand{
                 Unpressed();
         }
 
-
+        [ContextMenu("Pressed")]
         public void Pressed() {
             pressed = true;
             pressedValue = GetValue();
