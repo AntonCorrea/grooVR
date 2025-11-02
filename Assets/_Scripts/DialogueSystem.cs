@@ -46,29 +46,29 @@ public class DialogueSystem : MonoBehaviour
         }
 
         isRunning = false;
-        Debug.Log("Dialogue stopped.");
+        //Debug.Log("Dialogue stopped.");
     }
 
     private IEnumerator DialogueLoop(int voiceIndex = 0)
     {
         isRunning = true;
-        Debug.Log("Dialogue loop started.");
+        //Debug.Log("Dialogue loop started.");
 
         while (isRunning)
         {
             // Show dialogue text in UI here
-            Debug.Log("Current dialogue: " + currentDialogue);
+            //Debug.Log("Current dialogue: " + currentDialogue);
             textMesh.text = currentDialogue;
 
             audioSource.clip = speeches[voiceIndex];
             audioSource.Play();
         
             float duration = baseDuration + (currentDialogue.Length * secondsPerCharacter);
-            Debug.Log($"Text will stay for {duration:F2} seconds.");
+           // Debug.Log($"Text will stay for {duration:F2} seconds.");
 
             yield return new WaitForSeconds(duration); // delay between lines or updates
         }
 
-        Debug.Log("Dialogue loop ended.");
+        //Debug.Log("Dialogue loop ended.");
     }
 }

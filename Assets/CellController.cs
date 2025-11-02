@@ -13,6 +13,11 @@ public class CellController : MonoBehaviour
     public UnityAction buttonAction;
     public PhysicsGadgetButton physicButton;
 
+    public GameObject activeBtn;
+    public GameObject deactiveBtn;
+
+    public bool setDeactive = false;
+
     public bool isPressed = false;
     public void SetModel(GameObject m)
     {
@@ -23,6 +28,24 @@ public class CellController : MonoBehaviour
         else
         {
             model = Instantiate(defaultModel, modelPlace);
+        }
+    }
+
+    public void SetDeactive(bool v)
+    {
+        if (v)
+        {
+            activeBtn.SetActive(false);
+            deactiveBtn.SetActive(true);
+            physicButton.enabled = false;
+            
+        }
+        else
+        {
+            activeBtn.SetActive(true);
+            deactiveBtn.SetActive(false);
+            physicButton.enabled = true;
+            setDeactive = false;
         }
     }
 

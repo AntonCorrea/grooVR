@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class MenuController : MonoBehaviour
     {   
         //cells = GetComponentsInChildren<CellController>();
 
-        OpenMenu(0);
+        OpenMenu("grooVR Simulaciones (DEMO)");
 
         if (hideAtStart)
         {
@@ -45,6 +46,18 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    private void SetDeactiveBtnCells(int cellsDeactive, bool v)
+    {
+        for (int i = 0; i < cellsDeactive; i++)
+        {
+            if (cells[i].setDeactive)
+            {
+                cells[i].SetDeactive(v);
+            }
+                
+        }
+    }
+
     public void Show()
     {
         menuRoot.SetActive(true);
@@ -55,37 +68,46 @@ public class MenuController : MonoBehaviour
         menuRoot.SetActive(false);
     }
 
-    public void OpenMenu(int option)
+    public void OpenMenu(string menu)
     {
-        print("OPEN MENU "+option);
+        print("OPEN MENU "+ menu);
 
-        title.text = menus[option].menuTitle;
+        MenuInstance menuInstance = menus.FirstOrDefault(i => i.menuTitle == menu);
 
-        
+        title.text = menuInstance.menuTitle;
 
         SetActiveCellsButtons(6, false);
 
 
-        GameManager.Instance.actionDelay = () => OpenMenuDelay(option);
+        GameManager.Instance.actionDelay = () => OpenMenuDelay(menuInstance);
         _ = StartCoroutine(GameManager.Instance.InvokeWithDelay(menuDelay));
     }
 
-    void OpenMenuDelay(int option)
+    void OpenMenuDelay(MenuInstance menu)
     {
         SetActiveCells(6, false);
+        SetDeactiveBtnCells(6, false);
 
-        int currentCellsLenght = menus[option].options.Length;
+        int currentCellsLenght = menu.options.Length;
 
         for (int i = 0; i < currentCellsLenght; i++)
         {
 
-            cells[i].textMesh.text = menus[option].options[i].ToString();
+            cells[i].textMesh.text = menu.options[i].ToString();
 
             int index = i;
-            cells[i].buttonAction = () => menus[option].functions[index].Invoke();
+            cells[i].buttonAction = () => menu.functions[index].Invoke();
 
             cells[i].physicButton.transform.localPosition = Vector3.zero;
 
+            if(menu.optionsDeactive.Length > 0)
+            {
+                //if (menu.optionsDeactive[i])
+                {
+                    cells[i].setDeactive = menu.optionsDeactive[i];
+                }
+            }
+            //cargar modelos 3d dentro de botones
             //if (menus[option].models.Length > i)
             //{
             //    cells[i].SetModel(menus[option].models[i]);
@@ -96,26 +118,27 @@ public class MenuController : MonoBehaviour
             //}
         }
 
-        if (menus[option].indexReturnToMenu != -1)
+        if (menu.idReturnTo != string.Empty)
         {
             int i = currentCellsLenght;
 
             cells[i].textMesh.text = "Volver";
 
-            int index = menus[option].indexReturnToMenu;
-            cells[i].buttonAction = () => OpenMenu(index);
+            string menuIndex = menu.idReturnTo;
+            cells[i].buttonAction = () => OpenMenu(menuIndex);
 
             currentCellsLenght += 1;
         }
 
         SetActiveCells(currentCellsLenght, true);
         SetActiveCellsButtons(currentCellsLenght, true);
-
-        //GameManager.Instance.actionDelay = () => SetActiveCells(currentCellsLenght, true);
-        //_ = StartCoroutine(GameManager.Instance.InvokeWithDelay(1f));
+        SetDeactiveBtnCells(currentCellsLenght, true);
     }
 
-        
+    public void LoadEnviroment(int index)
+    {
+        GameManager.Instance.LoadEnviroment(index);
+    }
 
     
 

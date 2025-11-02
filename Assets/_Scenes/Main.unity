@@ -216,6 +216,40 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
+--- !u!1 &49325792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49325793}
+  m_Layer: 0
+  m_Name: Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &49325793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49325792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1198546486}
+  - {fileID: 778118896}
+  - {fileID: 2000811655}
+  m_Father: {fileID: 762085025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &103635710
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,12 +351,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117964185}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1965824931}
+  m_Father: {fileID: 980617370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &117964187
 MonoBehaviour:
@@ -337,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuTitle: Procedimientos
-  indexReturnToMenu: 0
+  idReturnTo: grooVR Simulaciones
   options:
   - Mate
   - Jenga
@@ -346,6 +380,7 @@ MonoBehaviour:
   - Estacion Total
   models: []
   functions: []
+  optionsDeactive: 
 --- !u!1 &119673005
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,15 +488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc64f541b2170fa4c8d4f892e0ed63a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grids:
-  - {fileID: 1100372922}
-  - {fileID: 1683004936}
-  - {fileID: 808187114}
-  - {fileID: 1804362383}
-  - {fileID: 692250814}
-  - {fileID: 1328039081}
   xbot: {fileID: 1228154397}
   handMenu: {fileID: 710497355}
+  teleporter: {fileID: 2751914247071899056}
+  enviroment: {fileID: 762085026}
+  isHandMenuActive: 0
+  isTeleporterActive: 0
 --- !u!4 &329765634
 Transform:
   m_ObjectHideFlags: 0
@@ -750,12 +782,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620839301}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1965824931}
+  m_Father: {fileID: 980617370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &620839303
 MonoBehaviour:
@@ -770,13 +802,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuTitle: Ajustes
-  indexReturnToMenu: 0
+  idReturnTo: grooVR Simulaciones
   options:
   - Entorno
   - Musica
   - Reiniciar
   models: []
-  functions: []
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Entornos
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 
 --- !u!1 &632500076
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,95 +860,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
   m_PrefabInstance: {fileID: 1371501062}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &676718982
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 676718983}
-  m_Layer: 0
-  m_Name: Room
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &676718983
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676718982}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1198546486}
-  - {fileID: 778118896}
-  - {fileID: 2000811655}
-  - {fileID: 1100372921}
-  - {fileID: 1683004935}
-  - {fileID: 808187113}
-  - {fileID: 1804362382}
-  - {fileID: 692250813}
-  - {fileID: 1328039080}
-  m_Father: {fileID: 762085025}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &692250812
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 692250813}
-  - component: {fileID: 692250814}
-  m_Layer: 0
-  m_Name: WallBack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &692250813
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692250812}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: -2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 676718983}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &692250814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692250812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdc713cc4979894aa12f7d8079723d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: 9
-  cellSize: 0.5
-  baseSpeed: 1
-  speedFalloff: 1
-  lineWidth: 0.05
 --- !u!1 &710497353
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1daefb44cf22d43828db5ae8adebee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTutoFinished: 0
 --- !u!4 &710497356
 Transform:
   m_ObjectHideFlags: 0
@@ -962,7 +921,7 @@ Transform:
   m_GameObject: {fileID: 710497353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1123, y: 1, z: 0.2}
+  m_LocalPosition: {x: -0.249, y: 1.206, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -991,6 +950,10 @@ MonoBehaviour:
   - {fileID: 939525280}
   - {fileID: 117964187}
   - {fileID: 620839303}
+  - {fileID: 1676598673}
+  - {fileID: 1875794127}
+  - {fileID: 788224811}
+  - {fileID: 1434668499}
   cells:
   - {fileID: 7320354987859036513}
   - {fileID: 1196904384}
@@ -1040,7 +1003,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761072343}
   m_Layer: 0
-  m_Name: ShowHands
+  m_Name: ShowLeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,6 +1033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 762085025}
+  - component: {fileID: 762085026}
   m_Layer: 0
   m_Name: Enviroment
   m_TagString: Untagged
@@ -1091,10 +1055,30 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 397510401}
-  - {fileID: 676718983}
+  - {fileID: 49325793}
   - {fileID: 1078613360}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &762085026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762085024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c302d85f3e172439c669b3d76dddd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnviroment: {fileID: 0}
+  enviroments:
+  - {fileID: 5461482406961616431, guid: a9bd9703c82118148982dee04350d703, type: 3}
+  - {fileID: 4820569040511404653, guid: 98a9c0904e79f5849a935754795ee135, type: 3}
+  - {fileID: 4292938509137325327, guid: da28bf1b4646f9d4589aa1a757dc4e2d, type: 3}
+  - {fileID: 4486015457115049791, guid: 309ea9f1b961ec242b9e5cebfc0f493b, type: 3}
+  floorCollider: {fileID: 0}
+  stand: {fileID: 397510400}
 --- !u!1 &771646588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,11 +1215,11 @@ Transform:
   m_GameObject: {fileID: 778118895}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 1.45}
   m_LocalScale: {x: 4, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 676718983}
+  m_Father: {fileID: 49325793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &778118898
 MeshRenderer:
@@ -1322,7 +1306,7 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4b662247091f57548b9a556ec143d47d, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &808187112
+--- !u!1 &788224809
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1330,47 +1314,77 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 808187113}
-  - component: {fileID: 808187114}
-  m_Layer: 0
-  m_Name: WallLeft
+  - component: {fileID: 788224810}
+  - component: {fileID: 788224811}
+  m_Layer: 10
+  m_Name: Menu Ajustes_DEMO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &808187113
+--- !u!4 &788224810
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808187112}
+  m_GameObject: {fileID: 788224809}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4999999, y: -0.50000006, z: -0.49999857, w: 0.50000155}
-  m_LocalPosition: {x: -2, y: 2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 676718983}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
---- !u!114 &808187114
+  m_Father: {fileID: 980617370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &788224811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808187112}
+  m_GameObject: {fileID: 788224809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdc713cc4979894aa12f7d8079723d4, type: 3}
+  m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 9
-  cellSize: 0.5
-  baseSpeed: 1
-  speedFalloff: 1
-  lineWidth: 0.05
+  menuTitle: Ajustes (DEMO)
+  idReturnTo: 
+  options:
+  - Entorno
+  - Musica
+  - Reiniciar
+  models: []
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Entornos (DEMO)
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1228154397}
+        m_TargetAssemblyTypeName: XBotController, Assembly-CSharp
+        m_MethodName: TalkTaller
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 000101
 --- !u!1 &827220054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,12 +1461,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832461474}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1965824931}
+  m_Father: {fileID: 980617370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &832461476
 MonoBehaviour:
@@ -1467,7 +1481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuTitle: grooVR Simulaciones
-  indexReturnToMenu: -1
+  idReturnTo: 
   options:
   - Vehiculos
   - Procedimientos
@@ -1480,13 +1494,13 @@ MonoBehaviour:
       - m_Target: {fileID: 710497357}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: OpenMenu
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Simulador Vehiculos
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -1494,13 +1508,13 @@ MonoBehaviour:
       - m_Target: {fileID: 710497357}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: OpenMenu
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Procedimientos
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -1508,13 +1522,13 @@ MonoBehaviour:
       - m_Target: {fileID: 710497357}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: OpenMenu
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Visor Modelos 3D
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -1522,15 +1536,16 @@ MonoBehaviour:
       - m_Target: {fileID: 710497357}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: OpenMenu
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Ajustes
           m_BoolArgument: 0
         m_CallState: 2
+  optionsDeactive: 
 --- !u!1 &847065634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,7 +1603,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Levanta la mano izquierda (palma arriba) para activar el men\xFA."
+  m_text: Este es el menu principal.\nAhora presiona el boton de Ajustes, es el unico
+    naranja
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1fb878460d744414e9acf68377ff3c12, type: 2}
   m_sharedMaterial: {fileID: -2722020420498765408, guid: 1fb878460d744414e9acf68377ff3c12, type: 2}
@@ -2696,12 +2712,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939525278}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1965824931}
+  m_Father: {fileID: 980617370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &939525280
 MonoBehaviour:
@@ -2716,7 +2732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuTitle: Visor Modelos 3D
-  indexReturnToMenu: 0
+  idReturnTo: grooVR Simulaciones
   options:
   - Edificios
   - Equipos
@@ -2724,6 +2740,7 @@ MonoBehaviour:
   - Abstractos
   models: []
   functions: []
+  optionsDeactive: 
 --- !u!1 &959614510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,6 +2819,46 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &980617369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980617370}
+  m_Layer: 10
+  m_Name: Menus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &980617370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980617369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 832461475}
+  - {fileID: 1139141481}
+  - {fileID: 939525279}
+  - {fileID: 117964186}
+  - {fileID: 620839302}
+  - {fileID: 1676598672}
+  - {fileID: 1875794126}
+  - {fileID: 788224810}
+  - {fileID: 1434668498}
+  m_Father: {fileID: 1965824931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1058386570
 PrefabInstance:
@@ -3006,11 +3063,11 @@ PrefabInstance:
     - target: {fileID: 5810409540851365834, guid: 3f7511fbc40ae7a4b89c3298a3de199d, type: 3}
       propertyPath: OnGestureStopEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2751914247071899056}
+      objectReference: {fileID: 329765633}
     - target: {fileID: 5810409540851365834, guid: 3f7511fbc40ae7a4b89c3298a3de199d, type: 3}
       propertyPath: OnGestureStartEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2751914247071899056}
+      objectReference: {fileID: 329765633}
     - target: {fileID: 5810409540851365834, guid: 3f7511fbc40ae7a4b89c3298a3de199d, type: 3}
       propertyPath: OnGestureStopEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CancelTeleport
@@ -3021,11 +3078,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5810409540851365834, guid: 3f7511fbc40ae7a4b89c3298a3de199d, type: 3}
       propertyPath: OnGestureStopEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Autohand.Teleporter, AutoHandAssembly
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5810409540851365834, guid: 3f7511fbc40ae7a4b89c3298a3de199d, type: 3}
       propertyPath: OnGestureStartEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Autohand.Teleporter, AutoHandAssembly
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6297106391061370737, guid: 3f7511fbc40ae7a4b89c3298a3de199d, type: 3}
       propertyPath: m_Layer
@@ -3152,6 +3209,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 761072343}
+  - {fileID: 1241594822}
   m_Father: {fileID: 762085025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1080584809
@@ -3292,55 +3350,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080584809}
   m_CullTransparentMesh: 1
---- !u!1 &1100372920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1100372921}
-  - component: {fileID: 1100372922}
-  m_Layer: 0
-  m_Name: Floor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1100372921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100372920}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 676718983}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1100372922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100372920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdc713cc4979894aa12f7d8079723d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: 9
-  cellSize: 0.5
-  baseSpeed: 1
-  speedFalloff: 1
-  lineWidth: 0.05
 --- !u!4 &1120012930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6736542298987518595, guid: ce05fb083b695fe4e9270af5f6afd5c9, type: 3}
@@ -3479,12 +3488,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139141480}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1965824931}
+  m_Father: {fileID: 980617370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1139141482
 MonoBehaviour:
@@ -3499,7 +3508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuTitle: Simulador Vehiculos
-  indexReturnToMenu: 0
+  idReturnTo: grooVR Simulaciones
   options:
   - Auto
   - Camioneta 4x4
@@ -3507,6 +3516,7 @@ MonoBehaviour:
   - Escenarios
   models: []
   functions: []
+  optionsDeactive: 
 --- !u!114 &1196904384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7320354987642290700, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
@@ -3546,11 +3556,11 @@ Transform:
   m_GameObject: {fileID: 1198546485}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 1.45}
   m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 676718983}
+  m_Father: {fileID: 49325793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1198546487
 MonoBehaviour:
@@ -3693,6 +3703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints:
   - {fileID: 761072343}
+  - {fileID: 1241594822}
   matrix: {fileID: 1120012931}
 --- !u!4 &1228154398
 Transform:
@@ -3707,6 +3718,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1494755075}
   - {fileID: 521230645}
   - {fileID: 1120012930}
   m_Father: {fileID: 0}
@@ -3825,7 +3837,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1328039079
+--- !u!1 &1241594821
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3833,47 +3845,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1328039080}
-  - component: {fileID: 1328039081}
+  - component: {fileID: 1241594822}
   m_Layer: 0
-  m_Name: Ceiling
+  m_Name: ShowRightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1328039080
+--- !u!4 &1241594822
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328039079}
+  m_GameObject: {fileID: 1241594821}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 1.2, y: 0, z: 2.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 676718983}
+  m_Father: {fileID: 1078613360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1328039081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328039079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdc713cc4979894aa12f7d8079723d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: 9
-  cellSize: 0.5
-  baseSpeed: 1
-  speedFalloff: 1
-  lineWidth: 0.05
 --- !u!1 &1346925972
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,6 +4136,86 @@ Transform:
   - {fileID: 890986494}
   m_Father: {fileID: 2123523337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1434668497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1434668498}
+  - component: {fileID: 1434668499}
+  m_Layer: 10
+  m_Name: Menu Entornos_DEMO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1434668498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434668497}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 980617370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1434668499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434668497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuTitle: Entornos (DEMO)
+  idReturnTo: 
+  options:
+  - Taller
+  - Habitacion
+  - Cancha
+  - Grids
+  models: []
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1228154397}
+        m_TargetAssemblyTypeName: XBotController, Assembly-CSharp
+        m_MethodName: FinishMenuTuto
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 00010101
 --- !u!1 &1482678146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4361,17 +4435,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494755074}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.7}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029206271}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 103635711}
-  m_Father: {fileID: 2468671980894640550}
+  m_Father: {fileID: 1228154398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2.1}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494755076
@@ -4442,7 +4516,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
   m_PrefabInstance: {fileID: 27117568}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1683004934
+--- !u!1 &1676598671
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4450,47 +4524,108 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1683004935}
-  - component: {fileID: 1683004936}
-  m_Layer: 0
-  m_Name: WallFront
+  - component: {fileID: 1676598672}
+  - component: {fileID: 1676598673}
+  m_Layer: 10
+  m_Name: Menu Entornos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1683004935
+--- !u!4 &1676598672
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683004934}
+  m_GameObject: {fileID: 1676598671}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071058, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 0, y: 2, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 676718983}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &1683004936
+  m_Father: {fileID: 980617370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1676598673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683004934}
+  m_GameObject: {fileID: 1676598671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdc713cc4979894aa12f7d8079723d4, type: 3}
+  m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 9
-  cellSize: 0.5
-  baseSpeed: 1
-  speedFalloff: 1
-  lineWidth: 0.05
+  menuTitle: Entornos
+  idReturnTo: Ajustes
+  options:
+  - Taller
+  - Habitacion
+  - Cancha
+  - Grids
+  models: []
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 
 --- !u!114 &1697440256 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7320354987642290700, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
@@ -4639,7 +4774,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1804362381
+--- !u!224 &1873751417 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
+  m_PrefabInstance: {fileID: 1138383781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1875794125
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4647,52 +4787,120 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1804362382}
-  - component: {fileID: 1804362383}
-  m_Layer: 0
-  m_Name: WallRight
+  - component: {fileID: 1875794126}
+  - component: {fileID: 1875794127}
+  m_Layer: 10
+  m_Name: Menu Principal_DEMO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1804362382
+--- !u!4 &1875794126
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804362381}
+  m_GameObject: {fileID: 1875794125}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 2, y: 2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 676718983}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
---- !u!114 &1804362383
+  m_Father: {fileID: 980617370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1875794127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804362381}
+  m_GameObject: {fileID: 1875794125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdc713cc4979894aa12f7d8079723d4, type: 3}
+  m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 9
-  cellSize: 0.5
-  baseSpeed: 1
-  speedFalloff: 1
-  lineWidth: 0.05
---- !u!224 &1873751417 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
-  m_PrefabInstance: {fileID: 1138383781}
-  m_PrefabAsset: {fileID: 0}
+  menuTitle: grooVR Simulaciones (DEMO)
+  idReturnTo: 
+  options:
+  - Vehiculos
+  - Procedimientos
+  - Modelos 3D
+  - Ajustes
+  models: []
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Simulador Vehiculos
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Procedimientos
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Visor Modelos 3D
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Ajustes (DEMO)
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1228154397}
+        m_TargetAssemblyTypeName: XBotController, Assembly-CSharp
+        m_MethodName: TalkEntornos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 01010100
 --- !u!1 &1965824930
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,11 +4930,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 832461475}
-  - {fileID: 1139141481}
-  - {fileID: 939525279}
-  - {fileID: 117964186}
-  - {fileID: 620839302}
+  - {fileID: 980617370}
   - {fileID: 910772128}
   m_Father: {fileID: 710497356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4767,11 +4971,11 @@ Transform:
   m_GameObject: {fileID: 2000811654}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 12.02, y: 1, z: 19.26}
+  m_LocalPosition: {x: 0, y: -0.5, z: 1.45}
+  m_LocalScale: {x: 50, y: 1, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 676718983}
+  m_Father: {fileID: 49325793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2000811656
 BoxCollider:
@@ -13173,8 +13377,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1494755075}
+  m_Children: []
   m_Father: {fileID: 2468671980837703321}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2468671980894640551
