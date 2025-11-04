@@ -29,7 +29,8 @@ public class HandMenu : MonoBehaviour
         menuController.Hide();
         if (isTutoFinished)
         {
-            GameManager.Instance.StartTeleportTuto();
+            GameManager.Instance.CheerFinishMenuTuto();
+            isTutoFinished = false;
         }
     }
 

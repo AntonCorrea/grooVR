@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public bool isHandMenuActive = false;
     public bool isTeleporterActive = false;
 
-   
+    public bool isFirtTimeTeleporter = true;
     void Awake()
     {
         // Check if another instance exists
@@ -56,6 +56,12 @@ public class GameManager : MonoBehaviour
     {
         if(isTeleporterActive)
             teleporter.StartTeleport();
+
+        if (isFirtTimeTeleporter)
+        {
+            TeleportTutoFirstTime();
+            isFirtTimeTeleporter = false;
+        }
     }
 
     public void CancelTeleport()
@@ -86,8 +92,13 @@ public class GameManager : MonoBehaviour
     }
 
     [ContextMenu("StartTeleportTuto")]
-    public void StartTeleportTuto()
+    public void CheerFinishMenuTuto()
     {
         xbot.SetActions(xBotActions.cheersFinishMenuTuto);
+    }
+
+    public void TeleportTutoFirstTime()
+    {
+        xbot.SetActions(xBotActions.explainTeleport_1);
     }
 }
