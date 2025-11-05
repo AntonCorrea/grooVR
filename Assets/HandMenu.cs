@@ -3,7 +3,7 @@ using UnityEngine;
 public class HandMenu : MonoBehaviour
 {
     CubeMatrixController matrix;
-    MenuController menuController;
+    public MenuController menuController;
 
     bool isFirstTime = true;
     public bool isTutoFinished = false;

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnviromentController : MonoBehaviour
 {
-    public GameObject currentEnviroment;
+    public EnviromentInstance currentEnviroment;
 
-    public GameObject[] enviroments;
+    public EnviromentInstance[] enviroments;
 
     public Collider floorCollider;
 
@@ -14,7 +14,7 @@ public class EnviromentController : MonoBehaviour
     {
         if(currentEnviroment != null)
         {
-            GameObject.Destroy(currentEnviroment);
+            Destroy(currentEnviroment.gameObject);
         }
 
         currentEnviroment = Instantiate(enviroments[i], transform);

@@ -22,7 +22,7 @@ public class MenuController : MonoBehaviour
     {   
         //cells = GetComponentsInChildren<CellController>();
 
-        OpenMenu("grooVR Simulaciones (DEMO)");
+        OpenMenu("grooVR Simulaciones (TUTOMENU)");
 
         if (hideAtStart)
         {

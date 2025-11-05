@@ -7,7 +7,8 @@ public enum xBotActions
 {
     idle, greet, waitToMoveToGreet, moveToGreet, showLeftHand, talkGotoAjustes,talkGotoEntornos, talkGotoTaller, finishMenuTuto,
     cheersFinishMenuTuto, talkStartTeleportTuto, showRightHand, moveToShowRightHand, explainTeleport_1, explainTeleport_2,
-    cheersFinishTeleportTuto, moveToSideTable, moveToFrontTable
+    cheersFinishTeleportTuto, moveToSideTable, moveToFrontTable, talkOpenJenga, finishOpenJenga,
+    finish
 }
 
 public class XBotController : MonoBehaviour
@@ -66,9 +67,9 @@ public class XBotController : MonoBehaviour
         SetActions(xBotActions.finishMenuTuto);
     }
 
-    void HandUpRight()
+    public void FinishTutoJenga()
     {
-        SetActions(xBotActions.showRightHand);
+        SetActions(xBotActions.finishOpenJenga);
     }
 
 
@@ -96,19 +97,12 @@ public class XBotController : MonoBehaviour
         {
             OnDestination();
             transform.rotation = Quaternion.LookRotation(waypoints[currentWaypoint].forward);
-            //mover al sig waypoint
-            //currentWaypoint++;
-            //if (currentWaypoint >= waypoints.Length)
-            //{
-            //    guidingPlayer = false;
-            //    OnDestination();
-            //}
         }
     }
 
     private void UpdateAnimations()
     {
-        bool isWalking = agent.velocity.magnitude > 0.1f;// && !talking;
+        bool isWalking = agent.velocity.magnitude > 0.1f;
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isTalking", talking);
     }
@@ -117,14 +111,12 @@ public class XBotController : MonoBehaviour
     public void Talk(string dialogueId, int voiceIndex)
     {
         talking = true;
-        //agent.isStopped = true;//no se q hace eso aqui
         dialogueSystem.StartDialogue(dialogueId, voiceIndex);
     }
 
     public void StopTalking()
     {
         talking = false;
-        //agent.isStopped = false;//no se q hace eso aqui
         dialogueSystem.StopDialogue();
     }
 
@@ -134,8 +126,6 @@ public class XBotController : MonoBehaviour
     public void SetActions(xBotActions action)
     {
         print("perfom action: "+action);
-        //moveAgent = false;
-        //onDestinationComplete = null;
         switch (action)
         {
             case xBotActions.idle:                
@@ -149,13 +139,11 @@ public class XBotController : MonoBehaviour
                 break;
             case xBotActions.waitToMoveToGreet:
                 animator.Play("Idle");
-                //StopTalking();
                 onTimePassed = () => SetActions(xBotActions.moveToGreet);
                 _ = StartCoroutine(InvokeWithDelay(4f));
                 break;
             case xBotActions.moveToGreet:
                 animator.Play("Idle");
-                //StopTalking();
                 moveAgent = true;
                 currentWaypoint = 0;
                 onDestinationComplete = Greet;
@@ -199,7 +187,6 @@ public class XBotController : MonoBehaviour
                 _ = StartCoroutine(InvokeWithDelay(4f));
                 break;
             case xBotActions.moveToShowRightHand:
-                //StopTalking();
                 moveAgent = true;
                 currentWaypoint = 1;
                 onDestinationComplete = () => SetActions(xBotActions.showRightHand);
@@ -212,8 +199,6 @@ public class XBotController : MonoBehaviour
                 break;
             case xBotActions.explainTeleport_1:
                 Talk("Apunta la linea hacia el circulo en el suelo.",0);
-                //onTimePassed = () => SetActions(xBotActions.explainTeleport_2);
-                //_ = StartCoroutine(InvokeWithDelay(3f));
                 break;
             case xBotActions.explainTeleport_2:
                 Talk("Bien, mientras la linea sea azul, cierra la palma de tu mano, haciendo un puño.",0);
@@ -223,21 +208,36 @@ public class XBotController : MonoBehaviour
                 animator.Play("Clapping");
                 animator.SetTrigger("HandDown_Right");
                 teleportLine.SetActive(false);
+                GameManager.Instance.isTeleporterActive = false;
                 onTimePassed = () => SetActions(xBotActions.moveToSideTable);
                 _ = StartCoroutine(InvokeWithDelay(3f));
                 break;
             case xBotActions.moveToSideTable:
                 animator.Play("Idle");
-                //StopTalking();
                 moveAgent = true;
                 currentWaypoint = 2;
                 onDestinationComplete = () => SetActions(xBotActions.moveToFrontTable);
                 break;
             case xBotActions.moveToFrontTable:
-                //StopTalking();
                 moveAgent = true;
                 currentWaypoint = 3;
-                onDestinationComplete = () => SetActions(xBotActions.idle);
+                onDestinationComplete = () => SetActions(xBotActions.talkOpenJenga);
+                break;
+            case xBotActions.talkOpenJenga:
+                Talk("Para terminar, abramos la experiencia Jenga.\nAbre el menu, ve a Procedimientos > Jenga",0);
+                GameManager.Instance.isHandMenuActive = true;
+                GameManager.Instance.handMenu.menuController.OpenMenu("grooVR Simulaciones (TUTOJENGA)");
+                break;
+            case xBotActions.finishOpenJenga:
+                Talk("Muy bien! Ya puedes jugar yenga!\nTienes abilitado todas las experiencias y puedes moverte por todos los entornos!",0);
+                GameManager.Instance.handMenu.menuController.OpenMenu("grooVR Simulaciones");
+                GameManager.Instance.teleporter.onlyUseTeleportPoints = false;
+                GameManager.Instance.isTeleporterActive = true;
+                onTimePassed = () => SetActions(xBotActions.finish);
+                _ = StartCoroutine(InvokeWithDelay(3f));
+                break;
+            case xBotActions.finish:
+                gameObject.SetActive(false);
                 break;
         }
     }
@@ -285,11 +285,6 @@ public class XBotController : MonoBehaviour
         }
     }
 
-    [ContextMenu("finishTeleport")]
-    public void XbotCheersToFinishTeleport()
-    {
-        SetActions(xBotActions.moveToSideTable);
-    }
 
 
 
