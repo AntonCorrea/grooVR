@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public AutoHandPlayer playerBody;
+
     public Action actionDelay;
 
     public XBotController xbot;
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
     public GameObject currentObjectOnTable;
     void Awake()
     {
+        playerBody = AutoHandExtensions.CanFindObjectOfType<AutoHandPlayer>();
+
         // Check if another instance exists
         if (Instance != null && Instance != this)
         {
@@ -41,7 +45,7 @@ public class GameManager : MonoBehaviour
     public void OnBtnStart()
     {
         enviroment.stand.gameObject.SetActive(false);
-        enviroment.LoadEnviroment(3);
+        //enviroment.LoadEnviroment(3);
         xbot.SetActions(xBotActions.waitToMoveToGreet);
     }
 
@@ -86,6 +90,7 @@ public class GameManager : MonoBehaviour
             Destroy(currentObjectOnTable);
 
         enviroment.LoadEnviroment(index);
+        playerBody.SetPosition(enviroment.currentEnviroment.spawnPlayerPoint.transform.position);
     }
 
     public void HandMenuShowFirstTime()
@@ -117,5 +122,15 @@ public class GameManager : MonoBehaviour
         GameObject newGameObject = objectsForSpawnOnTable.FirstOrDefault(i => i.name == newObject);
         currentObjectOnTable = Instantiate(newGameObject, enviroment.currentEnviroment.tableSpawnPoint.transform);
 
+    }
+
+    public void SkipTutorial()
+    {
+        enviroment.stand.gameObject.SetActive(false);
+        xbot.gameObject.SetActive(false);
+        isHandMenuActive = true;
+        handMenu.menuController.OpenMenu("grooVR Simulaciones");
+        teleporter.onlyUseTeleportPoints = false;
+        Instance.isTeleporterActive = true;
     }
 }
