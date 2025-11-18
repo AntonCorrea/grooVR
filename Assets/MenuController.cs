@@ -26,7 +26,7 @@ public class MenuController : MonoBehaviour
 
         if (hideAtStart)
         {
-            Hide();
+            HideHandMenu();
         }
     }
 
@@ -58,12 +58,12 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void Show()
+    public void ShowHandMenu()
     {
         menuRoot.SetActive(true);
     }
 
-    public void Hide()
+    public void HideHandMenu()
     {
         menuRoot.SetActive(false);
     }

@@ -58,6 +58,8 @@ public class JrsVehicleController : MonoBehaviour
 
     private bool hasStartedMoving = false;
 
+    float verticalInput;
+    float horizontalInput;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -91,10 +93,11 @@ public class JrsVehicleController : MonoBehaviour
             rb.centerOfMass = transform.InverseTransformPoint(centerOfMassObject.transform.position);
         }
 
-        float v = mobileInputController != null ? mobileInputController.GetVerticalInput() : Input.GetAxis("Vertical") * motorForce;
-        //float v = Input.GetAxis("Vertical") * motorForce;
-        float h = mobileInputController != null ? mobileInputController.GetHorizontalInput() : Input.GetAxis("Horizontal") * maxSteerAngle;
-        //float h = Input.GetAxis("Horizontal") * maxSteerAngle;
+        //float v = mobileInputController != null ? mobileInputController.GetVerticalInput() : Input.GetAxis("Vertical") * motorForce;
+        float v = Input.GetAxis("Vertical") * motorForce;
+
+        //float h = mobileInputController != null ? mobileInputController.GetHorizontalInput() : Input.GetAxis("Horizontal") * maxSteerAngle;
+        float h = Input.GetAxis("Horizontal") * maxSteerAngle;
 
         // Apply motor torque to the wheels
         frontLeftWheel.motorTorque = v;
@@ -125,14 +128,16 @@ public class JrsVehicleController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float v = mobileInputController != null ? mobileInputController.GetVerticalInput() * motorForce : 0f;
-        //float v = 0f;
-        float h = mobileInputController != null ? mobileInputController.GetHorizontalInput() * maxSteerAngle : 0f;
-        //float h = 0f;
+        //float v = mobileInputController != null ? mobileInputController.GetVerticalInput() * motorForce : 0f;
+        float v = Input.GetAxis("Vertical") * motorForce;
+
+        //float h = mobileInputController != null ? mobileInputController.GetHorizontalInput() * maxSteerAngle : 0f;
+        float h = Input.GetAxis("Horizontal") * maxSteerAngle;
+
 
         // Calculate the current wheel speed in km/h
         float currentSpeedKmph = frontLeftWheel.radius * Mathf.PI * frontLeftWheel.rpm * 60f / 1000f;
-        Debug.Log("Current Speed: " + currentSpeedKmph + " Kmph");
+        //Debug.Log("Current Speed: " + currentSpeedKmph + " Kmph");
 
         // Calculate the current engine RPM based on the wheel speed and gear ratio
         float currentRPM = frontLeftWheel.rpm * gearRatios[Mathf.Clamp(currentGear - 1, 0, gearRatios.Length - 1)];

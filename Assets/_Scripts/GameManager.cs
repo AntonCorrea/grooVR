@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] objectsForSpawnOnTable;
     public GameObject currentObjectOnTable;
+
+    public VehicleController[] vehicles;
+    public VehicleController currentVehicle;
+
+    public Camera mainPlayerCam;
+    public Camera vehicleCam;
     void Awake()
     {
         playerBody = AutoHandExtensions.CanFindObjectOfType<AutoHandPlayer>();
@@ -40,12 +46,24 @@ public class GameManager : MonoBehaviour
         //DontDestroyOnLoad(gameObject); // Persist between scenes
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Submit"))
+        {
+            EnterHummer();
+        }
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ExitHummer();
+        }
+    }
+
 
     [ContextMenu("OnBtnStart")]
     public void OnBtnStart()
     {
         enviroment.stand.gameObject.SetActive(false);
-        //enviroment.LoadEnviroment(3);
+        enviroment.LoadEnviroment(3);
         xbot.SetActions(xBotActions.waitToMoveToGreet);
     }
 
@@ -82,15 +100,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         actionDelay.Invoke();
-    }
-
-    public void LoadEnviroment(int index)
-    {
-        if (currentObjectOnTable != null)
-            Destroy(currentObjectOnTable);
-
-        enviroment.LoadEnviroment(index);
-        playerBody.SetPosition(enviroment.currentEnviroment.spawnPlayerPoint.transform.position);
     }
 
     public void HandMenuShowFirstTime()
@@ -132,5 +141,41 @@ public class GameManager : MonoBehaviour
         handMenu.menuController.OpenMenu("grooVR Simulaciones");
         teleporter.onlyUseTeleportPoints = false;
         Instance.isTeleporterActive = true;
+    }
+
+    public void LoadEnviroment(int index)
+    {
+        if (currentObjectOnTable != null)
+            Destroy(currentObjectOnTable);
+
+        enviroment.LoadEnviroment(index);
+        playerBody.SetPosition(enviroment.currentEnviroment.spawnPlayerPoint.transform.position);
+    }
+
+    public void SpawnVehicle(string vehicle)
+    {
+        if (enviroment.currentEnviroment == null)// && enviroment.currentEnviroment.vehicleSpawnPoint == null)
+        {
+            LoadEnviroment(4);
+        }
+
+        if (currentVehicle != null)
+            Destroy(currentVehicle);
+
+        VehicleController newVehicle = vehicles.FirstOrDefault(i => i.name == vehicle);
+        currentVehicle = Instantiate(newVehicle, enviroment.currentEnviroment.vehicleSpawnPoint.transform);
+        vehicleCam = currentVehicle.carCam;
+    }
+
+    public void EnterHummer()
+    {
+        vehicleCam.enabled = true;
+        mainPlayerCam.enabled = false;
+    }
+
+    void ExitHummer()
+    {
+        vehicleCam.enabled = false;
+        mainPlayerCam.enabled = true;
     }
 }

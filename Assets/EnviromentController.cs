@@ -18,5 +18,14 @@ public class EnviromentController : MonoBehaviour
         }
 
         currentEnviroment = Instantiate(enviroments[i], transform);
+
+        if(currentEnviroment.skyBox != null)
+        {
+            RenderSettings.skybox = currentEnviroment.skyBox;
+        }
+        else
+        {
+            RenderSettings.skybox = null;
+        }
     }
 }

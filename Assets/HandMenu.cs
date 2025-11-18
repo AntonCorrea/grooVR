@@ -15,7 +15,7 @@ public class HandMenu : MonoBehaviour
     public void Show()
     {
         matrix.StartEffect();
-        menuController.Show();
+        menuController.ShowHandMenu();
         if (isFirstTime)
         {
             isFirstTime = false;
@@ -26,7 +26,7 @@ public class HandMenu : MonoBehaviour
     public void Hide()
     {
         matrix.EndEffect();
-        menuController.Hide();
+        menuController.HideHandMenu();
         if (isTutoFinished)
         {
             GameManager.Instance.CheerFinishMenuTuto();

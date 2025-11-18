@@ -7,8 +7,8 @@ public enum xBotActions
 {
     idle, greet, waitToMoveToGreet, moveToGreet, showLeftHand, talkGotoAjustes,talkGotoEntornos, talkGotoTaller, finishMenuTuto,
     cheersFinishMenuTuto, talkStartTeleportTuto, showRightHand, moveToShowRightHand, explainTeleport_1, explainTeleport_2,
-    cheersFinishTeleportTuto, moveToSideTable, moveToFrontTable, talkOpenJenga, finishOpenJenga,
-    finish
+    cheersFinishTeleportTuto, moveToSideTable, moveToFrontTable, talkOpenJenga, finishOpenJenga, cheersFinishAll,
+    sayGoodBye
 }
 
 public class XBotController : MonoBehaviour
@@ -135,7 +135,7 @@ public class XBotController : MonoBehaviour
                 animator.Play("Greet");
                 Talk("Hola,me llamo X.\nVoy a ser tu guia en esta experiencia VR.", 1);
                 onTimePassed = () => SetActions(xBotActions.showLeftHand);
-                _ = StartCoroutine(InvokeWithDelay(7f));
+                _ = StartCoroutine(InvokeWithDelay(4f));
                 break;
             case xBotActions.waitToMoveToGreet:
                 animator.Play("Idle");
@@ -229,15 +229,25 @@ public class XBotController : MonoBehaviour
                 GameManager.Instance.handMenu.menuController.OpenMenu("grooVR Simulaciones (TUTOJENGA)");
                 break;
             case xBotActions.finishOpenJenga:
-                Talk("Muy bien! Ya puedes jugar yenga!\nTienes abilitado todas las experiencias y puedes moverte por todos los entornos!",0);
+                Talk("Muy bien! Ya puedes jugar Jenga!",0);
+                GameManager.Instance.HideHandMenu();
                 GameManager.Instance.handMenu.menuController.OpenMenu("grooVR Simulaciones");
                 GameManager.Instance.teleporter.onlyUseTeleportPoints = false;
                 GameManager.Instance.isTeleporterActive = true;
-                onTimePassed = () => SetActions(xBotActions.finish);
+                onTimePassed = () => SetActions(xBotActions.cheersFinishAll);
                 _ = StartCoroutine(InvokeWithDelay(3f));
                 break;
-            case xBotActions.finish:
-                gameObject.SetActive(false);
+            case xBotActions.cheersFinishAll:
+                Talk("Haz completado el Tutorial! Felicidades!", 0);
+                animator.Play("Clapping");
+                onTimePassed = () => SetActions(xBotActions.sayGoodBye);
+                _ = StartCoroutine(InvokeWithDelay(3f));
+                break;
+            case xBotActions.sayGoodBye:
+                Talk("Ahora me desactivare para que puedas experimentar.\nHasta luego!!",0);
+                animator.Play("Idle");
+                onTimePassed = () => gameObject.SetActive(false);
+                _ = StartCoroutine(InvokeWithDelay(3f));
                 break;
         }
     }
