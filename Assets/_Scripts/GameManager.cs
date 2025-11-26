@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public VehicleController[] vehicles;
     public VehicleController currentVehicle;
 
+    bool isDriving = false;
     public Camera mainPlayerCam;
     public Camera vehicleCam;
     void Awake()
@@ -48,13 +50,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Submit"))
+        //if (Input.GetButtonDown("Submit"))
+        //{
+        //    EnterHummer();
+        //}
+        //if (Input.GetButtonDown("Cancel"))
+        //{
+        //    ExitHummer();
+        //}
+
+        if (Input.GetButtonDown("JoySubmit") || Input.GetButtonDown("Submit"))
         {
-            EnterHummer();
-        }
-        if (Input.GetButtonDown("Cancel"))
-        {
-            ExitHummer();
+            ToogleVehicle();
         }
     }
 
@@ -64,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         enviroment.stand.gameObject.SetActive(false);
         enviroment.LoadEnviroment(3);
+        enviroment.currentEnviroment.table.SetActive(false);
         xbot.SetActions(xBotActions.waitToMoveToGreet);
     }
 
@@ -143,6 +151,11 @@ public class GameManager : MonoBehaviour
         Instance.isTeleporterActive = true;
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void LoadEnviroment(int index)
     {
         if (currentObjectOnTable != null)
@@ -154,28 +167,45 @@ public class GameManager : MonoBehaviour
 
     public void SpawnVehicle(string vehicle)
     {
-        if (enviroment.currentEnviroment == null)// && enviroment.currentEnviroment.vehicleSpawnPoint == null)
+        if (enviroment.currentEnviroment != enviroment.enviroments[3])// && enviroment.currentEnviroment.vehicleSpawnPoint == null)
         {
             LoadEnviroment(4);
         }
 
         if (currentVehicle != null)
-            Destroy(currentVehicle);
+            Destroy(currentVehicle.gameObject);
 
         VehicleController newVehicle = vehicles.FirstOrDefault(i => i.name == vehicle);
         currentVehicle = Instantiate(newVehicle, enviroment.currentEnviroment.vehicleSpawnPoint.transform);
         vehicleCam = currentVehicle.carCam;
     }
 
-    public void EnterHummer()
-    {
-        vehicleCam.enabled = true;
-        mainPlayerCam.enabled = false;
-    }
+    //public void EnterHummer()
+    //{
+    //    vehicleCam.enabled = true;
+    //    mainPlayerCam.enabled = false;
+    //}
 
-    void ExitHummer()
+    //void ExitHummer()
+    //{
+    //    vehicleCam.enabled = false;
+    //    mainPlayerCam.enabled = true;
+    //}
+
+    void ToogleVehicle()
     {
-        vehicleCam.enabled = false;
-        mainPlayerCam.enabled = true;
+        if (isDriving)
+        {
+            vehicleCam.enabled = false;
+            mainPlayerCam.enabled = true;
+            isDriving = false;
+        }
+        else
+        {
+
+            vehicleCam.enabled = true;
+            mainPlayerCam.enabled = false;
+            isDriving = true;
+        }
     }
 }

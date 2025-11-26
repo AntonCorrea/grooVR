@@ -718,8 +718,6 @@ GameObject:
   - component: {fileID: 1571488495517412297}
   - component: {fileID: 2199125344732967282}
   - component: {fileID: 2047783351054527820}
-  - component: {fileID: 2199125344732967286}
-  - component: {fileID: 2199125344732967287}
   - component: {fileID: 2199125344732967281}
   - component: {fileID: 2199125344732967284}
   - component: {fileID: 2199125344732967288}
@@ -838,51 +836,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carCam: {fileID: 2607660624838248248}
---- !u!114 &2199125344732967286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2199125344732967283}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bd834bc3191b94286d36a0b5583a72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sirenSound: {fileID: 5801607900474762724}
-  redLights:
-  - {fileID: 5178727708432661851}
-  - {fileID: 6169733242077664679}
-  - {fileID: 5801607900813152981}
-  blueLights:
-  - {fileID: 809108464013215374}
-  - {fileID: 6789481841320033053}
-  - {fileID: 5801607899732445485}
---- !u!114 &2199125344732967287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2199125344732967283}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb251649a780d949a66a93a5bc0a49b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  headlightElements:
-  - {fileID: 6124370336345234281}
-  - {fileID: 5801607900672148376}
-  - {fileID: 5801607900043153398}
-  signalElements:
-  - {fileID: 8784056758226983703}
-  extraLightsElements:
-  - {fileID: 7970650048715869773}
-  reverseLightsElements:
-  - {fileID: 6958784565719029690}
-  brakeLightsElements:
-  - {fileID: 2484435351619460320}
 --- !u!114 &2199125344732967281
 MonoBehaviour:
   m_ObjectHideFlags: 0

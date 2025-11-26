@@ -94,23 +94,23 @@ public class JrsVehicleController : MonoBehaviour
         }
 
         //float v = mobileInputController != null ? mobileInputController.GetVerticalInput() : Input.GetAxis("Vertical") * motorForce;
-        float v = Input.GetAxis("Vertical") * motorForce;
+        verticalInput = Input.GetAxis("Vertical") * motorForce;
 
         //float h = mobileInputController != null ? mobileInputController.GetHorizontalInput() : Input.GetAxis("Horizontal") * maxSteerAngle;
-        float h = Input.GetAxis("Horizontal") * maxSteerAngle;
+        horizontalInput = Input.GetAxis("Horizontal") * maxSteerAngle;
 
-        // Apply motor torque to the wheels
-        frontLeftWheel.motorTorque = v;
-        frontRightWheel.motorTorque = v;
+        //// Apply motor torque to the wheels
+        //frontLeftWheel.motorTorque = v;
+        //frontRightWheel.motorTorque = v;
 
-        // Apply steering angle to the front wheels
-        frontLeftWheel.steerAngle = h;
-        frontRightWheel.steerAngle = h;
+        //// Apply steering angle to the front wheels
+        //frontLeftWheel.steerAngle = h;
+        //frontRightWheel.steerAngle = h;
 
-        // Update wheel poses
-        UpdateWheelPoses();
+        //// Update wheel poses
+        //UpdateWheelPoses();
 
-        if (Input.GetKey(KeyCode.Space))// || mobileInputController.brakeButton.IsButtonPressed())
+        if (Input.GetButtonDown("Submit"))// || mobileInputController.brakeButton.IsButtonPressed())
         {
             foreach (WheelCollider wheelCollider in wheelCollidersBrake)
             {
@@ -128,11 +128,11 @@ public class JrsVehicleController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //float v = mobileInputController != null ? mobileInputController.GetVerticalInput() * motorForce : 0f;
-        float v = Input.GetAxis("Vertical") * motorForce;
+        ////float v = mobileInputController != null ? mobileInputController.GetVerticalInput() * motorForce : 0f;
+        //float v = Input.GetAxis("Vertical") * motorForce;
 
-        //float h = mobileInputController != null ? mobileInputController.GetHorizontalInput() * maxSteerAngle : 0f;
-        float h = Input.GetAxis("Horizontal") * maxSteerAngle;
+        ////float h = mobileInputController != null ? mobileInputController.GetHorizontalInput() * maxSteerAngle : 0f;
+        //float h = Input.GetAxis("Horizontal") * maxSteerAngle;
 
 
         // Calculate the current wheel speed in km/h
@@ -153,7 +153,7 @@ public class JrsVehicleController : MonoBehaviour
         }
 
         // Adjust the motor torque based on the current gear ratio
-        float adjustedTorque = v * gearRatios[Mathf.Clamp(currentGear - 1, 0, gearRatios.Length - 1)];
+        float adjustedTorque = verticalInput * gearRatios[Mathf.Clamp(currentGear - 1, 0, gearRatios.Length - 1)];
 
         // Apply motor torque to the wheels
         if (enable4x4)
@@ -171,8 +171,8 @@ public class JrsVehicleController : MonoBehaviour
             rearRightWheel.motorTorque = 0f; // No torque applied to rear wheels
         }
 
-        frontLeftWheel.steerAngle = h;
-        frontRightWheel.steerAngle = h;
+        frontLeftWheel.steerAngle = horizontalInput;
+        frontRightWheel.steerAngle = horizontalInput;
 
         UpdateWheelPoses();
 
