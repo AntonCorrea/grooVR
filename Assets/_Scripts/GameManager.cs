@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public bool isHandMenuActive = false;
     public bool isTeleporterActive = false;
 
-    public bool isFirtTimeTeleporter = true;
+    public bool isFirtTimeTeleporter = false;
 
     public GameObject[] objectsForSpawnOnTable;
     public GameObject currentObjectOnTable;
