@@ -30,32 +30,23 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    private void SetActiveCellsButtons(int cellsActive, bool v)
+    private void SetActiveCellsButtons(int index, bool v)
     {
-        for (int i = 0; i < cellsActive; i++)
-        {
-            cells[i].physicButton.enabled = v;
-        }
+        cells[index].physicButton.enabled = v;
     }
 
-    private void SetActiveCells(int cellsActive, bool v)
+    private void SetActiveCells(int index, bool v)
     {
-        for (int i = 0; i < cellsActive; i++)
-        {
-            cells[i].gameObject.SetActive(v);
-        }
+        cells[index].gameObject.SetActive(v);
     }
 
-    private void SetDeactiveBtnCells(int cellsDeactive, bool v)
+    private void SetDeactiveBtnCells(int index, bool v)
     {
-        for (int i = 0; i < cellsDeactive; i++)
+        if (cells[index].setDeactive)
         {
-            if (cells[i].setDeactive)
-            {
-                cells[i].SetDeactive(v);
-            }
-                
+            cells[index].SetDeactive(v);
         }
+
     }
 
     public void ShowHandMenu()
@@ -66,6 +57,11 @@ public class MenuController : MonoBehaviour
     public void HideHandMenu()
     {
         menuRoot.SetActive(false);
+
+        for (int i = 0; i < 6; i++)
+        {
+            cells[i].physicButton.transform.localPosition = Vector3.zero;
+        }
     }
 
     public void OpenMenu(string menu)
@@ -75,19 +71,21 @@ public class MenuController : MonoBehaviour
         MenuInstance menuInstance = menus.FirstOrDefault(i => i.menuTitle == menu);
 
         title.text = menuInstance.menuTitle;
-
-        SetActiveCellsButtons(6, false);
-
-
+        
         GameManager.Instance.actionDelay = () => OpenMenuDelay(menuInstance);
         _ = StartCoroutine(GameManager.Instance.InvokeWithDelay(menuDelay));
     }
 
     void OpenMenuDelay(MenuInstance menu)
     {
-        SetActiveCells(6, false);
-        SetDeactiveBtnCells(6, false);
-
+        int auxCells = 6;
+        for(int i=0; i< auxCells; i++)
+        {
+            SetActiveCellsButtons(i, false);
+            SetActiveCells(i, false);
+            SetDeactiveBtnCells(i, false);
+        }
+        
         int currentCellsLenght = menu.options.Length;
 
         for (int i = 0; i < currentCellsLenght; i++)
@@ -98,24 +96,14 @@ public class MenuController : MonoBehaviour
             int index = i;
             cells[i].buttonAction = () => menu.functions[index].Invoke();
 
-            cells[i].physicButton.transform.localPosition = Vector3.zero;
-
             if(menu.optionsDeactive.Length > 0)
             {
-                //if (menu.optionsDeactive[i])
                 {
                     cells[i].setDeactive = menu.optionsDeactive[i];
                 }
             }
+
             //cargar modelos 3d dentro de botones
-            //if (menus[option].models.Length > i)
-            //{
-            //    cells[i].SetModel(menus[option].models[i]);
-            //}
-            //else
-            //{
-            //    cells[i].SetModel(null);
-            //}
         }
 
         if (menu.idReturnTo != string.Empty)
@@ -130,9 +118,15 @@ public class MenuController : MonoBehaviour
             currentCellsLenght += 1;
         }
 
-        SetActiveCells(currentCellsLenght, true);
-        SetActiveCellsButtons(currentCellsLenght, true);
-        SetDeactiveBtnCells(currentCellsLenght, true);
+        for (int i = 0; i < currentCellsLenght; i++)
+        {
+            cells[i].physicButton.transform.localPosition = Vector3.zero;
+
+            SetActiveCells(i, true);
+            SetActiveCellsButtons(i, true);
+            SetDeactiveBtnCells(i, true);
+        }
+            
     }
 
     public void LoadEnviroment(int index)
