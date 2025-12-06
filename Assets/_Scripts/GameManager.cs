@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public Action actionDelay;
 
+    public bool skipTuto = false;
+
     public XBotController xbot;
     public HandMenu handMenu;
     public Teleporter teleporter;
@@ -22,7 +24,7 @@ public class GameManager : MonoBehaviour
     public bool isHandMenuActive = false;
     public bool isTeleporterActive = false;
 
-    public bool isFirtTimeTeleporter = true;
+    public bool isFirtTimeTeleporter = false;
 
     public GameObject[] objectsForSpawnOnTable;
     public GameObject currentObjectOnTable;
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
     bool isDriving = false;
     public Camera mainPlayerCam;
     public Camera vehicleCam;
+
+    public Sphere360Video currentSphere360Video;
     void Awake()
     {
         playerBody = AutoHandExtensions.CanFindObjectOfType<AutoHandPlayer>();
@@ -46,18 +50,21 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         //DontDestroyOnLoad(gameObject); // Persist between scenes
+
+
+        if (skipTuto)
+        {
+            SkipTutorial();
+        }
+        else
+        {
+            handMenu.menuController.OpenMenu("grooVR Simulaciones (TUTOMENU)");
+        }
+
     }
 
     private void Update()
     {
-        //if (Input.GetButtonDown("Submit"))
-        //{
-        //    EnterHummer();
-        //}
-        //if (Input.GetButtonDown("Cancel"))
-        //{
-        //    ExitHummer();
-        //}
 
         if (Input.GetButtonDown("JoySubmit") || Input.GetButtonDown("Submit"))
         {
@@ -163,6 +170,11 @@ public class GameManager : MonoBehaviour
 
         enviroment.LoadEnviroment(index);
         playerBody.SetPosition(enviroment.currentEnviroment.spawnPlayerPoint.transform.position);
+    }
+
+    public void LoadVideo(int index)
+    {
+        currentSphere360Video.PlayVideo(index);
     }
 
     public void SpawnVehicle(string vehicle)

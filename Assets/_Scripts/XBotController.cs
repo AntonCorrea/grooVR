@@ -183,6 +183,7 @@ public class XBotController : MonoBehaviour
                 teleportPoint.StartHighlight.AddListener(OnHightLightTeleportPoint);
                 teleportPoint.StopHighlight.AddListener(OnStopHightLightTeleportPoint);
                 teleportPoint.OnTeleport.AddListener(OnTeleportToPoint);
+                GameManager.Instance.isFirtTimeTeleporter = true;
                 onTimePassed = () => SetActions(xBotActions.moveToShowRightHand);
                 _ = StartCoroutine(InvokeWithDelay(4f));
                 break;

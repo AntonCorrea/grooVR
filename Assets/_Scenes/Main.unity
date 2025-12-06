@@ -778,13 +778,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 0}
+  skipTuto: 1
   xbot: {fileID: 1228154397}
   handMenu: {fileID: 710497355}
   teleporter: {fileID: 2751914247071899056}
   enviroment: {fileID: 762085026}
   isHandMenuActive: 0
   isTeleporterActive: 0
-  isFirtTimeTeleporter: 1
+  isFirtTimeTeleporter: 0
   objectsForSpawnOnTable:
   - {fileID: 7258885491153718073, guid: 2343bad438678eb4ca072a5ce3eb2b09, type: 3}
   currentObjectOnTable: {fileID: 0}
@@ -793,6 +794,7 @@ MonoBehaviour:
   currentVehicle: {fileID: 0}
   mainPlayerCam: {fileID: 2468671980894640546}
   vehicleCam: {fileID: 0}
+  currentSphere360Video: {fileID: 0}
 --- !u!4 &329765634
 Transform:
   m_ObjectHideFlags: 0
@@ -1261,7 +1263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1daefb44cf22d43828db5ae8adebee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuController: {fileID: 0}
+  matrix: {fileID: 1789942132}
+  menuController: {fileID: 710497357}
   isTutoFinished: 0
 --- !u!4 &710497356
 Transform:
@@ -1302,6 +1305,7 @@ MonoBehaviour:
   - {fileID: 117964187}
   - {fileID: 620839303}
   - {fileID: 1676598673}
+  - {fileID: 1463160009}
   - {fileID: 1875794127}
   - {fileID: 788224811}
   - {fileID: 1434668499}
@@ -1431,6 +1435,8 @@ MonoBehaviour:
   - {fileID: 7969245920868778025, guid: da28bf1b4646f9d4589aa1a757dc4e2d, type: 3}
   - {fileID: 4014261655734465179, guid: 309ea9f1b961ec242b9e5cebfc0f493b, type: 3}
   - {fileID: 5305305707222627851, guid: 520cd65d856ea2646a9664d0218ecc97, type: 3}
+  - {fileID: 5409273460278589963, guid: f86d6ffd61c3bc14396f1a419406f9d3, type: 3}
+  - {fileID: 6783169916534050544, guid: 73f305ce879736742b20a50205284899, type: 3}
   floorCollider: {fileID: 0}
   stand: {fileID: 397510400}
 --- !u!1 &771646588
@@ -2000,10 +2006,11 @@ MonoBehaviour:
   menuTitle: grooVR Simulaciones
   idReturnTo: 
   options:
-  - Vehiculos
+  - Sim. Vehiculos
   - Procedimientos
   - Modelos 3D
   - Entornos
+  - Videos 360
   - Ajustes
   models: []
   functions:
@@ -2018,7 +2025,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: Simulador Vehiculos
+          m_StringArgument: Vehiculos
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -2061,6 +2068,20 @@ MonoBehaviour:
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: Entornos
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Videos 360
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -3385,6 +3406,7 @@ Transform:
   - {fileID: 1139141481}
   - {fileID: 939525279}
   - {fileID: 117964186}
+  - {fileID: 1463160008}
   - {fileID: 620839302}
   - {fileID: 1676598672}
   - {fileID: 558559287}
@@ -4039,7 +4061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuTitle: Simulador Vehiculos
+  menuTitle: Vehiculos
   idReturnTo: grooVR Simulaciones
   options:
   - Auto
@@ -4940,6 +4962,191 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 00010101
+--- !u!1 &1463160007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1463160008}
+  - component: {fileID: 1463160009}
+  m_Layer: 10
+  m_Name: Menu Videos 360
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1463160008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463160007}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 980617370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1463160009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463160007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuTitle: Videos 360
+  idReturnTo: grooVR Simulaciones
+  options:
+  - Tren a las Nubes
+  - Salta 360
+  - Mina de Borax
+  - Camion DAF XG
+  - Accidente
+  models: []
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 
 --- !u!1 &1482678146
 GameObject:
   m_ObjectHideFlags: 0
@@ -5476,6 +5683,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6736542298987518595, guid: ce05fb083b695fe4e9270af5f6afd5c9, type: 3}
   m_PrefabInstance: {fileID: 887139454}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789942132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8311630666763809470, guid: ce05fb083b695fe4e9270af5f6afd5c9, type: 3}
+  m_PrefabInstance: {fileID: 887139454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4b20b72c520604dbad513d8d155c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1790792261
 GameObject:
   m_ObjectHideFlags: 0
