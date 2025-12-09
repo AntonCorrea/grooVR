@@ -183,14 +183,21 @@ public class GameManager : MonoBehaviour
 
     public void SpawnVehicle(string vehicle)
     {
-        if (enviroment.currentEnviroment != enviroment.enviroments[3])// && enviroment.currentEnviroment.vehicleSpawnPoint == null)
+        if (enviroment.currentEnviroment != null && enviroment.currentEnviroment.vehicleSpawnPoint != null)
         {
-            LoadEnviroment(4);
+            CurrentSpawnVehicle(vehicle);
+        }
+        else
+        {
+            handMenu.menuController.OpenMenu("Entornos_1");
         }
 
+    }
+
+    void CurrentSpawnVehicle(string vehicle)
+    {
         if (currentVehicle != null)
             Destroy(currentVehicle.gameObject);
-
         VehicleController newVehicle = vehicles.FirstOrDefault(i => i.name == vehicle);
         currentVehicle = Instantiate(newVehicle, enviroment.currentEnviroment.vehicleSpawnPoint.transform);
         vehicleCam = currentVehicle.carCam;
