@@ -226,7 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 49325793}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: XBotEnv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,15 +240,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49325792}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1078613360}
   - {fileID: 1198546486}
   - {fileID: 778118896}
   - {fileID: 2000811655}
-  m_Father: {fileID: 762085025}
+  - {fileID: 397510401}
+  m_Father: {fileID: 1930694002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &103635710
 GameObject:
@@ -779,7 +781,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 0}
   skipTuto: 1
-  xbot: {fileID: 1228154397}
+  xBotController: {fileID: 1228154397}
+  xBotEnv: {fileID: 49325792}
+  stand: {fileID: 0}
   handMenu: {fileID: 710497355}
   teleporter: {fileID: 2751914247071899056}
   enviroment: {fileID: 762085026}
@@ -1016,7 +1020,7 @@ Transform:
   - {fileID: 771646589}
   - {fileID: 2072115425}
   - {fileID: 789655722}
-  m_Father: {fileID: 762085025}
+  m_Father: {fileID: 49325793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &425124771 stripped
 RectTransform:
@@ -1410,10 +1414,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 397510401}
-  - {fileID: 49325793}
-  - {fileID: 1078613360}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &762085026
@@ -1437,8 +1438,6 @@ MonoBehaviour:
   - {fileID: 5305305707222627851, guid: 520cd65d856ea2646a9664d0218ecc97, type: 3}
   - {fileID: 5409273460278589963, guid: f86d6ffd61c3bc14396f1a419406f9d3, type: 3}
   - {fileID: 6783169916534050544, guid: 73f305ce879736742b20a50205284899, type: 3}
-  floorCollider: {fileID: 0}
-  stand: {fileID: 397510400}
 --- !u!1 &771646588
 GameObject:
   m_ObjectHideFlags: 0
@@ -3764,7 +3763,7 @@ Transform:
   - {fileID: 1241594822}
   - {fileID: 1493788803}
   - {fileID: 1737674016}
-  m_Father: {fileID: 762085025}
+  m_Father: {fileID: 49325793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1080584809
 GameObject:
@@ -4299,7 +4298,7 @@ Transform:
   - {fileID: 521230645}
   - {fileID: 1120012930}
   - {fileID: 1338862476}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1930694002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1228154399
 MonoBehaviour:
@@ -5942,6 +5941,39 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 01010100
+--- !u!1 &1930694001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1930694002}
+  m_Layer: 0
+  m_Name: Xbot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1930694002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930694001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1228154398}
+  - {fileID: 49325793}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965824930
 GameObject:
   m_ObjectHideFlags: 0
@@ -30121,5 +30153,5 @@ SceneRoots:
   - {fileID: 329765634}
   - {fileID: 762085025}
   - {fileID: 710497356}
-  - {fileID: 1228154398}
+  - {fileID: 1930694002}
   - {fileID: 959614513}

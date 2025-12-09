@@ -16,11 +16,14 @@ public class GameManager : MonoBehaviour
 
     public bool skipTuto = false;
 
-    public XBotController xbot;
+    public XBotController xBotController;
+    public GameObject xBotEnv;
+    public GameObject stand;
+
     public HandMenu handMenu;
+
     public Teleporter teleporter;
     public EnviromentController enviroment;
-
     public bool isHandMenuActive = false;
     public bool isTeleporterActive = false;
 
@@ -76,10 +79,10 @@ public class GameManager : MonoBehaviour
     [ContextMenu("OnBtnStart")]
     public void OnBtnStart()
     {
-        enviroment.stand.gameObject.SetActive(false);
+        stand.SetActive(false);
         enviroment.LoadEnviroment(3);
         enviroment.currentEnviroment.table.SetActive(false);
-        xbot.SetActions(xBotActions.waitToMoveToGreet);
+        xBotController.SetActions(xBotActions.waitToMoveToGreet);
     }
 
     public void ShowHandMenu()
@@ -119,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     public void HandMenuShowFirstTime()
     {
-        xbot.SetActions(xBotActions.talkGotoAjustes);
+        xBotController.SetActions(xBotActions.talkGotoAjustes);
     }
 
     public void HandMenuFinishedTuto()
@@ -130,12 +133,12 @@ public class GameManager : MonoBehaviour
     [ContextMenu("StartTeleportTuto")]
     public void CheerFinishMenuTuto()
     {
-        xbot.SetActions(xBotActions.cheersFinishMenuTuto);
+        xBotController.SetActions(xBotActions.cheersFinishMenuTuto);
     }
 
     public void TeleportTutoFirstTime()
     {
-        xbot.SetActions(xBotActions.explainTeleport_1);
+        xBotController.SetActions(xBotActions.explainTeleport_1);
     }
 
     public void SpawnOnTable(string newObject)
@@ -150,8 +153,9 @@ public class GameManager : MonoBehaviour
 
     public void SkipTutorial()
     {
-        enviroment.stand.gameObject.SetActive(false);
-        xbot.gameObject.SetActive(false);
+        xBotEnv.SetActive(false);
+        xBotController.gameObject.SetActive(false);
+        enviroment.LoadEnviroment(3);
         isHandMenuActive = true;
         handMenu.menuController.OpenMenu("grooVR Simulaciones");
         teleporter.onlyUseTeleportPoints = false;
