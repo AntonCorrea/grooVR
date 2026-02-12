@@ -661,6 +661,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 329765633}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SpawnVehicle
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: AMR_Police_Vehicle
+          m_BoolArgument: 0
+        m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 710497357}
@@ -673,6 +685,18 @@ MonoBehaviour:
           m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 329765633}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SpawnVehicle
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: AMR_Police_Vehicle
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 
@@ -863,7 +887,7 @@ MonoBehaviour:
   skipTuto: 1
   xBotController: {fileID: 1228154397}
   xBotEnv: {fileID: 49325792}
-  stand: {fileID: 0}
+  stand: {fileID: 397510400}
   handMenu: {fileID: 710497355}
   teleporter: {fileID: 2751914247071899056}
   enviroment: {fileID: 762085026}
@@ -1138,68 +1162,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5201469075995541070}
   m_LocalEulerAnglesHint: {x: -7.028, y: 204.076, z: -94.067}
---- !u!1001 &512901973
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 762085025}
-    m_Modifications:
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8163300801020858730, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-      propertyPath: m_Name
-      value: Mina
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
---- !u!4 &512901974 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7637148869430966761, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
-  m_PrefabInstance: {fileID: 512901973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &521230645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 215bfbf2b8832ba45a66acf2e548a7ba, type: 3}
@@ -1557,8 +1519,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 512901974}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &762085026
@@ -4221,16 +4182,16 @@ MonoBehaviour:
       m_Calls: []
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 329765633}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SpawnVehicle
+      - m_Target: {fileID: 710497357}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: AMR_Police_Vehicle
+          m_StringArgument: Entornos_2
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 01010001

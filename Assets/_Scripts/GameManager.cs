@@ -183,14 +183,15 @@ public class GameManager : MonoBehaviour
 
     public void SpawnVehicle(string vehicle)
     {
-        if (enviroment.currentEnviroment != null && enviroment.currentEnviroment.vehicleSpawnPoint != null)
-        {
-            CurrentSpawnVehicle(vehicle);
-        }
-        else
-        {
-            handMenu.menuController.OpenMenu("Entornos_1");
-        }
+        //if (enviroment.currentEnviroment != null && enviroment.currentEnviroment.vehicleSpawnPoint != null)
+        //{
+        //    CurrentSpawnVehicle(vehicle);
+        //}
+        //else
+        //{
+        //    handMenu.menuController.OpenMenu("Entornos_2");
+        //}
+        CurrentSpawnVehicle(vehicle);
 
     }
 

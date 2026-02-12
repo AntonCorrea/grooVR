@@ -60,8 +60,8 @@ public class DialogueSystem : MonoBehaviour
             //Debug.Log("Current dialogue: " + currentDialogue);
             textMesh.text = currentDialogue;
 
-            audioSource.clip = speeches[voiceIndex];
-            audioSource.Play();
+            //////audioSource.clip = speeches[voiceIndex];
+            //////audioSource.Play();
         
             float duration = baseDuration + (currentDialogue.Length * secondsPerCharacter);
            // Debug.Log($"Text will stay for {duration:F2} seconds.");
