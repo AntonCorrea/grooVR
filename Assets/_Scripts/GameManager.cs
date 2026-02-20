@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] objectsForSpawnOnTable;
     public GameObject currentObjectOnTable;
 
-    public VehicleController[] vehicles;
-    public VehicleController currentVehicle;
+    public VehicleCameraController[] vehicles;
+    public VehicleCameraController currentVehicle;
 
     bool isDriving = false;
     public Camera mainPlayerCam;
@@ -183,38 +183,18 @@ public class GameManager : MonoBehaviour
 
     public void SpawnVehicle(string vehicle)
     {
-        //if (enviroment.currentEnviroment != null && enviroment.currentEnviroment.vehicleSpawnPoint != null)
-        //{
-        //    CurrentSpawnVehicle(vehicle);
-        //}
-        //else
-        //{
-        //    handMenu.menuController.OpenMenu("Entornos_2");
-        //}
         CurrentSpawnVehicle(vehicle);
-
     }
 
     void CurrentSpawnVehicle(string vehicle)
     {
         if (currentVehicle != null)
             Destroy(currentVehicle.gameObject);
-        VehicleController newVehicle = vehicles.FirstOrDefault(i => i.name == vehicle);
+        VehicleCameraController newVehicle = vehicles.FirstOrDefault(i => i.name == vehicle);
         currentVehicle = Instantiate(newVehicle, enviroment.currentEnviroment.vehicleSpawnPoint.transform);
         vehicleCam = currentVehicle.carCam;
     }
 
-    //public void EnterHummer()
-    //{
-    //    vehicleCam.enabled = true;
-    //    mainPlayerCam.enabled = false;
-    //}
-
-    //void ExitHummer()
-    //{
-    //    vehicleCam.enabled = false;
-    //    mainPlayerCam.enabled = true;
-    //}
 
     void ToogleVehicle()
     {

@@ -10,5 +10,10 @@ public class MenuInstance : MonoBehaviour
     public GameObject[] models;
     public UnityEvent[] functions;
     public bool[] optionsDeactive;
-    
+    public MenuType type;
+    public CellController[] cells;
+    public enum MenuType
+    {
+        BigButton, List, Vehicle
+    }
 }
