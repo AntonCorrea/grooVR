@@ -23,7 +23,13 @@ public class GameManager : MonoBehaviour
     public HandMenu handMenu;
 
     public Teleporter teleporter;
+
     public EnviromentController enviroment;
+
+    public VehicleController vehicleController;
+
+
+
     public bool isHandMenuActive = false;
     public bool isTeleporterActive = false;
 
@@ -32,14 +38,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] objectsForSpawnOnTable;
     public GameObject currentObjectOnTable;
 
-    public VehicleCameraController[] vehicles;
-    public VehicleCameraController currentVehicle;
-
-    bool isDriving = false;
-    public Camera mainPlayerCam;
-    public Camera vehicleCam;
-
     public Sphere360Video currentSphere360Video;
+
     void Awake()
     {
         playerBody = AutoHandExtensions.CanFindObjectOfType<AutoHandPlayer>();
@@ -66,22 +66,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-        if (Input.GetButtonDown("JoySubmit") || Input.GetButtonDown("Submit"))
-        {
-            ToogleVehicle();
-        }
-    }
-
 
     [ContextMenu("OnBtnStart")]
     public void OnBtnStart()
     {
         stand.SetActive(false);
-        enviroment.LoadEnviroment(3);
-        enviroment.currentEnviroment.table.SetActive(false);
+        enviroment.SpawnEnviroment("Grid");
+        enviroment.currentEnviromentInstance.table.SetActive(false);
         xBotController.SetActions(xBotActions.waitToMoveToGreet);
     }
 
@@ -147,7 +138,7 @@ public class GameManager : MonoBehaviour
             Destroy(currentObjectOnTable);
 
         GameObject newGameObject = objectsForSpawnOnTable.FirstOrDefault(i => i.name == newObject);
-        currentObjectOnTable = Instantiate(newGameObject, enviroment.currentEnviroment.tableSpawnPoint.transform);
+        currentObjectOnTable = Instantiate(newGameObject, enviroment.currentEnviromentInstance.tableSpawnPoint.transform);
 
     }
 
@@ -155,9 +146,9 @@ public class GameManager : MonoBehaviour
     {
         xBotEnv.SetActive(false);
         xBotController.gameObject.SetActive(false);
-        enviroment.LoadEnviroment(3);
+        enviroment.SpawnEnviroment("Grid");
         isHandMenuActive = true;
-        handMenu.menuController.OpenMenu("grooVR Simulaciones");
+        handMenu.menuController.OpenMenu("Main");
         teleporter.onlyUseTeleportPoints = false;
         Instance.isTeleporterActive = true;
     }
@@ -167,13 +158,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void LoadEnviroment(int index)
+    public void DestroyObjectOnTable()
     {
         if (currentObjectOnTable != null)
             Destroy(currentObjectOnTable);
+    }
 
-        enviroment.LoadEnviroment(index);
-        playerBody.SetPosition(enviroment.currentEnviroment.spawnPlayerPoint.transform.position);
+    public void ResetPlayerPositionInEnviroment()
+    {
+        playerBody.SetPosition(enviroment.currentEnviromentInstance.spawnPlayerPoint.transform.position);
     }
 
     public void LoadVideo(int index)
@@ -181,35 +174,12 @@ public class GameManager : MonoBehaviour
         currentSphere360Video.PlayVideo(index);
     }
 
-    public void SpawnVehicle(string vehicle)
+    public void SpawnEnviroment(string name)
     {
-        CurrentSpawnVehicle(vehicle);
-    }
-
-    void CurrentSpawnVehicle(string vehicle)
-    {
-        if (currentVehicle != null)
-            Destroy(currentVehicle.gameObject);
-        VehicleCameraController newVehicle = vehicles.FirstOrDefault(i => i.name == vehicle);
-        currentVehicle = Instantiate(newVehicle, enviroment.currentEnviroment.vehicleSpawnPoint.transform);
-        vehicleCam = currentVehicle.carCam;
+        enviroment.SpawnEnviroment(name);
     }
 
 
-    void ToogleVehicle()
-    {
-        if (isDriving)
-        {
-            vehicleCam.enabled = false;
-            mainPlayerCam.enabled = true;
-            isDriving = false;
-        }
-        else
-        {
 
-            vehicleCam.enabled = true;
-            mainPlayerCam.enabled = false;
-            isDriving = true;
-        }
-    }
+
 }

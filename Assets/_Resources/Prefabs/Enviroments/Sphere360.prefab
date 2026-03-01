@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13f10d2bc863974290a44ef387714a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enviromentName: Sphere360
   table: {fileID: 0}
   tableSpawnPoint: {fileID: 0}
   spawnPlayerPoint: {fileID: 6013742183417113659}
@@ -217,17 +218,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f2cd6ed54c31fcf4a83fc0f21a3a2da5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4192899545309246646}
+      insertIndex: 1
+      addedObject: {fileID: 1974550936225385259}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f2cd6ed54c31fcf4a83fc0f21a3a2da5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1974550936225385259}
+      addedObject: {fileID: 4192899545309246646}
   m_SourcePrefab: {fileID: 100100000, guid: f2cd6ed54c31fcf4a83fc0f21a3a2da5, type: 3}
 --- !u!1 &6989932802544074222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f2cd6ed54c31fcf4a83fc0f21a3a2da5, type: 3}
   m_PrefabInstance: {fileID: 7908412241222844607}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1974550936225385259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6989932802544074222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda03ba4736dee347ad6d2741cbbc5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videos:
+  - {fileID: 32900000, guid: 23ca2076b5be0ac4fa9ee3aaa4b6dc87, type: 3}
+  - {fileID: 32900000, guid: 7f6744a37dd681b4ba348fd0d2f371d0, type: 3}
+  - {fileID: 32900000, guid: d9bb8f321cca24648b9e2422be563bdf, type: 3}
+  - {fileID: 32900000, guid: 6a3c6e7e7a03fd14e81971790d101f0a, type: 3}
 --- !u!328 &4192899545309246646
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -264,23 +282,6 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!114 &1974550936225385259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6989932802544074222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda03ba4736dee347ad6d2741cbbc5c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videos:
-  - {fileID: 32900000, guid: 23ca2076b5be0ac4fa9ee3aaa4b6dc87, type: 3}
-  - {fileID: 32900000, guid: 7f6744a37dd681b4ba348fd0d2f371d0, type: 3}
-  - {fileID: 32900000, guid: d9bb8f321cca24648b9e2422be563bdf, type: 3}
-  - {fileID: 32900000, guid: 6a3c6e7e7a03fd14e81971790d101f0a, type: 3}
 --- !u!4 &7659191904961898324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f2cd6ed54c31fcf4a83fc0f21a3a2da5, type: 3}

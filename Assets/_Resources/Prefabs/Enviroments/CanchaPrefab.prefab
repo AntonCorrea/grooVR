@@ -131,9 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13f10d2bc863974290a44ef387714a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enviromentName: CanchaBasquet
   table: {fileID: 0}
   tableSpawnPoint: {fileID: 0}
   spawnPlayerPoint: {fileID: 113533625827850432}
+  vehicleSpawnPoint: {fileID: 0}
+  skyBox: {fileID: 0}
 --- !u!1001 &8484172708671331323
 PrefabInstance:
   m_ObjectHideFlags: 0

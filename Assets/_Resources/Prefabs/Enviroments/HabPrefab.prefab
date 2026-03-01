@@ -295,9 +295,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13f10d2bc863974290a44ef387714a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enviromentName: Habitacion
   table: {fileID: 412204778757691407}
   tableSpawnPoint: {fileID: 5739568255784584891}
   spawnPlayerPoint: {fileID: 2992348345269033431}
+  vehicleSpawnPoint: {fileID: 0}
+  skyBox: {fileID: 0}
 --- !u!1 &6190097710102288243
 GameObject:
   m_ObjectHideFlags: 0

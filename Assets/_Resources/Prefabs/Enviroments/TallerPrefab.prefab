@@ -106,9 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13f10d2bc863974290a44ef387714a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enviromentName: Taller
   table: {fileID: 4875038450692062158}
   tableSpawnPoint: {fileID: 700561809147094394}
   spawnPlayerPoint: {fileID: 7436143340602501916}
+  vehicleSpawnPoint: {fileID: 0}
+  skyBox: {fileID: 0}
 --- !u!1 &5857440765274139893
 GameObject:
   m_ObjectHideFlags: 0

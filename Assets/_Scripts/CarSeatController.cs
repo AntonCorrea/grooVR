@@ -13,7 +13,7 @@ public class CarSeatController : MonoBehaviour
     {
         if (playerCam == null)
             //playerCam = Camera.main.transform; // fallback
-            playerCam = GameManager.Instance.mainPlayerCam.transform;
+            playerCam = GameManager.Instance.vehicleController.mainPlayerCam.transform;
 
         // Store headset’s initial offset in local space (for correct seated positioning)
         initialHeadOffset = playerCam.localPosition;

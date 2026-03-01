@@ -232,7 +232,7 @@ public class XBotController : MonoBehaviour
             case xBotActions.finishOpenJenga:
                 Talk("Muy bien! Ya puedes jugar Jenga!",0);
                 GameManager.Instance.HideHandMenu();
-                GameManager.Instance.handMenu.menuController.OpenMenu("grooVR Simulaciones");
+                GameManager.Instance.handMenu.menuController.OpenMenu("Main");
                 GameManager.Instance.teleporter.onlyUseTeleportPoints = false;
                 GameManager.Instance.isTeleporterActive = true;
                 onTimePassed = () => SetActions(xBotActions.cheersFinishAll);

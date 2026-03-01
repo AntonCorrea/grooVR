@@ -12,11 +12,11 @@ public class HandMenu : MonoBehaviour
     {
         matrix.StartEffect();
         menuController.ShowHandMenu();
-        if (isFirstTime)
-        {
-            isFirstTime = false;
-            GameManager.Instance.HandMenuShowFirstTime();
-        }
+        //if (isFirstTime)
+        //{
+        //    isFirstTime = false;
+        //    GameManager.Instance.HandMenuShowFirstTime();
+        //}
     }
 
     public void Hide()

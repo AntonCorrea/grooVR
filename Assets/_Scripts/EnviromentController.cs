@@ -1,23 +1,50 @@
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class EnviromentController : MonoBehaviour
 {
-    public EnviromentInstance currentEnviroment;
+    public EnviromentInstance currentEnviromentInstance;
 
     public EnviromentInstance[] enviroments;
-    
-    public void LoadEnviroment(int i)
+
+    public string currentEnviromentName;
+    public TextMeshProUGUI currentEnviromentText;
+
+    private void Start()
     {
-        if(currentEnviroment != null)
+        AssignEnviromentName(currentEnviromentName);
+    }
+
+    public void AssignEnviromentName(string name)
+    {
+        currentEnviromentName = name;
+        currentEnviromentText.text = name;
+    }
+    
+    public void SpawnEnviroment(string name="")
+    {
+        if(currentEnviromentInstance != null)
         {
-            Destroy(currentEnviroment.gameObject);
+            Destroy(currentEnviromentInstance.gameObject);
         }
 
-        currentEnviroment = Instantiate(enviroments[i], transform);
-
-        if(currentEnviroment.skyBox != null)
+        EnviromentInstance newEnviroment;
+        if (name == string.Empty)
         {
-            RenderSettings.skybox = currentEnviroment.skyBox;
+            newEnviroment = enviroments.FirstOrDefault(i => i.enviromentName == currentEnviromentName);
+        }
+        else
+        {
+            newEnviroment = enviroments.FirstOrDefault(i => i.enviromentName == name);
+        }
+        
+
+        currentEnviromentInstance = Instantiate(newEnviroment, transform);
+
+        if(currentEnviromentInstance.skyBox != null)
+        {
+            RenderSettings.skybox = currentEnviromentInstance.skyBox;
         }
         else
         {

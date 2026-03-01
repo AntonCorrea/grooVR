@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13f10d2bc863974290a44ef387714a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enviromentName: Mina
   table: {fileID: 0}
   tableSpawnPoint: {fileID: 0}
   spawnPlayerPoint: {fileID: 5497518766934567020}

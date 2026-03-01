@@ -3,11 +3,9 @@ using UnityEngine.Events;
 
 public class MenuInstance : MonoBehaviour
 {
-    //public string[] options;
-    public string menuTitle;
+    public string menuId;
     public string idReturnTo;
     public string[] options;
-    public GameObject[] models;
     public UnityEvent[] functions;
     public bool[] optionsDeactive;
     public MenuType type;

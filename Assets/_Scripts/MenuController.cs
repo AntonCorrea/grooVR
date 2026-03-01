@@ -2,10 +2,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-//public enum OptionsBtn
-//{
-//    Vehiculos, Modelos_3D, Procedimientos, Ajustes, Camioneta_4x4
-//}
 
 public class MenuController : MonoBehaviour
 {
@@ -26,7 +22,6 @@ public class MenuController : MonoBehaviour
 
     public MenuInstance[] menus;
     public CellController[] cells;
-
 
 
     private void Start()
@@ -79,9 +74,9 @@ public class MenuController : MonoBehaviour
     {
         print("OPEN MENU "+ menu);
 
-        MenuInstance menuInstance = menus.FirstOrDefault(i => i.menuTitle == menu);
+        MenuInstance menuInstance = menus.FirstOrDefault(i => i.menuId == menu);
            
-        title.text = menuInstance.menuTitle;
+        title.text = menuInstance.menuId;
         
         GameManager.Instance.actionDelay = () => OpenMenuDelay(menuInstance);
         _ = StartCoroutine(GameManager.Instance.InvokeWithDelay(menuDelay));
@@ -113,7 +108,7 @@ public class MenuController : MonoBehaviour
     {
         //assign cells to current menu
         OpenMenuType((int)menu.type);
-        cells = currentMenu.GetComponentsInChildren<CellController>();
+        cells = currentMenu.GetComponentsInChildren<CellController>(true);
 
         if(menu.type != MenuInstance.MenuType.Vehicle)
         {
@@ -175,14 +170,16 @@ public class MenuController : MonoBehaviour
           
     }
 
-    public void LoadEnviroment(int index)
-    {
-        GameManager.Instance.LoadEnviroment(index);
-    }
 
     public void LoadVideo(int index)
     {
         GameManager.Instance.LoadVideo(index);
+    }
+
+    public void LoadEnviromentAndVehicle()
+    {
+        GameManager.Instance.enviroment.SpawnEnviroment();
+        GameManager.Instance.vehicleController.SpawnVehicle();
     }
 
 }

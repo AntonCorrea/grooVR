@@ -835,6 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5134992fb10a0714ab3e8edf885a82c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleName: Hummer
   carCam: {fileID: 2607660624838248248}
 --- !u!114 &2199125344732967281
 MonoBehaviour:
