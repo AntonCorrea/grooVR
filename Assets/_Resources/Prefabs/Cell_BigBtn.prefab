@@ -422,6 +422,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   pressedValue: 0
+  body: {fileID: 328782572450266675}
 --- !u!1 &3699014432600861464
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +525,7 @@ RectTransform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5010106826316496579}
   - {fileID: 7794513812506347958}

@@ -17,7 +17,7 @@ namespace Autohand{
         Vector3 pressedPos;
         public float pressedValue;
 
-        Rigidbody body;
+        public Rigidbody body;
 
         new protected void Start(){
             base.Start();

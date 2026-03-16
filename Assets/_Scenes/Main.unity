@@ -527,8 +527,8 @@ MonoBehaviour:
       m_Calls: []
   - m_PersistentCalls:
       m_Calls: []
-  optionsDeactive: 
-  type: 1
+  optionsDeactive: 00010101
+  type: 0
   cells: []
 --- !u!1 &119673005
 GameObject:
@@ -655,7 +655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &140672703
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2077,7 +2077,7 @@ GameObject:
   - component: {fileID: 788224810}
   - component: {fileID: 788224811}
   m_Layer: 10
-  m_Name: Menu Ajustes_TUTOMENU
+  m_Name: TrainingTuto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuId: 
+  menuId: TrainingTuto
   idReturnTo: 
   options:
   - Entorno
@@ -3914,7 +3914,7 @@ MonoBehaviour:
   - Abstractos
   functions: []
   optionsDeactive: 
-  type: 1
+  type: 0
   cells: []
 --- !u!1 &959614510
 GameObject:
@@ -4750,6 +4750,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1484474721}
     m_Modifications:
+    - target: {fileID: 2467215689920365100, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4442329076207287632, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_Name
       value: Cell (4)
@@ -5559,6 +5563,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1484474721}
     m_Modifications:
+    - target: {fileID: 2467215689920365100, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4442329076207287632, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_Name
       value: Cell (3)
@@ -6052,7 +6060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1484474721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6085,7 +6093,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484474720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
@@ -7036,7 +7044,7 @@ GameObject:
   - component: {fileID: 1875794126}
   - component: {fileID: 1875794127}
   m_Layer: 10
-  m_Name: Menu Principal_TUTOMENU
+  m_Name: MainTuto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7069,13 +7077,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuId: 
+  menuId: MainTuto
   idReturnTo: 
   options:
-  - Vehiculos
-  - Procedimientos
-  - Modelos 3D
-  - Ajustes
+  - Simulador\nVehiculos
+  - Entrenamiento
+  - Visor\nModelos 3D
+  - Videos
   functions:
   - m_PersistentCalls:
       m_Calls:
@@ -7089,6 +7097,32 @@ MonoBehaviour:
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: Simulador Vehiculos
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Ajustes (TUTOMENU)
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1228154397}
+        m_TargetAssemblyTypeName: XBotController, Assembly-CSharp
+        m_MethodName: TalkEntornos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -7119,33 +7153,7 @@ MonoBehaviour:
           m_StringArgument: Visor Modelos 3D
           m_BoolArgument: 0
         m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: OpenMenu
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: Ajustes (TUTOMENU)
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1228154397}
-        m_TargetAssemblyTypeName: XBotController, Assembly-CSharp
-        m_MethodName: TalkEntornos
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  optionsDeactive: 01010100
+  optionsDeactive: 01000101
   type: 0
   cells: []
 --- !u!1 &1892404854
@@ -7258,7 +7266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3786537697621262806, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
       propertyPath: OnUnpressed.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: VehiclesEnviroment
+      value: VehicleEnviroment
       objectReference: {fileID: 0}
     - target: {fileID: 5282856996888072194, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
       propertyPath: m_Name
@@ -7582,6 +7590,12 @@ MonoBehaviour:
   - {fileID: 1994793217}
   - {fileID: 520712093}
   - {fileID: 439860793}
+  currentCellsLenght: 0
+  stagger: 0.03
+  exitEase: 8
+  exitDuration: 0.4
+  enterDuration: 0.4
+  enterEase: 27
 --- !u!114 &1994793217 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7320354987642290700, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
@@ -7877,6 +7891,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1484474721}
     m_Modifications:
+    - target: {fileID: 2467215689920365100, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4442329076207287632, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_Name
       value: Cell (2)
@@ -31544,6 +31562,10 @@ PrefabInstance:
     - target: {fileID: 3786537697621262806, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
       propertyPath: OnUnpressed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: OpenMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786537697621262806, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
+      propertyPath: OnUnpressed.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: VehicleList
       objectReference: {fileID: 0}
     - target: {fileID: 5282856996888072194, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
       propertyPath: m_Name

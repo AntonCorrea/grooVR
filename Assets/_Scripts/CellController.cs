@@ -19,6 +19,8 @@ public class CellController : MonoBehaviour
     public bool setDeactive = false;
 
     public bool isPressed = false;
+
+
     public void SetModel(GameObject m)
     {
         if (m)
@@ -31,25 +33,46 @@ public class CellController : MonoBehaviour
         }
     }
 
-    public void SetDeactive(bool v)
+    public void SetActive(bool v)
     {
-        if (v)
+        gameObject.SetActive(v);
+    }
+
+    public void SetEnabledPhysicButton(bool v)
+    {
+
+
+        physicButton.transform.localPosition = Vector3.forward * 0.05f;
+
+        //physicButton.body.isKinematic = !v;
+        //physicButton.body.linearVelocity = Vector3.zero;
+        //physicButton.body.angularVelocity = Vector3.zero;
+
+        physicButton.enabled = v;
+    }
+
+    public void SetDisabledButton(bool v)
+    {
+        if (setDeactive)
         {
-            activeBtn.SetActive(false);
-            deactiveBtn.SetActive(true);
-            physicButton.enabled = false;
-            
-        }
-        else
-        {
-            activeBtn.SetActive(true);
-            deactiveBtn.SetActive(false);
-            physicButton.enabled = true;
-            setDeactive = false;
+            if (v)
+            {
+                activeBtn.SetActive(false);
+                deactiveBtn.SetActive(true);
+                physicButton.enabled = false;
+
+            }
+            else
+            {
+                activeBtn.SetActive(true);
+                deactiveBtn.SetActive(false);
+                physicButton.enabled = true;
+                setDeactive = false;
+            }
         }
     }
 
-   
+
     public void OnBtnPress()
     {
         print("onbtn press "+gameObject.name);
