@@ -6,10 +6,7 @@ using UnityEngine.Events;
 public class CellController : MonoBehaviour
 {
     public TextMeshProUGUI textMesh;
-    public Transform modelPlace;
-    public GameObject modelPrefab;
-    public GameObject model;
-    public GameObject defaultModel;
+    public GameObject visuals;
     public UnityAction buttonAction;
     public PhysicsGadgetButton physicButton;
 
@@ -20,19 +17,6 @@ public class CellController : MonoBehaviour
 
     public bool isPressed = false;
 
-
-    public void SetModel(GameObject m)
-    {
-        if (m)
-        {
-            model = Instantiate(modelPrefab, modelPlace);
-        }
-        else
-        {
-            model = Instantiate(defaultModel, modelPlace);
-        }
-    }
-
     public void SetActive(bool v)
     {
         gameObject.SetActive(v);
@@ -40,15 +24,9 @@ public class CellController : MonoBehaviour
 
     public void SetEnabledPhysicButton(bool v)
     {
-
-
         physicButton.transform.localPosition = Vector3.forward * 0.05f;
-
-        //physicButton.body.isKinematic = !v;
-        //physicButton.body.linearVelocity = Vector3.zero;
-        //physicButton.body.angularVelocity = Vector3.zero;
-
         physicButton.enabled = v;
+        physicButton.body.isKinematic = !v;
     }
 
     public void SetDisabledButton(bool v)
