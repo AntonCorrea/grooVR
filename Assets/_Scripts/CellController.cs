@@ -25,8 +25,8 @@ public class CellController : MonoBehaviour
     public void SetEnabledPhysicButton(bool v)
     {
         physicButton.transform.localPosition = Vector3.forward * 0.05f;
-        physicButton.enabled = v;
-        physicButton.body.isKinematic = !v;
+        //physicButton.enabled = v;
+        //physicButton.body.isKinematic = !v;
     }
 
     public void SetDisabledButton(bool v)
@@ -38,6 +38,7 @@ public class CellController : MonoBehaviour
                 activeBtn.SetActive(false);
                 deactiveBtn.SetActive(true);
                 physicButton.enabled = false;
+                physicButton.body.isKinematic = true;
 
             }
             else
@@ -45,6 +46,7 @@ public class CellController : MonoBehaviour
                 activeBtn.SetActive(true);
                 deactiveBtn.SetActive(false);
                 physicButton.enabled = true;
+                physicButton.body.isKinematic = false;
                 setDeactive = false;
             }
         }

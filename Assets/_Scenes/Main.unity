@@ -233,11 +233,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.1
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.1783333
+      value: -1.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -332,6 +332,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103635710}
   m_CullTransparentMesh: 1
+--- !u!1 &105162098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105162100}
+  - component: {fileID: 105162099}
+  m_Layer: 10
+  m_Name: Menu Visor3D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &105162099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105162098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  menuId: Visor3D
+  idReturnTo: Models3D
+  options:
+  - Esqueleto
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 
+  cells: []
+--- !u!4 &105162100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105162098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 939525279}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &115140044
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &140672703
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1243,16 +1309,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 0}
-  skipTuto: 1
   xBotController: {fileID: 1228154397}
   xBotEnv: {fileID: 49325792}
   stand: {fileID: 397510400}
   handMenu: {fileID: 710497355}
   teleporter: {fileID: 2751914247071899056}
-  enviroment: {fileID: 762085026}
+  enviromentController: {fileID: 762085026}
   vehicleController: {fileID: 1865183207}
-  isHandMenuActive: 0
-  isTeleporterActive: 0
+  isHandMenuActive: 1
+  isTeleporterActive: 1
   isFirtTimeTeleporter: 0
   objectsForSpawnOnTable:
   - {fileID: 7258885491153718073, guid: 2343bad438678eb4ca072a5ce3eb2b09, type: 3}
@@ -1273,6 +1338,7 @@ Transform:
   m_Children:
   - {fileID: 762085025}
   - {fileID: 1865183208}
+  - {fileID: 671545730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &347293369
@@ -1457,7 +1523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.37833333
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1839,6 +1905,50 @@ MonoBehaviour:
   subtitles: Hola!
   clip: {fileID: 8300000, guid: ec4a5dea733cd054c80fca078a6214a7, type: 3}
   timeLenght: 6
+--- !u!1 &671545729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671545730}
+  - component: {fileID: 671545731}
+  m_Layer: 0
+  m_Name: VisorController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671545730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671545729}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 329765634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671545731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671545729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ec178ffed8a0647a9996a072a994f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &697882600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1939,7 +2049,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710497353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b063163dc4bd4234e8da7951cbdaba68, type: 3}
   m_Name: 
@@ -2196,6 +2306,7 @@ MonoBehaviour:
   - {fileID: 5409273460278589963, guid: f86d6ffd61c3bc14396f1a419406f9d3, type: 3}
   - {fileID: 6783169916534050544, guid: 73f305ce879736742b20a50205284899, type: 3}
   - {fileID: 5491469157570404151, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
+  - {fileID: -2356989138900656858, guid: 8d984f7b81a07bf45a618dce1ee60fcb, type: 3}
   currentEnviromentName: ParkingLot
   currentEnviromentText: {fileID: 1907353329}
 --- !u!1 &771646588
@@ -2799,7 +2910,7 @@ MonoBehaviour:
   idReturnTo: 
   options:
   - Simulador\nVehiculos
-  - Entrenamiento
+  - Entrenamiento\nInteractivo
   - Visor\nModelos 3D
   - Videos
   functions:
@@ -4280,7 +4391,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1240193512}
+  - {fileID: 105162100}
   m_Father: {fileID: 980617370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &939525280
@@ -4300,8 +4413,36 @@ MonoBehaviour:
   idReturnTo: Main
   options:
   - Entorno 3D
-  - Modelo 3D
-  functions: []
+  - Visor 3D
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Enviroment3D
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: OpenMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Visor3D
+          m_BoolArgument: 0
+        m_CallState: 2
   optionsDeactive: 
   cells: []
 --- !u!1 &959614510
@@ -5081,11 +5222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2
+      value: 1.5500001
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.145
+      value: -1.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5119,6 +5260,10 @@ PrefabInstance:
     - target: {fileID: 4442329076207287632, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_Name
       value: Cell (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442329076207287632, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_Pivot.x
@@ -5186,7 +5331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.1783333
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5255,7 +5400,11 @@ MonoBehaviour:
   type: 2
   menuId: VehicleMain
   idReturnTo: Main
-  options: []
+  options:
+  - 
+  - 
+  - 
+  - 
   functions: []
   optionsDeactive: 
   cells: []
@@ -5772,6 +5921,102 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1240193510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1240193512}
+  - component: {fileID: 1240193511}
+  m_Layer: 10
+  m_Name: Menu Enviroment3D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1240193511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240193510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac699154fa73dd24c9cc8047977b39a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  menuId: Enviroment3D
+  idReturnTo: Models3D
+  options:
+  - Elementos Demo
+  - Barrio 3D
+  - Estadio Basquet
+  functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Demo
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Demo
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Demo
+          m_BoolArgument: 0
+        m_CallState: 2
+  optionsDeactive: 
+  cells: []
+--- !u!4 &1240193512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240193510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 939525279}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1241594821
 GameObject:
   m_ObjectHideFlags: 0
@@ -6257,6 +6502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4442329076207287632, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6323,7 +6572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.1783333
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6789,12 +7038,12 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 0.7, y: 0.6}
   m_Spacing: {x: 0.2, y: 0.2}
-  m_Constraint: 2
+  m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!114 &1484474723
 MonoBehaviour:
@@ -8369,7 +8618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuRoot: {fileID: 910772127}
   title: {fileID: 1080584811}
-  hideAtStart: 1
+  hideAtStart: 0
   goBackCell: {fileID: 959324245011350738}
   menuDelay: 0.2
   bigButtonsMenu: {fileID: 1484474720}
@@ -8392,6 +8641,8 @@ MonoBehaviour:
   - {fileID: 1892404856}
   - {fileID: 232441662}
   - {fileID: 1702020053}
+  - {fileID: 1240193511}
+  - {fileID: 105162099}
   cells:
   - {fileID: 7320354987859036513}
   - {fileID: 1196904384}
@@ -8549,7 +8800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2049338419
 Transform:
   m_ObjectHideFlags: 0
@@ -8807,7 +9058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.37833333
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6592368061295644630, guid: 80d7d719ea42cf440823f416beb4eb41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -32401,14 +32652,6 @@ PrefabInstance:
       propertyPath: OnUnpressed.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1965824932}
-    - target: {fileID: 3786537697621262806, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
-      propertyPath: OnUnpressed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: OpenMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3786537697621262806, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
-      propertyPath: OnUnpressed.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: VehicleList
-      objectReference: {fileID: 0}
     - target: {fileID: 5282856996888072194, guid: bd6f5f77762b8bb40b6a6e9a8f01e559, type: 3}
       propertyPath: m_Name
       value: Cell (1)

@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public Action actionDelay;
 
-    public bool skipTuto = false;
+    //public bool skipTuto = false;
 
     public XBotController xBotController;
     public GameObject xBotEnv;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     public Teleporter teleporter;
 
-    public EnviromentController enviroment;
+    public EnviromentController enviromentController;
 
     public VehicleController vehicleController;
 
@@ -52,17 +52,20 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+
+
+        handMenu.menuController.OpenMenu("Main");
+        enviromentController.SpawnEnviroment("Grid");
+
         //DontDestroyOnLoad(gameObject); // Persist between scenes
-
-
-        if (skipTuto)
-        {
-            SkipTutorial();
-        }
-        else
-        {
-            handMenu.menuController.OpenMenu("grooVR Simulaciones (TUTOMENU)");
-        }
+        //if (skipTuto)
+        //{
+        //    SkipTutorial();
+        //}
+        //else
+        //{
+        //    handMenu.menuController.OpenMenu("grooVR Simulaciones (TUTOMENU)");
+        //}
 
     }
 
@@ -71,8 +74,8 @@ public class GameManager : MonoBehaviour
     public void OnBtnStart()
     {
         stand.SetActive(false);
-        enviroment.SpawnEnviroment("Grid");
-        enviroment.currentEnviromentInstance.table.SetActive(false);
+        SpawnEnviroment("Grid");
+        enviromentController.currentEnviromentInstance.table.SetActive(false);
         xBotController.SetActions(xBotActions.waitToMoveToGreet);
     }
 
@@ -138,20 +141,20 @@ public class GameManager : MonoBehaviour
             Destroy(currentObjectOnTable);
 
         GameObject newGameObject = objectsForSpawnOnTable.FirstOrDefault(i => i.name == newObject);
-        currentObjectOnTable = Instantiate(newGameObject, enviroment.currentEnviromentInstance.tableSpawnPoint.transform);
+        currentObjectOnTable = Instantiate(newGameObject, enviromentController.currentEnviromentInstance.tableSpawnPoint.transform);
 
     }
 
-    public void SkipTutorial()
-    {
-        xBotEnv.SetActive(false);
-        xBotController.gameObject.SetActive(false);
-        enviroment.SpawnEnviroment("Grid");
-        isHandMenuActive = true;
-        handMenu.menuController.OpenMenu("Main");
-        teleporter.onlyUseTeleportPoints = false;
-        Instance.isTeleporterActive = true;
-    }
+    //public void SkipTutorial()
+    //{
+    //    xBotEnv.SetActive(false);
+    //    xBotController.gameObject.SetActive(false);
+    //    enviroment.SpawnEnviroment("Grid");
+    //    isHandMenuActive = true;
+    //    handMenu.menuController.OpenMenu("Main");
+    //    teleporter.onlyUseTeleportPoints = false;
+    //    Instance.isTeleporterActive = true;
+    //}
 
     public void RestartGame()
     {
@@ -166,7 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetPlayerPositionInEnviroment()
     {
-        playerBody.SetPosition(enviroment.currentEnviromentInstance.spawnPlayerPoint.transform.position);
+        playerBody.SetPosition(enviromentController.currentEnviromentInstance.spawnPlayerPoint.transform.position);
     }
 
     public void LoadVideo(int index)
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnviroment(string name)
     {
-        enviroment.SpawnEnviroment(name);
+        enviromentController.SpawnEnviroment(name);
     }
 
 

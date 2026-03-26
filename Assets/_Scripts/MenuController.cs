@@ -29,10 +29,6 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {   
-        //cells = GetComponentsInChildren<CellController>();
-
-        //OpenMenu("grooVR Simulaciones (TUTOMENU)");
-
         if (hideAtStart)
         {
             HideHandMenu();
@@ -218,9 +214,14 @@ public class MenuController : MonoBehaviour
         GameManager.Instance.LoadVideo(index);
     }
 
+    public void LoadEnviroment(string enviroment)
+    {
+        GameManager.Instance.enviromentController.SpawnEnviroment(enviroment);
+    }
+
     public void LoadEnviromentAndVehicle()
     {
-        GameManager.Instance.enviroment.SpawnEnviroment();
+        GameManager.Instance.enviromentController.SpawnEnviroment();
         GameManager.Instance.vehicleController.SpawnVehicle();
     }
 
