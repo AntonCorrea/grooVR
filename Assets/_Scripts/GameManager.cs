@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public VehicleController vehicleController;
 
-
+    public VisorController visorController;
 
     public bool isHandMenuActive = false;
     public bool isTeleporterActive = false;
@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     public GameObject currentObjectOnTable;
 
     public Sphere360Video currentSphere360Video;
+
+    public string OpenMenu;
 
     void Awake()
     {
@@ -54,8 +56,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
 
-        handMenu.menuController.OpenMenu("Main");
-        enviromentController.SpawnEnviroment("Grid");
+        handMenu.menuController.OpenMenu(OpenMenu);
+        enviromentController.SpawnEnviroment("Empty");
 
         //DontDestroyOnLoad(gameObject); // Persist between scenes
         //if (skipTuto)

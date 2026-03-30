@@ -11,11 +11,14 @@ public class CellController : MonoBehaviour
     public PhysicsGadgetButton physicButton;
 
     public GameObject activeBtn;
+    public GameObject pressedBtn;
     public GameObject deactiveBtn;
 
     public bool setDeactive = false;
 
     public bool isPressed = false;
+
+    public bool toggled = false;
 
     public void SetActive(bool v)
     {
@@ -52,10 +55,28 @@ public class CellController : MonoBehaviour
         }
     }
 
+    public void ToggleButton()
+    {
+        if(toggled == false)
+        {
+            print("toggled TRUE");
+            toggled = true;
+            activeBtn.gameObject.SetActive(false);
+            pressedBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            print("toggled FALSE");
+            toggled = false;
+            activeBtn.gameObject.SetActive(true);
+            pressedBtn.gameObject.SetActive(false);
+        }
+    }
 
+    //metodos llamado por los metodos asignados dinamicamente en menucontroller
     public void OnBtnPress()
     {
-        print("onbtn press "+gameObject.name);
+        print("onbtn press " + gameObject.name);
         isPressed = true;
     }
 
@@ -67,11 +88,10 @@ public class CellController : MonoBehaviour
             buttonAction.Invoke();
             isPressed = false;
         }
-        
+
     }
 
     [ContextMenu("OnInvokeAction")]
-
     public void OnInvoke()
     {
         buttonAction.Invoke();

@@ -16,16 +16,22 @@ public class MenuController : MonoBehaviour
 
     public float menuDelay;
 
-    //public int optionsCount = 6;
-
-    public GameObject bigButtonsMenu;
-    public GameObject listMenu;
-    public GameObject vehiclesMenu;
-    public GameObject currentMenu;
-
     public MenuInstance[] menus;
     public CellController[] cells;
     public int currentCellsLenght;
+
+    [Header("Menu Objects")]
+    public GameObject bigButtonsMenu;
+    public GameObject listMenu;
+    public GameObject vehiclesMenu;
+    public GameObject visorMenu;
+    public GameObject currentMenu;
+    [Header("Animation settings")]
+    public float stagger = 0.03f;
+    public Ease exitEase = Ease.InCubic;
+    public float exitDuration = 0.22f;
+    public float enterDuration = 0.4f;
+    public Ease enterEase = Ease.OutBack;
 
     private void Start()
     {   
@@ -89,9 +95,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public float stagger = 0.03f;
-    public Ease exitEase = Ease.InCubic;
-    public float exitDuration = 0.22f;
+
     private IEnumerator AnimateExit()
     {
         System.Collections.Generic.List<Transform> visuals = cells.Select(x => x.visuals.transform).ToList();
@@ -109,8 +113,7 @@ public class MenuController : MonoBehaviour
         yield return seq.WaitForCompletion();
     }
 
-    public float enterDuration = 0.4f;
-    public Ease enterEase = Ease.OutBack;
+
     private IEnumerator AnimateEnter()
     {
         System.Collections.Generic.List<Transform> visuals = cells.Select(x => x.visuals.transform).ToList();
@@ -135,7 +138,7 @@ public class MenuController : MonoBehaviour
 
     void BuildMenu(MenuInstance menu)
     {
-        if(menu.type != MenuInstance.MenuType.Vehicle)
+        if(menu.type == MenuInstance.MenuType.BigButton || menu.type == MenuInstance.MenuType.List)
         {
             //deactivate all cells
             int auxCells = cells.Length;
@@ -192,6 +195,7 @@ public class MenuController : MonoBehaviour
         bigButtonsMenu.SetActive(false);
         listMenu.SetActive(false);
         vehiclesMenu.SetActive(false);
+        visorMenu.SetActive(false);
 
         switch (i)
         {
@@ -203,6 +207,9 @@ public class MenuController : MonoBehaviour
                 break;
             case 2:
                 currentMenu = vehiclesMenu;
+                break;
+            case 3:
+                currentMenu = visorMenu;
                 break;
         }
 
@@ -221,8 +228,55 @@ public class MenuController : MonoBehaviour
 
     public void LoadEnviromentAndVehicle()
     {
-        GameManager.Instance.enviromentController.SpawnEnviroment();
+        GameManager.Instance.enviromentController.SpawnEnviroment(GameManager.Instance.vehicleController.currentVehicleEnviroment);
         GameManager.Instance.vehicleController.SpawnVehicle();
     }
 
+    public void LoadVisorModel(string modelName)
+    {
+        GameManager.Instance.visorController.SpawnVisorModel(modelName);
+        OpenMenu("VisorOptions");
+    }
+
+    public void VisorLockPositionX(bool val)
+    {
+        GameManager.Instance.visorController.LockCurrentVisorPositionX(val);
+    }
+
+    public void VisorLockPositionY(bool val)
+    {
+        GameManager.Instance.visorController.LockCurrentVisorPositionY(val);
+    }
+
+    public void VisorLockPositionZ(bool val)
+    {
+        GameManager.Instance.visorController.LockCurrentVisorPositionZ(val);
+    }
+
+    public void VisorLockRotationX(bool val)
+    {
+        GameManager.Instance.visorController.LockCurrentVisorRotationX(val);
+    }
+
+    public void VisorLockRotationY(bool val)
+    {
+        GameManager.Instance.visorController.LockCurrentVisorRotationY(val);
+
+    }
+
+    public void VisorLockRotationZ(bool val)
+    {
+        GameManager.Instance.visorController.LockCurrentVisorRotationZ(val);
+
+    }
+
+    public void VisorReset()
+    {
+        GameManager.Instance.visorController.ResetVisor();
+    }
+
+    public void VisorSetGuizmo(bool val)
+    {
+        GameManager.Instance.visorController.SetCurrentGuizmo(val);
+    }
 }
