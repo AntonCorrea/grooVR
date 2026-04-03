@@ -3,88 +3,107 @@ using UnityEngine;
 public class VisorInstance : MonoBehaviour
 {
     public string modelName;
-    Rigidbody rb;
+    public Rigidbody rb;
     public GameObject baseGuizmo;
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    public bool lockpositionX, lockpositionY, lockpositionZ, lockRotationX, lockRotationY, lockRotationZ;
+    private bool toggledActiveGuizmo = true;
+    
 
-    public void LockPositionX(bool val)
+    public void LockPositionX()
     {
-        if (val)
-        {
-            rb.constraints |= RigidbodyConstraints.FreezePositionX;
-        }
-        else
+        if (lockpositionX)
         {
             rb.constraints &=~ RigidbodyConstraints.FreezePositionX;
+            lockpositionX = false;
+        }
+        else
+        {
+            rb.constraints |= RigidbodyConstraints.FreezePositionX;
+            lockpositionX = true;
         }
     }
 
-    public void LockPositionY(bool val)
+    public void LockPositionY()
     {
-        if (val)
+        if (lockpositionY)
+        {
+            rb.constraints &=~ RigidbodyConstraints.FreezePositionY;
+            lockpositionY = false;
+        }
+        else
         {
             rb.constraints |= RigidbodyConstraints.FreezePositionY;
-        }
-        else
-        {
-            rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
+            lockpositionY = true;
         }
     }
 
-    public void LockPositionZ(bool val)
+    public void LockPositionZ()
     {
-        if (val)
+        if (lockpositionZ)
+        {
+            rb.constraints &=~ RigidbodyConstraints.FreezePositionZ;
+            lockpositionZ = false;
+        }
+        else
         {
             rb.constraints |= RigidbodyConstraints.FreezePositionZ;
-        }
-        else
-        {
-            rb.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+            lockpositionZ = true;
         }
     }
 
-    public void LockRotationX(bool val)
+    public void LockRotationX()
     {
-        if (val)
+        if (lockRotationX)
+        {
+            rb.constraints &=~ RigidbodyConstraints.FreezeRotationX;
+            lockRotationX = false;
+        }
+        else
         {
             rb.constraints |= RigidbodyConstraints.FreezeRotationX;
-        }
-        else
-        {
-            rb.constraints &= ~RigidbodyConstraints.FreezeRotationX;
+            lockRotationX = true;
         }
     }
 
-    public void LockRotationY(bool val)
+    public void LockRotationY()
     {
-        if (val)
-        {
-            rb.constraints |= RigidbodyConstraints.FreezeRotationY;
-        }
-        else
+        if (lockRotationY)
         {
             rb.constraints &= ~RigidbodyConstraints.FreezeRotationY;
-        }
-    }
-
-    public void LockRotationZ(bool val)
-    {
-        if (val)
-        {
-            rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
+            lockRotationY = false;
         }
         else
         {
+            rb.constraints |= RigidbodyConstraints.FreezeRotationY;
+            lockRotationY = true;
+        }
+    }
+
+    public void LockRotationZ()
+    {
+        if (lockRotationZ)
+        {
             rb.constraints &= ~RigidbodyConstraints.FreezeRotationZ;
+            lockRotationZ = false;
+        }
+        else
+        {
+            rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
+            lockRotationZ = true;
         }
     }
 
 
-    public void SetGuizmo(bool val)
+    public void ToggleGuizmo()
     {
-        baseGuizmo.gameObject.SetActive(val);
+        if (toggledActiveGuizmo)
+        {
+            toggledActiveGuizmo = false;         
+        }
+        else
+        {
+            toggledActiveGuizmo = true;
+        }
+        baseGuizmo.gameObject.SetActive(toggledActiveGuizmo);
     }
 }

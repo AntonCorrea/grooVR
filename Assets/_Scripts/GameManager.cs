@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
     public void SpawnEnviroment(string name)
     {
         enviromentController.SpawnEnviroment(name);
+        ResetPlayerPositionInEnviroment();
     }
 
 

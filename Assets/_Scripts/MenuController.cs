@@ -155,7 +155,7 @@ public class MenuController : MonoBehaviour
                 cells[i].textMesh.text = menu.options[i].ToString();
 
                 int index = i;
-                cells[i].buttonAction = () => menu.functions[index].Invoke();
+                cells[i].unityEvent = menu.functions[index];
 
                 if (menu.optionsDeactive.Length > 0)
                 {
@@ -181,7 +181,7 @@ public class MenuController : MonoBehaviour
             //goBackCell.SetDisabledButton(false);
             goBackCell.SetActive(true);
             string menuIndex = menu.idReturnTo;
-            goBackCell.buttonAction = () => OpenMenu(menuIndex);
+            goBackCell.unityEvent.AddListener(() => OpenMenu(menuIndex));
         }
         else
         {
@@ -234,39 +234,40 @@ public class MenuController : MonoBehaviour
 
     public void LoadVisorModel(string modelName)
     {
+        GameManager.Instance.enviromentController.SpawnEnviroment("Empty");
         GameManager.Instance.visorController.SpawnVisorModel(modelName);
         OpenMenu("VisorOptions");
     }
 
-    public void VisorLockPositionX(bool val)
+    public void VisorLockPositionX()
     {
-        GameManager.Instance.visorController.LockCurrentVisorPositionX(val);
+        GameManager.Instance.visorController.LockCurrentVisorPositionX();
     }
 
-    public void VisorLockPositionY(bool val)
+    public void VisorLockPositionY()
     {
-        GameManager.Instance.visorController.LockCurrentVisorPositionY(val);
+        GameManager.Instance.visorController.LockCurrentVisorPositionY();
     }
 
-    public void VisorLockPositionZ(bool val)
+    public void VisorLockPositionZ()
     {
-        GameManager.Instance.visorController.LockCurrentVisorPositionZ(val);
+        GameManager.Instance.visorController.LockCurrentVisorPositionZ();
     }
 
-    public void VisorLockRotationX(bool val)
+    public void VisorLockRotationX()
     {
-        GameManager.Instance.visorController.LockCurrentVisorRotationX(val);
+        GameManager.Instance.visorController.LockCurrentVisorRotationX();
     }
 
-    public void VisorLockRotationY(bool val)
+    public void VisorLockRotationY()
     {
-        GameManager.Instance.visorController.LockCurrentVisorRotationY(val);
+        GameManager.Instance.visorController.LockCurrentVisorRotationY();
 
     }
 
-    public void VisorLockRotationZ(bool val)
+    public void VisorLockRotationZ()
     {
-        GameManager.Instance.visorController.LockCurrentVisorRotationZ(val);
+        GameManager.Instance.visorController.LockCurrentVisorRotationZ();
 
     }
 
@@ -275,8 +276,8 @@ public class MenuController : MonoBehaviour
         GameManager.Instance.visorController.ResetVisor();
     }
 
-    public void VisorSetGuizmo(bool val)
+    public void VisorToggleGuizmo()
     {
-        GameManager.Instance.visorController.SetCurrentGuizmo(val);
+        GameManager.Instance.visorController.ToggleCurrentGuizmo();
     }
 }

@@ -668,7 +668,7 @@ MonoBehaviour:
   instantGrab: 0
   useGentleGrab: 0
   maintainGrabOffset: 0
-  parentOnGrab: 1
+  parentOnGrab: 0
   heldNoFriction: 1
   ignoreWeight: 0
   allowHeldSwapping: 1
@@ -724,7 +724,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: Bot
+  rb: {fileID: 6585352413996410577}
   baseGuizmo: {fileID: 6562006281886645669}
+  lockpositionX: 0
+  lockpositionY: 0
+  lockpositionZ: 0
+  lockRotationX: 1
+  lockRotationY: 0
+  lockRotationZ: 1
 --- !u!1 &2587552031241234642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2321340613980305326
 Transform:
   m_ObjectHideFlags: 0
@@ -2198,6 +2205,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7234397851620919494}
+  - component: {fileID: 6507390900360690271}
+  - component: {fileID: 166710651635427830}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -2215,7 +2224,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 880615129996303218}
@@ -2223,6 +2232,43 @@ Transform:
   - {fileID: 226976046025231297}
   m_Father: {fileID: 7580632125112174187}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6507390900360690271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6562006281886645669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddeca821077e234ba23b25cef49d5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbable: {fileID: 5387998820917090764}
+  guizmo: {fileID: 7234397851620919494}
+  model: {fileID: 4124666817735140548}
+  scaleFactor: 1
+--- !u!65 &166710651635427830
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6562006281886645669}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2, y: 0.03, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6620990199800166393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,7 +2383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &880615129996303218
 Transform:
   m_ObjectHideFlags: 0

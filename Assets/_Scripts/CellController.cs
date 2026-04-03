@@ -7,7 +7,7 @@ public class CellController : MonoBehaviour
 {
     public TextMeshProUGUI textMesh;
     public GameObject visuals;
-    public UnityAction buttonAction;
+    public UnityEvent unityEvent;
     public PhysicsGadgetButton physicButton;
 
     public GameObject activeBtn;
@@ -59,18 +59,23 @@ public class CellController : MonoBehaviour
     {
         if(toggled == false)
         {
-            print("toggled TRUE");
             toggled = true;
             activeBtn.gameObject.SetActive(false);
-            pressedBtn.gameObject.SetActive(true);
+            pressedBtn.gameObject.SetActive(true);           
         }
         else
         {
-            print("toggled FALSE");
             toggled = false;
             activeBtn.gameObject.SetActive(true);
             pressedBtn.gameObject.SetActive(false);
         }
+    }
+
+    public void ToggleButton(bool val)
+    {
+        toggled = val;
+        activeBtn.gameObject.SetActive(!val);
+        pressedBtn.gameObject.SetActive(val);
     }
 
     //metodos llamado por los metodos asignados dinamicamente en menucontroller
@@ -85,7 +90,7 @@ public class CellController : MonoBehaviour
         print("onbtn unpress " + gameObject.name);
         if (isPressed)
         {
-            buttonAction.Invoke();
+            unityEvent.Invoke();
             isPressed = false;
         }
 
@@ -94,6 +99,6 @@ public class CellController : MonoBehaviour
     [ContextMenu("OnInvokeAction")]
     public void OnInvoke()
     {
-        buttonAction.Invoke();
+        unityEvent.Invoke();
     }
 }

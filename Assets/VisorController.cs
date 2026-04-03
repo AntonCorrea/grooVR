@@ -9,6 +9,7 @@ public class VisorController : MonoBehaviour
 
     public VisorInstance currentVisorInstance;
 
+    public CellController lockPositionXcell, lockPositionYcell, lockPositionZcell, lockRotationXcell, lockRotationYcell, lockRotationZcell;
     public void SpawnVisorModel(string modelName)
     {
         if (currentVisorInstance != null)
@@ -18,46 +19,102 @@ public class VisorController : MonoBehaviour
 
         VisorInstance newVisorModel = visorModels.FirstOrDefault(i => i.modelName == modelName);
         currentVisorInstance = Instantiate(newVisorModel, modelSpawnPoint);
+        UpdateToggleButtons();
     }
 
-    public void LockCurrentVisorPositionX(bool val)
+    public void UpdateToggleButtons()
     {
-        currentVisorInstance.LockPositionX(val);
+        lockPositionXcell.ToggleButton(currentVisorInstance.lockpositionX);
+        lockPositionYcell.ToggleButton(currentVisorInstance.lockpositionY);
+        lockPositionZcell.ToggleButton(currentVisorInstance.lockpositionZ);
+        lockRotationXcell.ToggleButton(currentVisorInstance.lockRotationX);
+        lockRotationYcell.ToggleButton(currentVisorInstance.lockRotationY);
+        lockRotationZcell.ToggleButton(currentVisorInstance.lockRotationZ);
+
+        if (currentVisorInstance.lockpositionX)
+        {
+            //lockPositionXcell.ToggleButton();
+            currentVisorInstance.LockPositionX();
+            currentVisorInstance.LockPositionX();
+        }
+        if (currentVisorInstance.lockpositionY)
+        {
+            //lockPositionYcell.ToggleButton();
+            currentVisorInstance.LockPositionY();
+            currentVisorInstance.LockPositionY();
+        }
+        if (currentVisorInstance.lockpositionZ)
+        {
+            //lockPositionZcell.ToggleButton();
+            currentVisorInstance.LockPositionZ();
+            currentVisorInstance.LockPositionZ();
+        }
+        if (currentVisorInstance.lockRotationX)
+        {
+            //lockRotationXcell.ToggleButton();
+            currentVisorInstance.LockRotationX();
+            currentVisorInstance.LockRotationX();
+        }
+        if (currentVisorInstance.lockRotationY)
+        {
+            //lockRotationYcell.ToggleButton();
+            currentVisorInstance.LockRotationY();
+            currentVisorInstance.LockRotationY();
+        }
+        if (currentVisorInstance.lockRotationZ)
+        {
+            //lockRotationZcell.ToggleButton();
+            currentVisorInstance.LockRotationZ();
+            currentVisorInstance.LockRotationZ();
+        }
+
+
+
+        //currentVisorInstance.LockPositionX();
+        //currentVisorInstance.LockPositionY();
+        //currentVisorInstance.LockPositionZ();
+        //currentVisorInstance.LockRotationX();
+        //currentVisorInstance.LockRotationY();
+        //currentVisorInstance.LockRotationZ();
     }
 
-    public void LockCurrentVisorPositionY(bool val)
+    public void LockCurrentVisorPositionX()
     {
-        currentVisorInstance.LockPositionY(val);
+        currentVisorInstance.LockPositionX();
     }
 
-    public void LockCurrentVisorPositionZ(bool val)
+    public void LockCurrentVisorPositionY()
     {
-        currentVisorInstance.LockPositionZ(val);
+        currentVisorInstance.LockPositionY();
     }
 
-    public void LockCurrentVisorRotationX(bool val)
+    public void LockCurrentVisorPositionZ()
     {
-        currentVisorInstance.LockRotationX(val);
+        currentVisorInstance.LockPositionZ();
     }
 
-    public void LockCurrentVisorRotationY(bool val)
+    public void LockCurrentVisorRotationX()
     {
-        currentVisorInstance.LockRotationY(val);
+        currentVisorInstance.LockRotationX();
     }
 
-    public void LockCurrentVisorRotationZ(bool val)
+    public void LockCurrentVisorRotationY()
     {
-        currentVisorInstance.LockRotationZ(val);
+        currentVisorInstance.LockRotationY();
+    }
+
+    public void LockCurrentVisorRotationZ()
+    {
+        currentVisorInstance.LockRotationZ();
     }
 
     public void ResetVisor()
     {
-        currentVisorInstance.transform.position = modelSpawnPoint.transform.position;
-        currentVisorInstance.transform.rotation = modelSpawnPoint.transform.rotation;
+        SpawnVisorModel(currentVisorInstance.modelName);
     }
 
-    public void SetCurrentGuizmo(bool val)
+    public void ToggleCurrentGuizmo()
     {
-        currentVisorInstance.SetGuizmo(val);
+        currentVisorInstance.ToggleGuizmo();
     }
 }
