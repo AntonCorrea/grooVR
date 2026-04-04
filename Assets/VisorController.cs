@@ -110,6 +110,7 @@ public class VisorController : MonoBehaviour
 
     public void ResetVisor()
     {
+        GameManager.Instance.ResetPlayerPositionInEnviroment();
         SpawnVisorModel(currentVisorInstance.modelName);
     }
 

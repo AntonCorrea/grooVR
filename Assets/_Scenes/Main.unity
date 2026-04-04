@@ -368,6 +368,7 @@ MonoBehaviour:
   - Calavera
   - Esqueleto
   - Barrio
+  - Casa M1
   functions:
   - m_PersistentCalls:
       m_Calls:
@@ -409,6 +410,20 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Barrio
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadVisorModel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Casa_1
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 
@@ -1109,9 +1124,9 @@ MonoBehaviour:
   functions:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 762085026}
-        m_TargetAssemblyTypeName: EnviromentController, Assembly-CSharp
-        m_MethodName: AssignEnviromentName
+      - m_Target: {fileID: 1865183207}
+        m_TargetAssemblyTypeName: VehicleController, Assembly-CSharp
+        m_MethodName: AssignCurrentVehicleEnviroment
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1135,9 +1150,9 @@ MonoBehaviour:
         m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 762085026}
-        m_TargetAssemblyTypeName: EnviromentController, Assembly-CSharp
-        m_MethodName: AssignEnviromentName
+      - m_Target: {fileID: 1865183207}
+        m_TargetAssemblyTypeName: VehicleController, Assembly-CSharp
+        m_MethodName: AssignCurrentVehicleEnviroment
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2336,6 +2351,7 @@ MonoBehaviour:
   - {fileID: 4585750075141984430, guid: 32991d2d74fb51141940cf169824bba7, type: 3}
   - {fileID: 70255332935703390, guid: 815e96b16d60fe2498c884ca31f18150, type: 3}
   - {fileID: 5173908095472953246, guid: f0d762cfdd4f5c34593ccee1b043259b, type: 3}
+  - {fileID: 1783114081475326962, guid: d9ba2c9e714b94449a4f43218f615946, type: 3}
   currentVisorInstance: {fileID: 0}
   lockPositionXcell: {fileID: 4320154859941896475}
   lockPositionYcell: {fileID: 1775654418}
@@ -2702,6 +2718,7 @@ MonoBehaviour:
   - {fileID: 5491469157570404151, guid: e3c2316775e82d34880b1277089f6fef, type: 3}
   - {fileID: -2356989138900656858, guid: 8d984f7b81a07bf45a618dce1ee60fcb, type: 3}
   - {fileID: 2987579820633667124, guid: 40d8f05a10051c44cac13e8b2e834ab1, type: 3}
+  - {fileID: 1883241952150214309, guid: 70429f1b1e6e46c40a1dbd7cb1d99982, type: 3}
 --- !u!1 &771646588
 GameObject:
   m_ObjectHideFlags: 0
@@ -7158,6 +7175,7 @@ MonoBehaviour:
   idReturnTo: Visor3D
   options:
   - Elementos Demo
+  - Casa M1
   functions:
   - m_PersistentCalls:
       m_Calls:
@@ -7171,6 +7189,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Demo
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Casa_M1_Env
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 
@@ -26841,7 +26871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4813400343104777607, guid: 550b13c7ab5987948bb95292d813fbde, type: 3}
       propertyPath: onlyUseTeleportPoints
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4813400343104777607, guid: 550b13c7ab5987948bb95292d813fbde, type: 3}
       propertyPath: cantTeleportColor.atime3
