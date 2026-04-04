@@ -367,6 +367,7 @@ MonoBehaviour:
   options:
   - Calavera
   - Esqueleto
+  - Barrio
   functions:
   - m_PersistentCalls:
       m_Calls:
@@ -394,6 +395,20 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Bot
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadVisorModel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Barrio
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 
@@ -2320,6 +2335,7 @@ MonoBehaviour:
   visorModels:
   - {fileID: 4585750075141984430, guid: 32991d2d74fb51141940cf169824bba7, type: 3}
   - {fileID: 70255332935703390, guid: 815e96b16d60fe2498c884ca31f18150, type: 3}
+  - {fileID: 5173908095472953246, guid: f0d762cfdd4f5c34593ccee1b043259b, type: 3}
   currentVisorInstance: {fileID: 0}
   lockPositionXcell: {fileID: 4320154859941896475}
   lockPositionYcell: {fileID: 1775654418}
