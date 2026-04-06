@@ -366,7 +366,6 @@ MonoBehaviour:
   idReturnTo: Visor3D
   options:
   - Calavera
-  - Esqueleto
   - Barrio
   - Casa M1
   - Cinta Transportadora
@@ -384,20 +383,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Skull
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1965824932}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: LoadVisorModel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Bot
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -2383,6 +2368,7 @@ MonoBehaviour:
   - {fileID: 5173908095472953246, guid: f0d762cfdd4f5c34593ccee1b043259b, type: 3}
   - {fileID: 1783114081475326962, guid: d9ba2c9e714b94449a4f43218f615946, type: 3}
   - {fileID: 6671845859250507529, guid: 2a452238e76d00849a0d590c59940e11, type: 3}
+  - {fileID: 7248518534824376753, guid: fc755b11a0ecc38489403732b9b5d7f0, type: 3}
   currentVisorInstance: {fileID: 0}
   lockPositionXcell: {fileID: 4320154859941896475}
   lockPositionYcell: {fileID: 1775654418}
