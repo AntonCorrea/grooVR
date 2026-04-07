@@ -25,11 +25,9 @@ public class CellController : MonoBehaviour
         gameObject.SetActive(v);
     }
 
-    public void SetEnabledPhysicButton(bool v)
+    public void SetPositionPhysicButton()
     {
         physicButton.transform.localPosition = Vector3.forward * 0.05f;
-        //physicButton.enabled = v;
-        //physicButton.body.isKinematic = !v;
     }
 
     public void SetDisabledButton(bool v)

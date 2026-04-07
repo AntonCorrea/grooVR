@@ -7208,6 +7208,8 @@ MonoBehaviour:
           m_StringArgument: Demo
           m_BoolArgument: 0
         m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 1965824932}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: LoadEnviroment
@@ -10276,7 +10278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuRoot: {fileID: 910772127}
   title: {fileID: 1080584811}
-  hideAtStart: 0
+  hideAtStart: 1
   goBackCell: {fileID: 959324245011350738}
   menuDelay: 0.2
   menus:

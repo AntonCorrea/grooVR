@@ -68,7 +68,7 @@ public class MenuController : MonoBehaviour
         int auxCells = cells.Length;
         for (int i = 0; i < auxCells; i++)
         {
-            cells[i].SetEnabledPhysicButton(false);
+            cells[i].SetPositionPhysicButton();
         }
 
         //print("animar salida");
@@ -91,7 +91,7 @@ public class MenuController : MonoBehaviour
         //print("prender botones");
         for (int i = 0; i < currentCellsLenght; i++)
         {
-            cells[i].SetEnabledPhysicButton(true);
+            cells[i].SetPositionPhysicButton();
         }
     }
 
