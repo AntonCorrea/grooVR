@@ -14,18 +14,18 @@ public class MenuController : MonoBehaviour
 
     public CellController goBackCell;
 
-    public float menuDelay;
-
+    private string currentMenuOpen;
     public MenuInstance[] menus;
     public CellController[] cells;
     public int currentCellsLenght;
 
     [Header("Menu Objects")]
+    public GameObject currentMenu;
     public GameObject bigButtonsMenu;
     public GameObject listMenu;
     public GameObject vehiclesMenu;
     public GameObject visorMenu;
-    public GameObject currentMenu;
+    
     [Header("Animation settings")]
     public float stagger = 0.03f;
     public Ease exitEase = Ease.InCubic;
@@ -55,7 +55,7 @@ public class MenuController : MonoBehaviour
     public void OpenMenu(string menu)
     {
         print("OPEN MENU "+ menu);
-
+        currentMenuOpen = menu;
         MenuInstance menuInstance = menus.FirstOrDefault(i => i.menuId == menu);
         title.text = menuInstance.menuId;
 
@@ -112,7 +112,6 @@ public class MenuController : MonoBehaviour
 
         yield return seq.WaitForCompletion();
     }
-
 
     private IEnumerator AnimateEnter()
     {
@@ -178,9 +177,10 @@ public class MenuController : MonoBehaviour
         if (menu.idReturnTo != string.Empty)
         {
             goBackCell.textMesh.text = "Volver";
-            //goBackCell.SetDisabledButton(false);
+            goBackCell.SetPositionPhysicButton();
             goBackCell.SetActive(true);
             string menuIndex = menu.idReturnTo;
+            goBackCell.unityEvent.RemoveAllListeners();
             goBackCell.unityEvent.AddListener(() => OpenMenu(menuIndex));
         }
         else

@@ -27,7 +27,9 @@ public class CellController : MonoBehaviour
 
     public void SetPositionPhysicButton()
     {
+        physicButton.gameObject.SetActive(false);
         physicButton.transform.localPosition = Vector3.forward * 0.05f;
+        physicButton.gameObject.SetActive(true);
     }
 
     public void SetDisabledButton(bool v)
@@ -79,13 +81,11 @@ public class CellController : MonoBehaviour
     //metodos llamado por los metodos asignados dinamicamente en menucontroller
     public void OnBtnPress()
     {
-        print("onbtn press " + gameObject.name);
         isPressed = true;
     }
 
     public void OnBtnUnpress()
     {
-        print("onbtn unpress " + gameObject.name);
         if (isPressed)
         {
             unityEvent.Invoke();

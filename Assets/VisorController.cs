@@ -12,6 +12,8 @@ public class VisorController : MonoBehaviour
     public CellController lockPositionXcell, lockPositionYcell, lockPositionZcell, lockRotationXcell, lockRotationYcell, lockRotationZcell;
     public void SpawnVisorModel(string modelName)
     {
+        GameManager.Instance.ResetPlayerPositionInEnviroment();
+
         if (currentVisorInstance != null)
         {
             Destroy(currentVisorInstance.gameObject);

@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetPlayerPositionInEnviroment()
     {
-        playerBody.SetPosition(enviromentController.currentEnviromentInstance.spawnPlayerPoint.transform.position);
+        playerBody.SetPosition(enviromentController.currentEnviromentInstance.spawnPlayerPoint.transform.position, enviromentController.currentEnviromentInstance.spawnPlayerPoint.transform.rotation);
     }
 
     public void LoadVideo(int index)
