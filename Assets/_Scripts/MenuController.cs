@@ -154,7 +154,10 @@ public class MenuController : MonoBehaviour
                 cells[i].textMesh.text = menu.options[i].ToString();
 
                 int index = i;
-                cells[i].unityEvent = menu.functions[index];
+                if(menu.functions[index] != null)
+                {
+                    cells[i].unityEvent = menu.functions[index];
+                }
 
                 if (menu.optionsDeactive.Length > 0)
                 {
@@ -279,5 +282,19 @@ public class MenuController : MonoBehaviour
     public void VisorToggleGuizmo()
     {
         GameManager.Instance.visorController.ToggleCurrentGuizmo();
+    }
+
+    public void VisorStartUpdateSize(float value)
+    {
+        GameManager.Instance.visorController.StartUpdateSize(value);
+    }
+    public void VisorStopUpdateSize()
+    {
+        GameManager.Instance.visorController.StopUpdateSize();
+    }
+
+    public void VisorUpdateHeight(float value)
+    {
+        GameManager.Instance.visorController.UpdateHeight(value);
     }
 }

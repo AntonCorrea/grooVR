@@ -5,9 +5,11 @@ public class VisorInstance : MonoBehaviour
     public string modelName;
     public Rigidbody rb;
     public GameObject baseGuizmo;
+    public GameObject model;
     public bool lockpositionX, lockpositionY, lockpositionZ, lockRotationX, lockRotationY, lockRotationZ;
     private bool toggledActiveGuizmo = true;
-    
+
+    //public float size = 1f;
 
     public void LockPositionX()
     {

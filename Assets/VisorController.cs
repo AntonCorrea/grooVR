@@ -1,4 +1,5 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class VisorController : MonoBehaviour
@@ -10,6 +11,27 @@ public class VisorController : MonoBehaviour
     public VisorInstance currentVisorInstance;
 
     public CellController lockPositionXcell, lockPositionYcell, lockPositionZcell, lockRotationXcell, lockRotationYcell, lockRotationZcell;
+
+    public TextMeshProUGUI textSize;
+    private float instanceSize = 1;
+    private bool isSizeUpdated = false;
+    private float sizeUpdatedValue;
+    public float scaleSpeed = 5f; // tweak this
+
+    public TextMeshProUGUI textHeigth;
+    private float instanceHeight = 1;
+    private void FixedUpdate()
+    {
+        if (isSizeUpdated)
+        {
+            float factor = 1f + (sizeUpdatedValue * scaleSpeed * Time.fixedDeltaTime);
+            instanceSize *= factor;
+
+            textSize.text = instanceSize.ToString();
+            currentVisorInstance.model.transform.localScale = Vector3.one * instanceSize;
+        }
+    }
+
     public void SpawnVisorModel(string modelName)
     {
         GameManager.Instance.ResetPlayerPositionInEnviroment();
@@ -21,6 +43,12 @@ public class VisorController : MonoBehaviour
 
         VisorInstance newVisorModel = visorModels.FirstOrDefault(i => i.modelName == modelName);
         currentVisorInstance = Instantiate(newVisorModel, modelSpawnPoint);
+
+        instanceSize = 1;
+        instanceHeight = 1;
+        textSize.text = instanceSize.ToString();
+        textHeigth.text = instanceHeight.ToString();
+
         UpdateToggleButtons();
     }
 
@@ -119,5 +147,23 @@ public class VisorController : MonoBehaviour
     public void ToggleCurrentGuizmo()
     {
         currentVisorInstance.ToggleGuizmo();
+    }
+
+    public void StartUpdateSize(float value)
+    {
+        isSizeUpdated = true;
+        sizeUpdatedValue = value;
+    }
+
+    public void StopUpdateSize()
+    {
+        isSizeUpdated = false;
+    }
+
+    public void UpdateHeight(float value)
+    {
+        instanceHeight += value;
+        textHeigth.text = instanceHeight.ToString();
+        currentVisorInstance.transform.localPosition += Vector3.up * value;
     }
 }
