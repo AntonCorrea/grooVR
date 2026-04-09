@@ -43,6 +43,7 @@ public class VisorController : MonoBehaviour
 
         VisorInstance newVisorModel = visorModels.FirstOrDefault(i => i.modelName == modelName);
         currentVisorInstance = Instantiate(newVisorModel, modelSpawnPoint);
+        currentVisorInstance.transform.parent = GameManager.Instance.enviromentController.currentEnviromentInstance.transform;
 
         instanceSize = 1;
         instanceHeight = 1;
