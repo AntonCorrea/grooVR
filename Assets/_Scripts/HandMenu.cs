@@ -4,6 +4,7 @@ public class HandMenu : MonoBehaviour
 {
     public CubeMatrixController matrix;
     public MenuController menuController;
+    public FlexibleFollower flexibleFollower;
 
     bool isFirstTime = true;
     public bool isTutoFinished = false;

@@ -27,5 +27,7 @@ public class EnviromentController : MonoBehaviour
         {
             RenderSettings.skybox = null;
         }
+
+        GameManager.Instance.ResetPlayerPositionInEnviroment();
     }
 }

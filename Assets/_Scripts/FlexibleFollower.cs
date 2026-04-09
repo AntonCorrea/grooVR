@@ -9,7 +9,7 @@ public class FlexibleFollower : MonoBehaviour
     public bool lockZRotation = false;
     [Header("Offset & Pivot")]
     public Vector3 positionOffset = Vector3.zero;  // Local offset from the target
-    public Vector3 pivotOffset = Vector3.zero;     // Offset around which to pivot
+    //public Vector3 pivotOffset = Vector3.zero;     // Offset around which to pivot
     public Vector3 rotationOffset = Vector3.zero;
 
     [Header("Smoothing")]
@@ -22,7 +22,7 @@ public class FlexibleFollower : MonoBehaviour
             return;
 
         // Compute desired position with pivot and offset
-        Vector3 desiredPosition = target.TransformPoint(pivotOffset + positionOffset);
+        Vector3 desiredPosition = target.TransformPoint(positionOffset);
 
         if (followPosition)
         {
@@ -42,13 +42,19 @@ public class FlexibleFollower : MonoBehaviour
         }
     }
 
-    // Optional: visualize pivot in Scene view
-    void OnDrawGizmosSelected()
+    //// Optional: visualize pivot in Scene view
+    //void OnDrawGizmosSelected()
+    //{
+    //    if (target != null)
+    //    {
+    //        Gizmos.color = Color.cyan;
+    //        Gizmos.DrawWireSphere(target.TransformPoint(pivotOffset), 0.1f);
+    //    }
+    //}
+
+    public void SetInstantPosition()
     {
-        if (target != null)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(target.TransformPoint(pivotOffset), 0.1f);
-        }
+        transform.position = target.transform.position;
+        transform.rotation = target.rotation * Quaternion.Euler(rotationOffset);
     }
 }
