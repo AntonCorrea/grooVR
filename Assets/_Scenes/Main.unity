@@ -1675,7 +1675,7 @@ MonoBehaviour:
   - {fileID: 7258885491153718073, guid: 2343bad438678eb4ca072a5ce3eb2b09, type: 3}
   currentObjectOnTable: {fileID: 0}
   currentSphere360Video: {fileID: 0}
-  OpenMenu: Visor
+  OpenMenu: Main
 --- !u!4 &329765634
 Transform:
   m_ObjectHideFlags: 0
@@ -8707,6 +8707,9 @@ MonoBehaviour:
   options:
   - Elementos Demo
   - Casa M1
+  - Taller
+  - Cancha Basquet
+  - Habitacion
   functions:
   - m_PersistentCalls:
       m_Calls:
@@ -8734,6 +8737,48 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Casa_M1_Env
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Taller
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CanchaBasquet
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965824932}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadEnviroment
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Habitacion
           m_BoolArgument: 0
         m_CallState: 2
   optionsDeactive: 
