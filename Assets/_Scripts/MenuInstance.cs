@@ -12,6 +12,6 @@ public class MenuInstance : MonoBehaviour
     public CellController[] cells;
     public enum MenuType
     {
-        BigButton, List, Vehicle, Visor
+        BigButton, List, Vehicle, Visor,VisorAdvanced
     }
 }

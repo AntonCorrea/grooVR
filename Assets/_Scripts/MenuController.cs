@@ -25,6 +25,7 @@ public class MenuController : MonoBehaviour
     public GameObject listMenu;
     public GameObject vehiclesMenu;
     public GameObject visorMenu;
+    public GameObject visorMenuAdvanced;
     
     [Header("Animation settings")]
     public float stagger = 0.03f;
@@ -199,6 +200,7 @@ public class MenuController : MonoBehaviour
         listMenu.SetActive(false);
         vehiclesMenu.SetActive(false);
         visorMenu.SetActive(false);
+        visorMenuAdvanced.SetActive(false);
 
         switch (i)
         {
@@ -213,6 +215,9 @@ public class MenuController : MonoBehaviour
                 break;
             case 3:
                 currentMenu = visorMenu;
+                break;
+            case 4:
+                currentMenu = visorMenuAdvanced;
                 break;
         }
 
@@ -239,7 +244,7 @@ public class MenuController : MonoBehaviour
     {
         GameManager.Instance.enviromentController.SpawnEnviroment("Empty");
         GameManager.Instance.visorController.SpawnVisorModel(modelName);
-        OpenMenu("VisorOptions");
+        OpenMenu("VisorMenu");
     }
 
     public void VisorLockPositionX()
@@ -297,4 +302,6 @@ public class MenuController : MonoBehaviour
     {
         GameManager.Instance.visorController.UpdateHeight(value);
     }
+
+
 }
