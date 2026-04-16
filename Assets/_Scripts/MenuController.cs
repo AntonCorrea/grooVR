@@ -46,11 +46,14 @@ public class MenuController : MonoBehaviour
     public void ShowHandMenu()
     {
         menuRoot.SetActive(true);
+        
     }
 
     public void HideHandMenu()
     {
         menuRoot.SetActive(false);
+        UpdatePhysicsButtons();
+        goBackCell.SetPositionPhysicButton();
     }
 
     public void OpenMenu(string menu)
@@ -67,10 +70,8 @@ public class MenuController : MonoBehaviour
     {
         //print("apagar botones");
         int auxCells = cells.Length;
-        for (int i = 0; i < auxCells; i++)
-        {
-            cells[i].SetPositionPhysicButton();
-        }
+
+        UpdatePhysicsButtons();
 
         //print("animar salida");
         yield return AnimateExit();
@@ -90,6 +91,11 @@ public class MenuController : MonoBehaviour
         yield return AnimateEnter();
 
         //print("prender botones");
+        UpdatePhysicsButtons();
+    }
+
+    void UpdatePhysicsButtons()
+    {
         for (int i = 0; i < currentCellsLenght; i++)
         {
             cells[i].SetPositionPhysicButton();
