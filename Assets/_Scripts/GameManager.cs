@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour
 
     public Sphere360Video currentSphere360Video;
 
-    public string OpenMenu;
+    public string StartOpenMenu;
+    public string StartEnvirment;
 
     void Awake()
     {
@@ -54,11 +55,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-
-
-        handMenu.menuController.OpenMenu(OpenMenu);
-        enviromentController.SpawnEnviroment("Empty");
-
         //DontDestroyOnLoad(gameObject); // Persist between scenes
         //if (skipTuto)
         //{
@@ -69,6 +65,12 @@ public class GameManager : MonoBehaviour
         //    handMenu.menuController.OpenMenu("grooVR Simulaciones (TUTOMENU)");
         //}
 
+    }
+
+    private void Start()
+    {
+        handMenu.menuController.OpenMenu(StartOpenMenu);
+        enviromentController.SpawnEnviroment(StartEnvirment);
     }
 
 

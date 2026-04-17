@@ -43,9 +43,13 @@ public class NPCTutorialSequence : MonoBehaviour
         greet.skipAfter = true;
         sequence.actions.Add(greet);
 
-        TriggerAnimateAction triggerAnimation = gameObject.AddComponent<TriggerAnimateAction>();
-        triggerAnimation.id = "HandUp_Left";
-        sequence.actions.Add(triggerAnimation);
+        PlayAnimateAction point = gameObject.AddComponent<PlayAnimateAction>();
+        point.id = "Pointing";
+        point.loopTime = 5f;
+        sequence.actions.Add(point);
+        //TriggerAnimateAction triggerAnimation = gameObject.AddComponent<TriggerAnimateAction>();
+        //triggerAnimation.id = "HandUp_Left";
+        //sequence.actions.Add(triggerAnimation);
     }
 
     [ContextMenu("UseTheOtherLeft")]

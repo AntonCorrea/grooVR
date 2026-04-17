@@ -1,18 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Grid : MonoBehaviour
+public class CircularGrid : MonoBehaviour
 {
-    public int gridSize = 10;
+    public int gridSize = 20;
     public float cellSize = 1f;
+    public float radius = 8f;
+
+    public float lineLength = 1f; // full visible length of each line
+
     public float baseSpeed = 5f;
     public float speedFalloff = 0.2f;
-
-    // NEW: defaults
-    public float defaultThickness = 0.05f;
-    public float lenght = 1f;
-    public Material defaultMaterial;
+    public float lineWidth = 0.05f;
 
     private Coroutine expandRoutine;
 
@@ -36,41 +36,45 @@ public class Grid : MonoBehaviour
             Destroy(child.gameObject);
 
         List<LineData> lines = new List<LineData>();
+        HashSet<string> createdLines = new HashSet<string>();
 
-        for (int i = -gridSize / 2; i <= gridSize / 2; i++)
+        for (int x = -gridSize / 2; x <= gridSize / 2; x++)
         {
-            float pos = i * cellSize;
+            for (int z = -gridSize / 2; z <= gridSize / 2; z++)
+            {
+                Vector3 center = new Vector3(x * cellSize, 0, z * cellSize);
 
-            float distance = Mathf.Abs(pos);
+                // circular mask
+                if (center.magnitude > radius)
+                    continue;
 
-            // Example: vary thickness slightly by distance (optional)
-            float thickness = defaultThickness * (1f + distance * 0.05f);
+                float dist = center.magnitude;
 
-            // Example: vary length per segment (optional)
-            float targetLength = (gridSize * cellSize) * lenght;
+                // 4 edges per cell (deduplicated)
+                TryAddLine(lines, createdLines,
+                    center + new Vector3(-cellSize * 0.5f, 0, 0),
+                    Vector3.forward,
+                    dist);
 
-            // vertical
-            lines.Add(CreateLineData(
-                new Vector3(pos, 0, 0),
-                Vector3.forward,
-                distance,
-                defaultMaterial,
-                thickness,
-                targetLength
-            ));
+                TryAddLine(lines, createdLines,
+                    center + new Vector3(cellSize * 0.5f, 0, 0),
+                    Vector3.forward,
+                    dist);
 
-            // horizontal
-            lines.Add(CreateLineData(
-                new Vector3(0, 0, pos),
-                Vector3.right,
-                distance,
-                defaultMaterial,
-                thickness,
-                targetLength
-            ));
+                TryAddLine(lines, createdLines,
+                    center + new Vector3(0, 0, -cellSize * 0.5f),
+                    Vector3.right,
+                    dist);
+
+                TryAddLine(lines, createdLines,
+                    center + new Vector3(0, 0, cellSize * 0.5f),
+                    Vector3.right,
+                    dist);
+            }
         }
 
         bool done = false;
+
         while (!done)
         {
             done = true;
@@ -96,13 +100,18 @@ public class Grid : MonoBehaviour
         }
     }
 
-    private LineData CreateLineData(
-        Vector3 localCenter,
-        Vector3 localDir,
-        float distance,
-        Material material,
-        float thickness,
-        float targetLength)
+    private void TryAddLine(List<LineData> lines, HashSet<string> set, Vector3 center, Vector3 dir, float dist)
+    {
+        string key = $"{Mathf.Round(center.x * 100)}_{Mathf.Round(center.z * 100)}_{dir.x}_{dir.z}";
+
+        if (set.Contains(key))
+            return;
+
+        set.Add(key);
+        lines.Add(CreateLineData(center, dir, dist));
+    }
+
+    private LineData CreateLineData(Vector3 localCenter, Vector3 localDir, float distance)
     {
         Vector3 worldCenter = transform.TransformPoint(localCenter);
         Vector3 worldDir = transform.TransformDirection(localDir);
@@ -113,17 +122,14 @@ public class Grid : MonoBehaviour
         LineRenderer lr = lineObj.AddComponent<LineRenderer>();
         lr.positionCount = 2;
         lr.useWorldSpace = true;
-
-        // APPLY per-line properties
-        lr.startWidth = thickness;
-        lr.endWidth = thickness;
-
-        lr.material = material != null
-            ? material
-            : new Material(Shader.Find("Sprites/Default"));
-
+        lr.startWidth = lineWidth;
+        lr.endWidth = lineWidth;
+        lr.material = new Material(Shader.Find("Sprites/Default"));
         lr.startColor = Color.white;
         lr.endColor = Color.white;
+
+        // clamp so it doesn't exceed the cell size
+        float halfTarget = Mathf.Min(lineLength * 0.5f, cellSize * 0.5f);
 
         return new LineData
         {
@@ -132,9 +138,7 @@ public class Grid : MonoBehaviour
             distanceFromCenter = distance,
             renderer = lr,
             currentLength = 0f,
-            targetLength = targetLength,
-            thickness = thickness,
-            material = lr.material
+            targetLength = halfTarget
         };
     }
 
@@ -144,33 +148,13 @@ public class Grid : MonoBehaviour
         public Vector3 worldDirection;
         public float distanceFromCenter;
         public LineRenderer renderer;
-
         public float currentLength;
         public float targetLength;
-
-        // NEW per-segment variables
-        public float thickness;
-        public Material material;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-
-        float halfGrid = (gridSize * cellSize) * 0.5f;
-
-        Vector3[] corners = new Vector3[4];
-        corners[0] = new Vector3(-halfGrid, 0, -halfGrid);
-        corners[1] = new Vector3(-halfGrid, 0, halfGrid);
-        corners[2] = new Vector3(halfGrid, 0, halfGrid);
-        corners[3] = new Vector3(halfGrid, 0, -halfGrid);
-
-        for (int i = 0; i < 4; i++)
-            corners[i] = transform.TransformPoint(corners[i]);
-
-        Gizmos.DrawLine(corners[0], corners[1]);
-        Gizmos.DrawLine(corners[1], corners[2]);
-        Gizmos.DrawLine(corners[2], corners[3]);
-        Gizmos.DrawLine(corners[3], corners[0]);
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
