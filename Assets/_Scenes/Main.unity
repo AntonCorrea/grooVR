@@ -1512,7 +1512,7 @@ Transform:
   m_GameObject: {fileID: 299471984}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 75.3, y: 0, z: 1.2}
+  m_LocalPosition: {x: 18.78, y: 0, z: -3.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2658,7 +2658,7 @@ Transform:
   m_GameObject: {fileID: 640914103}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 8.7}
+  m_LocalPosition: {x: -2.34, y: 0, z: -3.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3348,7 +3348,7 @@ Transform:
   m_GameObject: {fileID: 779291604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -4, y: 0, z: 1.2}
+  m_LocalPosition: {x: -14.09, y: 0, z: -2.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7139,13 +7139,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 697882601}
+  croosfadeTime: 0.1
   subsText: {fileID: 1284495906}
   speakList:
   - {fileID: 661936016}
   - {fileID: 661936018}
   - {fileID: 661936017}
   audioSource: {fileID: 1148424855}
-  speed: 2
+  speed: 1
+  rotationSpeed: 100
   moveList:
   - {fileID: 721994198}
   - {fileID: 721994201}

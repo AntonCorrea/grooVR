@@ -45,12 +45,12 @@ public class NPCSequenceRunner : MonoBehaviour
                     currentAction = extraAction;
                     print("extra action: " + currentAction.id);
                     yield return StartCoroutine(currentAction.Execute(npc));
-                    currentAction.skipAfter = false;
+                    currentAction.skipAfterAction = false;
                     currentAction = action;
                 }
 
                 // Handle skip
-                if (skipRequested || currentAction.skipAfter ||currentAction.stopNow)
+                if (skipRequested || currentAction.skipAfterAction ||currentAction.stopNow)
                 {
                     skipRequested = false;
                     break; // move to next action

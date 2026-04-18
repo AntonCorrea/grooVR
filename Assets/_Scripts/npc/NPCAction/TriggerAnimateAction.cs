@@ -7,9 +7,9 @@ public class TriggerAnimateAction : NPCAction
     {
         npc.TriggerAnimation(id);
 
-        if (loopTime != 0f)
+        if (actionClipTime != 0f)
         {
-            yield return new WaitForSeconds(loopTime);
+            yield return new WaitForSeconds(actionClipTime);
         }
         else
         {

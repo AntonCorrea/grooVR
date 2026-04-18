@@ -18,7 +18,7 @@ public class MoveAction : NPCAction
         }
 
         npc.Stop();
-        skipAfter = true;
+        skipAfterAction = true;
         stopNow = true;
     }
 }

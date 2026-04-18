@@ -6,19 +6,21 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     public Animator animator;
+    public float croosfadeTime;
 
     public TextMeshProUGUI subsText;
     public List<SpeakActionElement> speakList;
     public AudioSource audioSource;
 
     public float speed = 2f;
+    public float rotationSpeed = 1f;
     public List<MoveActionElement> moveList;
     private Transform currentTarget;
     private bool isMoving = false;
 
     public void PlayAnimation(string animation)
     {
-        animator.Play(animation);
+        animator.CrossFade(animation, croosfadeTime);
     }
 
     public void TriggerAnimation(string trigger)
@@ -53,10 +55,14 @@ public class NPCController : MonoBehaviour
             Vector3 direction = (currentTarget.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
 
-            // Rotación opcional
             if (direction != Vector3.zero)
             {
-                transform.forward = direction;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+                );
             }
 
             yield return null;
