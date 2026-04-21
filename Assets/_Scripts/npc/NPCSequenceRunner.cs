@@ -53,10 +53,12 @@ public class NPCSequenceRunner : MonoBehaviour
                 if (skipRequested || currentAction.skipAfterAction ||currentAction.stopNow)
                 {
                     skipRequested = false;
+                    print("skip action");
                     break; // move to next action
                 }                    
             } while (repeat);
         }
+        print("sequence ended");
     }
 
     public void PlaySingleAction(NPCAction action)

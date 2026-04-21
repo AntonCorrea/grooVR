@@ -429,6 +429,8 @@ MonoBehaviour:
   OnUnpressed:
     m_PersistentCalls:
       m_Calls: []
+  pressedValue: 0
+  body: {fileID: 0}
 --- !u!153 &7380761033440643622
 ConfigurableJoint:
   m_ObjectHideFlags: 0

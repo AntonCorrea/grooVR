@@ -8,4 +8,6 @@ public abstract class NPCAction : MonoBehaviour
     public bool skipAfterAction = false;
     public float actionClipTime = 0f;
     public abstract IEnumerator Execute(NPCController npc);
+
+    public abstract void StopAction(NPCController npc);
 }

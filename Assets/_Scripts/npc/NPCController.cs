@@ -28,6 +28,11 @@ public class NPCController : MonoBehaviour
         animator.SetTrigger(trigger);
     }
 
+    public void StopAnimation()
+    {
+        animator.Play("Idle");
+    }
+
     public void PlayVoice(AudioClip clip)
     {
         
@@ -76,7 +81,7 @@ public class NPCController : MonoBehaviour
         return Vector3.Distance(transform.position, currentTarget.position) <= threshold;
     }
 
-    public void Stop()
+    public void StopMoving()
     {
         animator.SetBool("isWalking", false);
         isMoving = false;

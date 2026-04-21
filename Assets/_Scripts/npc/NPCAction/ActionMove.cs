@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-public class MoveAction : NPCAction
+public class ActionMove : NPCAction
 {
     public float arrivalThreshold = 0.1f;
 
@@ -17,8 +17,12 @@ public class MoveAction : NPCAction
             yield return null;
         }
 
-        npc.Stop();
+        npc.StopMoving();
         skipAfterAction = true;
         stopNow = true;
+    }
+
+    public override void StopAction(NPCController npc)
+    {
     }
 }

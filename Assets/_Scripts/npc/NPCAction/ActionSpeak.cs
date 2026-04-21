@@ -1,11 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 
-public class PlayAnimateAction : NPCAction
+public class ActionSpeak : NPCAction
 {
+
     public override IEnumerator Execute(NPCController npc)
     {
-        npc.PlayAnimation(id);
+        SpeakActionElement speakElement = npc.speakList.FirstOrDefault(i => i.id == id);
+
+        actionClipTime = speakElement.timeLenght;
+
+        npc.PlayVoice(speakElement.clip);
+        npc.SetSubsText(speakElement.subtitles);
 
         float duration = (actionClipTime != 0f) ? actionClipTime : 10f;
         float timer = 0f;
@@ -19,6 +26,11 @@ public class PlayAnimateAction : NPCAction
             timer += Time.deltaTime;
             yield return null; // wait one frame (interruptible)
         }
-        //skipAfter = true;
+
+    }
+
+    public override void StopAction(NPCController npc)
+    {
+
     }
 }

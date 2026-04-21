@@ -1,7 +1,6 @@
 using Autohand;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,12 +13,6 @@ public class GameManager : MonoBehaviour
 
     public Action actionDelay;
 
-    //public bool skipTuto = false;
-
-    public XBotController xBotController;
-    public GameObject xBotEnv;
-    public GameObject stand;
-
     public HandMenu handMenu;
 
     public Teleporter teleporter;
@@ -30,10 +23,7 @@ public class GameManager : MonoBehaviour
 
     public VisorController visorController;
 
-    public bool isHandMenuActive = false;
-    public bool isTeleporterActive = false;
-
-    public bool isFirtTimeTeleporter = false;
+    public HandGesturesController handGesturesController;
 
     public GameObject[] objectsForSpawnOnTable;
     public GameObject currentObjectOnTable;
@@ -42,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public string StartOpenMenu;
     public string StartEnvirment;
+    public bool tutorial = false;
 
     void Awake()
     {
@@ -55,88 +46,56 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        //DontDestroyOnLoad(gameObject); // Persist between scenes
-        //if (skipTuto)
-        //{
-        //    SkipTutorial();
-        //}
-        //else
-        //{
-        //    handMenu.menuController.OpenMenu("grooVR Simulaciones (TUTOMENU)");
-        //}
 
     }
 
     private void Start()
     {
-        handMenu.menuController.OpenMenu(StartOpenMenu);
-        enviromentController.SpawnEnviroment(StartEnvirment);
-    }
-
-
-    [ContextMenu("OnBtnStart")]
-    public void OnBtnStart()
-    {
-        stand.SetActive(false);
-        SpawnEnviroment("Grid");
-        enviromentController.currentEnviromentInstance.table.SetActive(false);
-        xBotController.SetActions(xBotActions.waitToMoveToGreet);
-    }
-
-    public void ShowHandMenu()
-    {
-        if(isHandMenuActive)
-            handMenu.Show();
-    }
-
-    public void HideHandMenu()
-    {
-        handMenu.Hide();
-    }
-
-    public void StartTeleport()
-    {
-        if(isTeleporterActive)
-            teleporter.StartTeleport();
-
-        if (isFirtTimeTeleporter)
+        if (tutorial)
         {
-            TeleportTutoFirstTime();
-            isFirtTimeTeleporter = false;
+            handMenu.menuController.OpenMenu("MainTuto");
+            enviromentController.SpawnEnviroment("EnviromentTutorial");
+
         }
+        else
+        {
+            handMenu.menuController.OpenMenu(StartOpenMenu);
+            enviromentController.SpawnEnviroment(StartEnvirment);
+
+            handGesturesController.rightHandActive.AddListener(() => handMenu.Show());
+            handGesturesController.rightHandDeactive.AddListener(() => handMenu.Hide());
+
+            handGesturesController.leftHandActive.AddListener(() => teleporter.StartTeleport());
+            handGesturesController.leftHandDeactive.AddListener(() => teleporter.CancelTeleport());
+        }
+
+        
     }
 
-    public void CancelTeleport()
-    {
-        teleporter.CancelTeleport();
-    }
+    //public void ShowHandMenu()
+    //{
+    //    handMenu.Show();
+    //}
 
+    //public void HideHandMenu()
+    //{
+    //    handMenu.Hide();
+    //}
+
+    //public void StartTeleport()
+    //{
+    //    teleporter.StartTeleport();
+    //}
+
+    //public void CancelTeleport()
+    //{
+    //    teleporter.CancelTeleport();
+    //}
 
     public IEnumerator InvokeWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         actionDelay.Invoke();
-    }
-
-    public void HandMenuShowFirstTime()
-    {
-        xBotController.SetActions(xBotActions.talkGotoAjustes);
-    }
-
-    public void HandMenuFinishedTuto()
-    {
-        handMenu.isTutoFinished = true;
-    }
-
-    [ContextMenu("StartTeleportTuto")]
-    public void CheerFinishMenuTuto()
-    {
-        xBotController.SetActions(xBotActions.cheersFinishMenuTuto);
-    }
-
-    public void TeleportTutoFirstTime()
-    {
-        xBotController.SetActions(xBotActions.explainTeleport_1);
     }
 
     public void SpawnOnTable(string newObject)

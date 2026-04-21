@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class TriggerAnimateAction : NPCAction
+public class ActionTriggerAnimation : NPCAction
 {
+    public string stopTrigger;
     public override IEnumerator Execute(NPCController npc)
     {
         npc.TriggerAnimation(id);
@@ -15,5 +16,10 @@ public class TriggerAnimateAction : NPCAction
         {
             yield return new WaitForSeconds(10f);
         }
+    }
+
+    public override void StopAction(NPCController npc)
+    {
+        npc.TriggerAnimation(stopTrigger);
     }
 }
