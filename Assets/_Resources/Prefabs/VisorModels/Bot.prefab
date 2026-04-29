@@ -726,6 +726,7 @@ MonoBehaviour:
   modelName: Bot
   rb: {fileID: 6585352413996410577}
   baseGuizmo: {fileID: 6562006281886645669}
+  model: {fileID: 6620990199800166393}
   lockpositionX: 0
   lockpositionY: 0
   lockpositionZ: 0

@@ -36,10 +36,7 @@ public class VisorController : MonoBehaviour
     {
         GameManager.Instance.ResetPlayerPositionInEnviroment();
 
-        if (currentVisorInstance != null)
-        {
-            Destroy(currentVisorInstance.gameObject);
-        }
+        ClearController();
 
         VisorInstance newVisorModel = visorModels.FirstOrDefault(i => i.modelName == modelName);
         currentVisorInstance = Instantiate(newVisorModel, modelSpawnPoint);
@@ -51,6 +48,14 @@ public class VisorController : MonoBehaviour
         textHeigth.text = instanceHeight.ToString();
 
         UpdateToggleButtons();
+    }
+
+    public void ClearController()
+    {
+        if (currentVisorInstance != null)
+        {
+            Destroy(currentVisorInstance.gameObject);
+        }
     }
 
     public void UpdateToggleButtons()

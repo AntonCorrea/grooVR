@@ -25,14 +25,15 @@ public class GameManager : MonoBehaviour
 
     public HandGesturesController handGesturesController;
 
-    public GameObject[] objectsForSpawnOnTable;
-    public GameObject currentObjectOnTable;
+    public NPCController NPCControllerPrefab;
+    public NPCController NPC;
 
     public Sphere360Video currentSphere360Video;
 
     public string StartOpenMenu;
     public string StartEnvirment;
     public bool tutorial = false;
+    public string StartTutotial;
 
     void Awake()
     {
@@ -54,80 +55,32 @@ public class GameManager : MonoBehaviour
         if (tutorial)
         {
             handMenu.menuController.OpenMenu("MainTuto");
-            enviromentController.SpawnEnviroment("EnviromentTutorial");
-
+            SpawnEnviromentAndTutorial(StartTutotial);
         }
         else
         {
             handMenu.menuController.OpenMenu(StartOpenMenu);
             enviromentController.SpawnEnviroment(StartEnvirment);
 
-            handGesturesController.rightHandActive.AddListener(() => handMenu.Show());
-            handGesturesController.rightHandDeactive.AddListener(() => handMenu.Hide());
+            handGesturesController.leftHandActive.AddListener(() => handMenu.Show());
+            handGesturesController.leftHandDeactive.AddListener(() => handMenu.Hide());
 
-            handGesturesController.leftHandActive.AddListener(() => teleporter.StartTeleport());
-            handGesturesController.leftHandDeactive.AddListener(() => teleporter.CancelTeleport());
+            handGesturesController.rightHandActive.AddListener(() => teleporter.StartTeleport());
+            handGesturesController.rightHandDeactive.AddListener(() => teleporter.CancelTeleport());
         }
 
         
     }
 
-    //public void ShowHandMenu()
+    //public IEnumerator InvokeWithDelay(float delay)
     //{
-    //    handMenu.Show();
-    //}
-
-    //public void HideHandMenu()
-    //{
-    //    handMenu.Hide();
-    //}
-
-    //public void StartTeleport()
-    //{
-    //    teleporter.StartTeleport();
-    //}
-
-    //public void CancelTeleport()
-    //{
-    //    teleporter.CancelTeleport();
-    //}
-
-    public IEnumerator InvokeWithDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        actionDelay.Invoke();
-    }
-
-    public void SpawnOnTable(string newObject)
-    {
-        if (currentObjectOnTable != null)
-            Destroy(currentObjectOnTable);
-
-        GameObject newGameObject = objectsForSpawnOnTable.FirstOrDefault(i => i.name == newObject);
-        currentObjectOnTable = Instantiate(newGameObject, enviromentController.currentEnviromentInstance.tableSpawnPoint.transform);
-
-    }
-
-    //public void SkipTutorial()
-    //{
-    //    xBotEnv.SetActive(false);
-    //    xBotController.gameObject.SetActive(false);
-    //    enviroment.SpawnEnviroment("Grid");
-    //    isHandMenuActive = true;
-    //    handMenu.menuController.OpenMenu("Main");
-    //    teleporter.onlyUseTeleportPoints = false;
-    //    Instance.isTeleporterActive = true;
+    //    yield return new WaitForSeconds(delay);
+    //    actionDelay.Invoke();
     //}
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void DestroyObjectOnTable()
-    {
-        if (currentObjectOnTable != null)
-            Destroy(currentObjectOnTable);
     }
 
     public void ResetPlayerPositionInEnviroment()
@@ -136,18 +89,81 @@ public class GameManager : MonoBehaviour
         handMenu.flexibleFollower.SetInstantPosition();
     }
 
-    public void LoadVideo(int index)
+    public void Load360Video(int index)
     {
+        SpawnEnviroment("Sphere360");
         currentSphere360Video.PlayVideo(index);
+    }
+
+    public void LoadFlatVideo(int index)
+    {
+        SpawnEnviroment("QuadVideo");
+        currentSphere360Video.PlayVideo(index);
+    }
+
+    void ClearControllers()
+    {
+        enviromentController.ClearController();
+        vehicleController.ClearController();
+        visorController.ClearController();
+
+        if (NPC)
+        {
+            Destroy(NPC.gameObject);
+        }
     }
 
     public void SpawnEnviroment(string name)
     {
+        ClearControllers();
         enviromentController.SpawnEnviroment(name);
         ResetPlayerPositionInEnviroment();
     }
 
 
 
+    public void SpawnVehicleSimulator()
+    {
+        SpawnEnviroment(vehicleController.currentVehicleEnviroment);
+        vehicleController.SpawnVehicle();
+    }
 
+    public void SpawnVisorModel(string modelName)
+    {
+        enviromentController.SpawnEnviroment("Empty");
+        visorController.SpawnVisorModel(modelName);
+        handMenu.menuController.OpenMenu("VisorMenu");
+    }
+
+    public void SpawnTraining(string tutorial)
+    {
+        NPC = Instantiate(NPCControllerPrefab,enviromentController.currentEnviromentInstance.spawnNPCPoint);
+        NPC.LoadSpeakList(enviromentController.currentEnviromentInstance.speakActionElementsObject);
+        NPC.LoadMoveList(enviromentController.currentEnviromentInstance.moveActionElementsObject);
+        enviromentController.StartTutorial(tutorial);
+    }
+
+    public void SpawnEnviromentAndTutorial(string enviroment, string tutorial = "")
+    {
+        SpawnEnviroment(enviroment);
+        SpawnTraining(tutorial);
+    }
+
+    [ContextMenu("SpawnTutorial")]
+    public void SpawnTutorial()
+    {
+        SpawnEnviromentAndTutorial("FirstTutorial");
+    }
+
+    [ContextMenu("SpawnYenga")]
+    public void SpawnYenga()
+    {
+        SpawnEnviromentAndTutorial("Room");
+    }
+
+    [ContextMenu("SpawnEnv")]
+    public void SpawnEnv()
+    {
+        SpawnEnviroment("Room");
+    }
 }

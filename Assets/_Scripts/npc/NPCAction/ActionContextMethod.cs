@@ -13,10 +13,10 @@ public class ActionContextMethod : NPCAction
             actionEvent.AddListener(OnActionTriggered);
         }
 
-        while (!stopNow)
-        {
-            yield return null;
-        }
+        //while (!stopNow)
+        //{
+        //    yield return null;
+        //}
         yield break; // stops the coroutine immediately
 
     }

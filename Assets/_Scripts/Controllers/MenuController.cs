@@ -230,27 +230,34 @@ public class MenuController : MonoBehaviour
         currentMenu.SetActive(true);
     }
 
-    public void LoadVideo(int index)
+    public void Load360Video(int index)
     {
-        GameManager.Instance.LoadVideo(index);
+        GameManager.Instance.Load360Video(index);
+    }
+
+    public void LoadFlatVideo(int index)
+    {
+        GameManager.Instance.LoadFlatVideo(index);
     }
 
     public void LoadEnviroment(string enviroment)
     {
-        GameManager.Instance.enviromentController.SpawnEnviroment(enviroment);
+        GameManager.Instance.SpawnEnviroment(enviroment);
     }
 
-    public void LoadEnviromentAndVehicle()
+    public void LoadEnviromentAndTutorial(string enviroment)
     {
-        GameManager.Instance.enviromentController.SpawnEnviroment(GameManager.Instance.vehicleController.currentVehicleEnviroment);
-        GameManager.Instance.vehicleController.SpawnVehicle();
+        GameManager.Instance.SpawnEnviromentAndTutorial(enviroment);
+    }
+
+    public void LoadVehicleSim()
+    {
+        GameManager.Instance.SpawnVehicleSimulator();
     }
 
     public void LoadVisorModel(string modelName)
     {
-        GameManager.Instance.enviromentController.SpawnEnviroment("Empty");
-        GameManager.Instance.visorController.SpawnVisorModel(modelName);
-        OpenMenu("VisorMenu");
+        GameManager.Instance.SpawnVisorModel(modelName);
     }
 
     public void VisorLockPositionX()

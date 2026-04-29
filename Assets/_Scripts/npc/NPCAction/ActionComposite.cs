@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActionComposite : NPCAction
 {
-    public List<NPCAction> actions;
+    public List<NPCAction> actions = new List<NPCAction>();
     public bool runSequentially = false;
 
     private List<Coroutine> runningCoroutines = new List<Coroutine>();
@@ -13,12 +13,16 @@ public class ActionComposite : NPCAction
     {
         runningCoroutines.Clear();
 
+        foreach (var action in actions)
+        {
+            action.stopNow = false;
+        }
+
         if (runSequentially)
         {
             foreach (var action in actions)
             {
-                if (stopNow)
-                    break;
+                if (stopNow) yield break;
 
                 bool finished = false;
 
@@ -28,14 +32,14 @@ public class ActionComposite : NPCAction
 
                 runningCoroutines.Add(running);
 
-                // Wait until either completes OR stop is requested
+                // Wait only for this action to finish or interruption
                 yield return new WaitUntil(() => finished || stopNow);
 
                 if (stopNow)
                 {
                     action.stopNow = true;
                     npc.StopCoroutine(running);
-                    break;
+                    yield break;
                 }
             }
         }
@@ -53,31 +57,34 @@ public class ActionComposite : NPCAction
                 runningCoroutines.Add(coroutine);
             }
 
+            // Wait only until all children finish or interruption
             yield return new WaitUntil(() => completed >= total || stopNow);
         }
 
+        // If interrupted, stop everything
         if (stopNow)
         {
-            // Propagate stop to all actions
             foreach (var action in actions)
             {
                 action.stopNow = true;
                 action.StopAction(npc);
             }
-                
 
             StopAllRunning(npc);
-            yield break;
         }
     }
 
     public override void StopAction(NPCController npc)
     {
+        stopNow = true;
+
         foreach (var action in actions)
         {
             action.stopNow = true;
             action.StopAction(npc);
         }
+
+        StopAllRunning(npc);
     }
 
     private IEnumerator RunAction(NPCAction action, NPCController npc, System.Action onComplete)

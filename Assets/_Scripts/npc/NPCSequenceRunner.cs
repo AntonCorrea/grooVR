@@ -1,15 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCSequenceRunner : MonoBehaviour
 {
     public NPCController npc;
     private bool skipRequested = false;
-    private NPCAction currentAction;
+    public NPCAction currentAction;
 
     bool playExtraAction = false;
     NPCAction extraAction;
-    public void PlaySequence(NPCSequence sequence)
+    public void PlaySequence(List<NPCAction> sequence)
     {
         StartCoroutine(Run(sequence));
     }
@@ -23,13 +24,13 @@ public class NPCSequenceRunner : MonoBehaviour
 
     public void StopCurrentAction()
     {
-        print("stoped action: " + currentAction.id);
+        print("stoped current action: " + currentAction.id);
         currentAction.stopNow = true;
     }
 
-    private IEnumerator Run(NPCSequence sequence)
+    private IEnumerator Run(List<NPCAction> sequence)
     {
-        foreach (var action in sequence.actions)
+        foreach (var action in sequence)
         {
             currentAction = action;
             bool repeat = true;
@@ -40,13 +41,14 @@ public class NPCSequenceRunner : MonoBehaviour
 
                 if (playExtraAction)
                 {
-                    currentAction.stopNow = false;
+                    currentAction.stopNow = false; 
                     playExtraAction = false;
                     currentAction = extraAction;
                     print("extra action: " + currentAction.id);
                     yield return StartCoroutine(currentAction.Execute(npc));
-                    currentAction.skipAfterAction = false;
-                    currentAction = action;
+                    currentAction.stopNow = false;
+                    //currentAction.skipAfterAction = false;
+                    //currentAction = action;
                 }
 
                 // Handle skip

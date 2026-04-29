@@ -9,5 +9,8 @@ public abstract class NPCAction : MonoBehaviour
     public float actionClipTime = 0f;
     public abstract IEnumerator Execute(NPCController npc);
 
-    public abstract void StopAction(NPCController npc);
+    public virtual void StopAction(NPCController npc)
+    {
+        print("stopped action: " + id);
+    }
 }

@@ -5,18 +5,38 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
+    public Transform model;
+
+    public NPCSequenceRunner sequenceRunner;
+
     public Animator animator;
     public float croosfadeTime;
 
     public TextMeshProUGUI subsText;
-    public List<SpeakActionElement> speakList;
+    public FlexibleFollower flexibleFollower;
+    public SpeakActionElement[] speakList;
     public AudioSource audioSource;
 
     public float speed = 2f;
     public float rotationSpeed = 1f;
-    public List<MoveActionElement> moveList;
+    public MoveActionElement[] moveList;
     private Transform currentTarget;
     private bool isMoving = false;
+
+    private void Start()
+    {
+        flexibleFollower.target = GameManager.Instance.playerBody.headCamera.transform;
+    }
+
+    public void LoadSpeakList(GameObject speakListObject)
+    {
+        speakList = speakListObject.GetComponents<SpeakActionElement>();
+    }
+
+    public void LoadMoveList(GameObject moveListObject)
+    {
+        moveList = moveListObject.GetComponents<MoveActionElement>();
+    }
 
     public void PlayAnimation(string animation)
     {
@@ -50,10 +70,10 @@ public class NPCController : MonoBehaviour
         currentTarget = target;
         isMoving = true;
         animator.SetBool("isWalking",true);
-        StartCoroutine(MoveRoutine());
+        StartCoroutine(MoveRoutine(model));
     }
 
-    private IEnumerator MoveRoutine()
+    private IEnumerator MoveRoutine(Transform transform)
     {
         while (isMoving && currentTarget != null)
         {
@@ -78,7 +98,7 @@ public class NPCController : MonoBehaviour
     {
         if (currentTarget == null) return true;
 
-        return Vector3.Distance(transform.position, currentTarget.position) <= threshold;
+        return Vector3.Distance(model.position, currentTarget.position) <= threshold;
     }
 
     public void StopMoving()
@@ -86,4 +106,5 @@ public class NPCController : MonoBehaviour
         animator.SetBool("isWalking", false);
         isMoving = false;
     }
+
 }

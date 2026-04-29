@@ -57,11 +57,19 @@ public class VehicleController : MonoBehaviour
 
     public void SpawnVehicle()
     {
-        if (currentVehicleInstance != null)
-            Destroy(currentVehicleInstance.gameObject);
+        ClearController();
+            
         VehicleInstance newVehicle = vehicles.FirstOrDefault(i => i.vehicleName == currentVehicle);
         currentVehicleInstance = Instantiate(newVehicle, GameManager.Instance.enviromentController.currentEnviromentInstance.vehicleSpawnPoint.transform);
         vehicleCam = currentVehicleInstance.carCam;
+    }
+
+    public void ClearController()
+    {
+        if (currentVehicleInstance != null)
+        {
+            Destroy(currentVehicleInstance.gameObject);
+        }
     }
 
 
@@ -75,7 +83,6 @@ public class VehicleController : MonoBehaviour
         }
         else
         {
-
             vehicleCam.enabled = true;
             mainPlayerCam.enabled = false;
             isDriving = true;

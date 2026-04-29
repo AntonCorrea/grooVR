@@ -10,10 +10,7 @@ public class EnviromentController : MonoBehaviour
    
     public void SpawnEnviroment(string enviromentName)
     {
-        if(currentEnviromentInstance != null)
-        {
-            Destroy(currentEnviromentInstance.gameObject);
-        }
+        ClearController();
 
         EnviromentInstance newEnviroment;  
         newEnviroment = enviroments.FirstOrDefault(i => i.enviromentName == enviromentName);
@@ -27,7 +24,29 @@ public class EnviromentController : MonoBehaviour
         {
             RenderSettings.skybox = null;
         }
+    }
 
-        GameManager.Instance.ResetPlayerPositionInEnviroment();
+    public void StartTutorial(string name)
+    {
+        NPCSequence sequence;
+        if (string.IsNullOrEmpty(name))
+        {
+            sequence = currentEnviromentInstance.NPCSequenceList[0];
+        }
+        else
+        {
+            sequence = currentEnviromentInstance.NPCSequenceList.FirstOrDefault(i => i.sequenceName == name);
+        }
+        
+        sequence.runner = GameManager.Instance.NPC.sequenceRunner;
+        sequence.StartTutorial();
+    }
+
+    public void ClearController()
+    {
+        if (currentEnviromentInstance != null)
+        {
+            Destroy(currentEnviromentInstance.gameObject);
+        }
     }
 }
