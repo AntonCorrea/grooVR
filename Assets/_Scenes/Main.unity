@@ -367,8 +367,8 @@ MonoBehaviour:
   menuId: Training
   idReturnTo: Main
   options:
-  - Jenga
   - Mate
+  - Jenga
   - EPP
   - Tablero Electrico
   functions:
@@ -1223,9 +1223,9 @@ MonoBehaviour:
   NPC: {fileID: 0}
   currentSphere360Video: {fileID: 0}
   StartOpenMenu: Main
-  StartEnvirment: Empty
+  StartEnvirment: Room
   tutorial: 1
-  StartTutotial: Room
+  StartTutotial: FirstTutorial
 --- !u!4 &329765634
 Transform:
   m_ObjectHideFlags: 0

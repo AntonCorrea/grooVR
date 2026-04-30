@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NPCTutorialSequence : NPCSequence
 {
-    public SliderAction slider;
+    public SliderAction slider; 
     private void Start()
     {
         slider.action.AddListener(runner.Skip);
@@ -25,7 +25,6 @@ public class NPCTutorialSequence : NPCSequence
 
         ActionMove move = gameObject.AddComponent<ActionMove>();
         move.id = "moveToPlayer";
-        move.skipAfterAction = true;
         sequence.Add(move);
 
         ActionSpeak speakGreet = gameObject.AddComponent<ActionSpeak>();
@@ -34,10 +33,10 @@ public class NPCTutorialSequence : NPCSequence
         animgreet.id = "Greet";
         ActionComposite speakAndGreet = gameObject.AddComponent<ActionComposite>();
         speakAndGreet.id = "composite speak and greet";
+        speakAndGreet.skipAfterComplete = true;
         speakAndGreet.actions = new List<NPCAction>();
         speakAndGreet.actions.Add(speakGreet);
         speakAndGreet.actions.Add(animgreet);
-        speakAndGreet.skipAfterAction = true;
         sequence.Add(speakAndGreet);
 
         ActionSpeak speakHand = gameObject.AddComponent<ActionSpeak>();
@@ -47,27 +46,24 @@ public class NPCTutorialSequence : NPCSequence
         triggerAnimation.stopTrigger = "HandDown_Left";
         ActionSpeak speakUseOtherLeft = gameObject.AddComponent<ActionSpeak>();
         speakUseOtherLeft.id = "useTheOtherLeft";
-        speakUseOtherLeft.skipAfterAction = true;
-        ActionContextMethod contextUseOtherLeft = gameObject.AddComponent<ActionContextMethod>();
-        contextUseOtherLeft.id = "contextUseOtherLeft";
-        contextUseOtherLeft.actionEvent = GameManager.Instance.handGesturesController.rightHandActive;
-        contextUseOtherLeft.contextEvent.AddListener(() => UseTheOtherLeft(speakUseOtherLeft));
+        //ActionContextMethod contextUseOtherLeft = gameObject.AddComponent<ActionContextMethod>();
+        //contextUseOtherLeft.id = "contextUseOtherLeft";
+        //contextUseOtherLeft.actionEvent = GameManager.Instance.handGesturesController.rightHandActive;
+        //contextUseOtherLeft.contextEvent.AddListener(() => UseTheOtherLeft(speakUseOtherLeft));
         ActionContextMethod contextUseLeftMenu = gameObject.AddComponent<ActionContextMethod>();
         contextUseLeftMenu.id = "contextUseLeftMenu";
         contextUseLeftMenu.actionEvent = GameManager.Instance.handGesturesController.leftHandActive;
         contextUseLeftMenu.contextEvent.AddListener(UseLeftHandMenu);
         ActionComposite handAndTriggerAnimation = gameObject.AddComponent<ActionComposite>();
         handAndTriggerAnimation.id = "handAndTrigger";
-        //handAndTriggerAnimation.actionClipTime = 5f;
         handAndTriggerAnimation.actions.Add(speakHand);
         handAndTriggerAnimation.actions.Add(triggerAnimation);
-        handAndTriggerAnimation.actions.Add(contextUseOtherLeft);
+        //handAndTriggerAnimation.actions.Add(contextUseOtherLeft);
         handAndTriggerAnimation.actions.Add(contextUseLeftMenu);
         sequence.Add(handAndTriggerAnimation);
 
         ActionSpeak cheersFirstMenu = gameObject.AddComponent<ActionSpeak>();
         cheersFirstMenu.id = "cheersFirstMenu";
-        cheersFirstMenu.skipAfterAction = true;
         sequence.Add(cheersFirstMenu);
 
         ActionSpeak pickMate = gameObject.AddComponent<ActionSpeak>();
@@ -78,8 +74,7 @@ public class NPCTutorialSequence : NPCSequence
 
     [ContextMenu("UseTheOtherLeft")]
     public void UseTheOtherLeft(NPCAction action)
-    {
-        
+    {      
         runner.PlaySingleAction(action);
     }
 
@@ -90,5 +85,10 @@ public class NPCTutorialSequence : NPCSequence
         GameManager.Instance.handGesturesController.leftHandActive.AddListener(() => GameManager.Instance.handMenu.Show());
         GameManager.Instance.handGesturesController.leftHandDeactive.AddListener(() => GameManager.Instance.handMenu.Hide());
         runner.Skip();
+    }
+
+    public void ButtonAction()
+    {
+        GameManager.Instance.SkipTutorial();
     }
 }

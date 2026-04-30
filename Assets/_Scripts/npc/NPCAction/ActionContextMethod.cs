@@ -6,36 +6,45 @@ public class ActionContextMethod : NPCAction
 {
     public UnityEvent actionEvent;
     public UnityEvent contextEvent = new UnityEvent();
-    public override IEnumerator Execute(NPCController npc)
+
+    private bool triggered = false;
+
+    public override IEnumerator Execute(NPCController npc, System.Action<NPCActionResult> onComplete)
     {
-        if (actionEvent != null && contextEvent != null)
-        {
+        isInterrupted = false;
+        triggered = false;
+
+        if (actionEvent != null)
             actionEvent.AddListener(OnActionTriggered);
+
+        // DO NOT WAIT
+        onComplete?.Invoke(NPCActionResult.Completed);
+
+        yield break;
+
+        if (isInterrupted)
+        {
+            onComplete?.Invoke(NPCActionResult.Interrupted);
         }
-
-        //while (!stopNow)
-        //{
-        //    yield return null;
-        //}
-        yield break; // stops the coroutine immediately
-
+        else
+        {
+            onComplete?.Invoke(NPCActionResult.Completed);
+        }
     }
 
     public override void StopAction(NPCController npc)
     {
+        isInterrupted = true;
+
         if (actionEvent != null)
-        {
             actionEvent.RemoveListener(OnActionTriggered);
-        }
     }
 
-    //bool triggered = false;
     void OnActionTriggered()
     {
-        //if (triggered) return;
-        //triggered = true;
+        if (triggered) return;
 
+        triggered = true;
         contextEvent?.Invoke();
-        //stopNow = true;
     }
 }

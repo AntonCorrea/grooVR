@@ -59,17 +59,20 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            handMenu.menuController.OpenMenu(StartOpenMenu);
-            enviromentController.SpawnEnviroment(StartEnvirment);
+            SkipTutorial();
+        }        
+    }
 
-            handGesturesController.leftHandActive.AddListener(() => handMenu.Show());
-            handGesturesController.leftHandDeactive.AddListener(() => handMenu.Hide());
+    public void SkipTutorial()
+    {
+        handMenu.menuController.OpenMenu(StartOpenMenu);
+        enviromentController.SpawnEnviroment(StartEnvirment);
 
-            handGesturesController.rightHandActive.AddListener(() => teleporter.StartTeleport());
-            handGesturesController.rightHandDeactive.AddListener(() => teleporter.CancelTeleport());
-        }
+        handGesturesController.leftHandActive.AddListener(() => handMenu.Show());
+        handGesturesController.leftHandDeactive.AddListener(() => handMenu.Hide());
 
-        
+        handGesturesController.rightHandActive.AddListener(() => teleporter.StartTeleport());
+        handGesturesController.rightHandDeactive.AddListener(() => teleporter.CancelTeleport());
     }
 
     //public IEnumerator InvokeWithDelay(float delay)

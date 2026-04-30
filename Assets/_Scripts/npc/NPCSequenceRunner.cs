@@ -1,15 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCSequenceRunner : MonoBehaviour
 {
     public NPCController npc;
+
     private bool skipRequested = false;
+
     public NPCAction currentAction;
 
     bool playExtraAction = false;
     NPCAction extraAction;
+
     public void PlaySequence(List<NPCAction> sequence)
     {
         StartCoroutine(Run(sequence));
@@ -18,14 +21,16 @@ public class NPCSequenceRunner : MonoBehaviour
     [ContextMenu("Skip")]
     public void Skip()
     {
-        StopCurrentAction();
         skipRequested = true;
+        StopCurrentAction();
     }
 
     public void StopCurrentAction()
     {
-        print("stoped current action: " + currentAction.id);
-        currentAction.stopNow = true;
+        if (currentAction == null) return;
+
+        print("stopped current action: " + currentAction.id);
+        currentAction.StopAction(npc);
     }
 
     private IEnumerator Run(List<NPCAction> sequence)
@@ -33,40 +38,100 @@ public class NPCSequenceRunner : MonoBehaviour
         foreach (var action in sequence)
         {
             currentAction = action;
+
             bool repeat = true;
+
             do
             {
                 print("action: " + currentAction.id);
-                yield return StartCoroutine(currentAction.Execute(npc));
 
+                bool done = false;
+                NPCActionResult result = NPCActionResult.Completed;
+
+                yield return StartCoroutine(
+                    currentAction.Execute(npc, r =>
+                    {
+                        result = r;
+                        done = true;
+                    })
+                );
+
+                yield return new WaitUntil(() => done);
+
+                // ----- EXTRA ACTION -----
                 if (playExtraAction)
                 {
-                    currentAction.stopNow = false; 
                     playExtraAction = false;
+
+                    var previous = currentAction;
                     currentAction = extraAction;
+
                     print("extra action: " + currentAction.id);
-                    yield return StartCoroutine(currentAction.Execute(npc));
-                    currentAction.stopNow = false;
-                    //currentAction.skipAfterAction = false;
-                    //currentAction = action;
+
+                    bool extraDone = false;
+                    NPCActionResult extraResult = NPCActionResult.Completed;
+
+                    yield return StartCoroutine(
+                        currentAction.Execute(npc, r =>
+                        {
+                            extraResult = r;
+                            extraDone = true;
+                        })
+                    );
+
+                    yield return new WaitUntil(() => extraDone);
+
+                    currentAction = previous;
+
+                    // If extra was interrupted → propagate skip
+                    if (extraResult == NPCActionResult.Interrupted)
+                    {
+                        skipRequested = false;
+                        break;
+                    }
                 }
 
-                // Handle skip
-                if (skipRequested || currentAction.skipAfterAction ||currentAction.stopNow)
+                // ----- SKIP LOGIC -----
+
+                if (skipRequested)
                 {
                     skipRequested = false;
-                    print("skip action");
-                    break; // move to next action
-                }                    
+                    print("skip action (external)");
+                    break;
+                }
+
+                if (currentAction.skipAfterComplete)
+                {
+                    print("skip action (completed)");
+                    break;
+                }
+
+                if (result == NPCActionResult.Interrupted)
+                {
+                    print("skip action (interrupted)");
+                    break;
+                }
+
+                if (result == NPCActionResult.Failed)
+                {
+                    print("action failed, skipping");
+                    break;
+                }
+
+
+
+
             } while (repeat);
         }
+
         print("sequence ended");
     }
 
     public void PlaySingleAction(NPCAction action)
     {
         StopCurrentAction();
+
         playExtraAction = true;
-        extraAction = action;   
+        extraAction = action;
     }
 }

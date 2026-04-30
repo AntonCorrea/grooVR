@@ -2451,8 +2451,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: point
-  subtitles: Acciona el mecanismo para comenzar.
-  clip: {fileID: 8300000, guid: ec4a5dea733cd054c80fca078a6214a7, type: 3}
+  subtitles: Hola! Me llamo Groovy! Acciona el mecanismo para comenzar.
+  clip: {fileID: 8300000, guid: 45164471e1126c94a92389aeefd8518c, type: 3}
   timeLenght: 6
 --- !u!114 &4206298284951816351
 MonoBehaviour:
@@ -2467,9 +2467,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: greet
-  subtitles: Hola! Me llamo Groovy, sere tu guia en este espacio virtual
-  clip: {fileID: 8300000, guid: ec4a5dea733cd054c80fca078a6214a7, type: 3}
-  timeLenght: 4
+  subtitles: Bienvenido a grooVR, sere tu guia en este espacio virtual
+  clip: {fileID: 8300000, guid: dd3c3c6680a2c2847aa940cf642dbfe0, type: 3}
+  timeLenght: 6
 --- !u!114 &8321281401218503349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2484,8 +2484,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: useLeftHand
   subtitles: Levanta tu mano izquierda palma hacia arriba para abrir el menu
-  clip: {fileID: 0}
-  timeLenght: 4
+  clip: {fileID: 8300000, guid: 2b21935045fc4ee4aa7085523618a14a, type: 3}
+  timeLenght: 6
 --- !u!114 &8005753122208234688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2500,7 +2500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: useTheOtherLeft
   subtitles: Usa la otra mano, la izquierda
-  clip: {fileID: 8300000, guid: ec4a5dea733cd054c80fca078a6214a7, type: 3}
+  clip: {fileID: 8300000, guid: f8be283b08faf1242be0894cec610e8f, type: 3}
   timeLenght: 4
 --- !u!114 &5398022028826163133
 MonoBehaviour:
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: cheersFirstMenu
   subtitles: Muy bien! Este es el menu de navegacion
-  clip: {fileID: 8300000, guid: ec4a5dea733cd054c80fca078a6214a7, type: 3}
+  clip: {fileID: 8300000, guid: 21859c7b95e6b5f489957dffef883c69, type: 3}
   timeLenght: 4
 --- !u!114 &6016481766114305241
 MonoBehaviour:
@@ -2533,8 +2533,8 @@ MonoBehaviour:
   id: pickMate
   subtitles: Ahora navega al entrenamiento para hacer Mates.\nPresiona Entrenamiento
     y luego Mate
-  clip: {fileID: 0}
-  timeLenght: 4
+  clip: {fileID: 8300000, guid: ebfc97e7a5664484883a71f2f6d1cb54, type: 3}
+  timeLenght: 7
 --- !u!1 &3736272783453816328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,9 +2690,9 @@ Transform:
   - {fileID: 2689406357966549225}
   - {fileID: 1343213497276474345}
   - {fileID: 7503976406425357546}
-  - {fileID: 4585923361552818895}
   - {fileID: 7701307621421211715}
   - {fileID: 4318353870324512625}
+  - {fileID: 4585923361552818895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3266938582167561382
@@ -2763,6 +2763,7 @@ Transform:
   m_Children:
   - {fileID: 4033774153923688567}
   - {fileID: 4382694837551875226}
+  - {fileID: 8020844413609610862}
   m_Father: {fileID: 104036009883145376}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5764655016985395078
@@ -3239,3 +3240,109 @@ MonoBehaviour:
   defaultThickness: 0.01
   lenght: 0.25
   defaultMaterial: {fileID: 0}
+--- !u!1001 &7869459909439390588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3527954526478840466}
+    m_Modifications:
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.661
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756400870299172609, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: m_Name
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2534519205398908445}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NPCTutorialSequence, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116238323746712895, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+      propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+--- !u!4 &8020844413609610862 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 178511659616210194, guid: 352f22c0ea4b32f46995b40e5190f09d, type: 3}
+  m_PrefabInstance: {fileID: 7869459909439390588}
+  m_PrefabAsset: {fileID: 0}

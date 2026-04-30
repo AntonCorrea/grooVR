@@ -3,28 +3,38 @@ using UnityEngine;
 
 public class ActionPlayAnimation : NPCAction
 {
-    public override IEnumerator Execute(NPCController npc)
+    private void Start()
     {
+        skipAfterComplete = true;
+    }
+    public override IEnumerator Execute(NPCController npc, System.Action<NPCActionResult> onComplete)
+    {
+        isInterrupted = false;
+
         npc.PlayAnimation(id);
 
         float duration = (actionClipTime != 0f) ? actionClipTime : 10f;
         float timer = 0f;
+
         while (timer < duration)
         {
-            if (stopNow)
+            if (isInterrupted)
             {
                 npc.StopAnimation();
-                yield break; // stops the coroutine immediately
+                onComplete?.Invoke(NPCActionResult.Interrupted);
+                yield break;
             }
 
             timer += Time.deltaTime;
-            yield return null; // wait one frame (interruptible)
+            yield return null;
         }
-        //skipAfter = true;
+
+        onComplete?.Invoke(NPCActionResult.Completed);
     }
 
     public override void StopAction(NPCController npc)
     {
+        isInterrupted = true;
         npc.StopAnimation();
     }
 }

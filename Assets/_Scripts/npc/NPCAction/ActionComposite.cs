@@ -7,100 +7,138 @@ public class ActionComposite : NPCAction
     public List<NPCAction> actions = new List<NPCAction>();
     public bool runSequentially = false;
 
-    private List<Coroutine> runningCoroutines = new List<Coroutine>();
-
-    public override IEnumerator Execute(NPCController npc)
+    public override IEnumerator Execute(NPCController npc, System.Action<NPCActionResult> onComplete)
     {
-        runningCoroutines.Clear();
+        isInterrupted = false;
 
-        foreach (var action in actions)
+        if (actions == null || actions.Count == 0)
         {
-            action.stopNow = false;
+            onComplete?.Invoke(NPCActionResult.Completed);
+            yield break;
         }
 
         if (runSequentially)
         {
-            foreach (var action in actions)
-            {
-                if (stopNow) yield break;
-
-                bool finished = false;
-
-                Coroutine running = npc.StartCoroutine(
-                    RunAction(action, npc, () => finished = true)
-                );
-
-                runningCoroutines.Add(running);
-
-                // Wait only for this action to finish or interruption
-                yield return new WaitUntil(() => finished || stopNow);
-
-                if (stopNow)
-                {
-                    action.stopNow = true;
-                    npc.StopCoroutine(running);
-                    yield break;
-                }
-            }
+            yield return RunSequential(npc, onComplete);
         }
         else
         {
-            int completed = 0;
-            int total = actions.Count;
-
-            foreach (var action in actions)
-            {
-                var coroutine = npc.StartCoroutine(
-                    RunAction(action, npc, () => completed++)
-                );
-
-                runningCoroutines.Add(coroutine);
-            }
-
-            // Wait only until all children finish or interruption
-            yield return new WaitUntil(() => completed >= total || stopNow);
-        }
-
-        // If interrupted, stop everything
-        if (stopNow)
-        {
-            foreach (var action in actions)
-            {
-                action.stopNow = true;
-                action.StopAction(npc);
-            }
-
-            StopAllRunning(npc);
+            yield return RunParallel(npc, onComplete);
         }
     }
 
     public override void StopAction(NPCController npc)
     {
-        stopNow = true;
+        isInterrupted = true;
 
         foreach (var action in actions)
         {
-            action.stopNow = true;
             action.StopAction(npc);
         }
-
-        StopAllRunning(npc);
     }
 
-    private IEnumerator RunAction(NPCAction action, NPCController npc, System.Action onComplete)
+    // ------------------------
+    // Sequential execution
+    // ------------------------
+    private IEnumerator RunSequential(NPCController npc, System.Action<NPCActionResult> onComplete)
     {
-        yield return npc.StartCoroutine(action.Execute(npc));
-        onComplete?.Invoke();
-    }
-
-    private void StopAllRunning(NPCController npc)
-    {
-        foreach (var coroutine in runningCoroutines)
+        foreach (var action in actions)
         {
-            if (coroutine != null)
-                npc.StopCoroutine(coroutine);
+            print("composite sequential action: " + action.id);
+
+            if (isInterrupted)
+            {
+                onComplete?.Invoke(NPCActionResult.Interrupted);
+                yield break;
+            }
+
+            bool done = false;
+            NPCActionResult result = NPCActionResult.Completed;
+
+            yield return npc.StartCoroutine(
+                action.Execute(npc, r =>
+                {
+                    result = r;
+                    done = true;
+                })
+            );
+
+            yield return new WaitUntil(() => done);
+
+            if (isInterrupted)
+            {
+                action.StopAction(npc);
+                onComplete?.Invoke(NPCActionResult.Interrupted);
+                yield break;
+            }
+
+            if (result == NPCActionResult.Failed)
+            {
+                onComplete?.Invoke(NPCActionResult.Failed);
+                yield break;
+            }
+
+            if (result == NPCActionResult.Interrupted)
+            {
+                onComplete?.Invoke(NPCActionResult.Interrupted);
+                yield break;
+            }
         }
 
-        runningCoroutines.Clear();
+        onComplete?.Invoke(NPCActionResult.Completed);
+    }
+
+    // ------------------------
+    // Parallel execution
+    // ------------------------
+    private IEnumerator RunParallel(NPCController npc, System.Action<NPCActionResult> onComplete)
+    {
+        int total = actions.Count;
+        int completed = 0;
+
+        bool failed = false;
+        bool interrupted = false;
+
+        foreach (var action in actions)
+        {
+            print("composite parallel action: " + action.id);
+            npc.StartCoroutine(action.Execute(npc, result =>
+            {
+                if (result == NPCActionResult.Failed)
+                    failed = true;
+
+                if (result == NPCActionResult.Interrupted)
+                    interrupted = true;
+
+                completed++;
+            }));
+        }
+
+        yield return new WaitUntil(() =>
+            completed >= total ||
+            failed ||
+            interrupted ||
+            isInterrupted
+        );
+
+        // Propagate interruption to all children
+        if (isInterrupted || interrupted)
+        {
+            foreach (var action in actions)
+            {
+                action.StopAction(npc);
+            }
+
+            onComplete?.Invoke(NPCActionResult.Interrupted);
+            yield break;
+        }
+
+        if (failed)
+        {
+            onComplete?.Invoke(NPCActionResult.Failed);
+            yield break;
+        }
+
+        onComplete?.Invoke(NPCActionResult.Completed);
     }
 }
