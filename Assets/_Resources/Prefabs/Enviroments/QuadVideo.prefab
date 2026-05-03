@@ -79,11 +79,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enviromentName: QuadVideo
-  table: {fileID: 0}
-  tableSpawnPoint: {fileID: 0}
   spawnPlayerPoint: {fileID: 1137818661222828261}
   vehicleSpawnPoint: {fileID: 0}
   skyBox: {fileID: 0}
+  NPCSequenceList: []
+  spawnNPCPoint: {fileID: 0}
+  moveActionElementsObject: {fileID: 0}
+  speakActionElementsObject: {fileID: 0}
 --- !u!1 &6146265921576557877
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,3 +300,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videos:
   - {fileID: 32900000, guid: 9781f0efe1dce80458529922d345f57d, type: 3}
+  - {fileID: 32900000, guid: a870186ffcd14b6469b84186c9c230bd, type: 3}

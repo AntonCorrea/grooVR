@@ -152,21 +152,4 @@ public class GameManager : MonoBehaviour
         SpawnTraining(tutorial);
     }
 
-    [ContextMenu("SpawnTutorial")]
-    public void SpawnTutorial()
-    {
-        SpawnEnviromentAndTutorial("FirstTutorial");
-    }
-
-    [ContextMenu("SpawnYenga")]
-    public void SpawnYenga()
-    {
-        SpawnEnviromentAndTutorial("Room");
-    }
-
-    [ContextMenu("SpawnEnv")]
-    public void SpawnEnv()
-    {
-        SpawnEnviroment("Room");
-    }
 }

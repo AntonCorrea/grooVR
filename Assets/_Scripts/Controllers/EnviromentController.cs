@@ -12,18 +12,22 @@ public class EnviromentController : MonoBehaviour
     {
         ClearController();
 
-        EnviromentInstance newEnviroment;  
-        newEnviroment = enviroments.FirstOrDefault(i => i.enviromentName == enviromentName);
-        currentEnviromentInstance = Instantiate(newEnviroment, transform);
-     
-        if(currentEnviromentInstance.skyBox != null)
+        if(string.IsNullOrEmpty(enviromentName) != true)
         {
-            RenderSettings.skybox = currentEnviromentInstance.skyBox;
+            EnviromentInstance newEnviroment;
+            newEnviroment = enviroments.FirstOrDefault(i => i.enviromentName == enviromentName);
+            currentEnviromentInstance = Instantiate(newEnviroment, transform);
+
+            if (currentEnviromentInstance.skyBox != null)
+            {
+                RenderSettings.skybox = currentEnviromentInstance.skyBox;
+            }
+            else
+            {
+                RenderSettings.skybox = null;
+            }
         }
-        else
-        {
-            RenderSettings.skybox = null;
-        }
+
     }
 
     public void StartTutorial(string name)

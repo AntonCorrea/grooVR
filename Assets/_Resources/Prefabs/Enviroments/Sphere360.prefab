@@ -48,11 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enviromentName: Sphere360
-  table: {fileID: 0}
-  tableSpawnPoint: {fileID: 0}
   spawnPlayerPoint: {fileID: 6013742183417113659}
   vehicleSpawnPoint: {fileID: 0}
   skyBox: {fileID: 0}
+  NPCSequenceList: []
+  spawnNPCPoint: {fileID: 0}
+  moveActionElementsObject: {fileID: 0}
+  speakActionElementsObject: {fileID: 0}
 --- !u!1 &5555372184267150599
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +248,7 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 7f6744a37dd681b4ba348fd0d2f371d0, type: 3}
   - {fileID: 32900000, guid: d9bb8f321cca24648b9e2422be563bdf, type: 3}
   - {fileID: 32900000, guid: 6a3c6e7e7a03fd14e81971790d101f0a, type: 3}
+  - {fileID: 32900000, guid: a870186ffcd14b6469b84186c9c230bd, type: 3}
 --- !u!328 &4192899545309246646
 VideoPlayer:
   m_ObjectHideFlags: 0
