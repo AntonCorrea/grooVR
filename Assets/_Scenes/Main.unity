@@ -94,7 +94,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 0a8d84961a9b8404d86d1261e55a3c15, type: 2}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9598,7 +9598,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -27343,13 +27343,17 @@ PrefabInstance:
       propertyPath: m_DrawHeightmap
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1574794477214988880, guid: 4b98e4e2d575e6e4bbbbcc0055c3d79c, type: 3}
+      propertyPath: m_MaterialTemplate
+      value: 
+      objectReference: {fileID: 2100000, guid: 4da60b12e1a253942ba9a33aaaecaceb, type: 2}
     - target: {fileID: 6369702511392131372, guid: 4b98e4e2d575e6e4bbbbcc0055c3d79c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 6369702511392131372, guid: 4b98e4e2d575e6e4bbbbcc0055c3d79c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9741.18
+      value: -4870.6
       objectReference: {fileID: 0}
     - target: {fileID: 6369702511392131372, guid: 4b98e4e2d575e6e4bbbbcc0055c3d79c, type: 3}
       propertyPath: m_LocalPosition.z
