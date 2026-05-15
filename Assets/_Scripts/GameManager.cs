@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
     public string StartEnvirment;
     public bool tutorial = false;
     public string StartTutotial;
-
+    public bool rightHandActive = true;
+    public bool leftHandActive = true;
     void Awake()
     {
         playerBody = AutoHandExtensions.CanFindObjectOfType<AutoHandPlayer>();
@@ -68,11 +69,17 @@ public class GameManager : MonoBehaviour
         handMenu.menuController.OpenMenu(StartOpenMenu);
         enviromentController.SpawnEnviroment(StartEnvirment);
 
-        handGesturesController.leftHandActive.AddListener(() => handMenu.Show());
-        handGesturesController.leftHandDeactive.AddListener(() => handMenu.Hide());
+        if (rightHandActive)
+        {
+            handGesturesController.leftHandActive.AddListener(() => handMenu.Show());
+            handGesturesController.leftHandDeactive.AddListener(() => handMenu.Hide());
+        }
+        if (leftHandActive)
+        {
+            handGesturesController.rightHandActive.AddListener(() => teleporter.StartTeleport());
+            handGesturesController.rightHandDeactive.AddListener(() => teleporter.CancelTeleport());
+        }
 
-        handGesturesController.rightHandActive.AddListener(() => teleporter.StartTeleport());
-        handGesturesController.rightHandDeactive.AddListener(() => teleporter.CancelTeleport());
     }
 
     //public IEnumerator InvokeWithDelay(float delay)
