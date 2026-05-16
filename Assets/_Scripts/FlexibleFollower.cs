@@ -6,6 +6,8 @@ public class FlexibleFollower : MonoBehaviour
     public Transform target;                  // The object to follow
     public bool followPosition = true;        // Should follow position?
     public bool followRotation = false;       // Should follow rotation?
+    public bool lockXRotation = false;
+    public bool lockYRotation = false;
     public bool lockZRotation = false;
     [Header("Offset & Pivot")]
     public Vector3 positionOffset = Vector3.zero;  // Local offset from the target
@@ -35,6 +37,10 @@ public class FlexibleFollower : MonoBehaviour
             Quaternion smoothedRotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSmoothSpeed);
 
             Vector3 euler = smoothedRotation.eulerAngles;
+            if (lockXRotation)
+                euler.x = 0f;
+            if (lockYRotation)
+                euler.y = 0f;
             if (lockZRotation)
                 euler.z = 0f;
 
