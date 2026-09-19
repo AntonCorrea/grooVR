@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4138705118050084862}
   - component: {fileID: 8580259118455094745}
   - component: {fileID: 66053786973398245}
+  - component: {fileID: 1325337927281092372}
   m_Layer: 0
   m_Name: Rock_B_01
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 126
@@ -128,6 +129,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &1325337927281092372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022254934153756075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1572c89c8e3ca4990876c390ec86be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noFracturedVersion: {fileID: 1022254934153756075}
+  fracturedVersion: {fileID: 620656410661937729, guid: 9442ec5f07858e740821372a6879067d, type: 3}
+  hammerTag: pick
 --- !u!1 &5927403272018677499
 GameObject:
   m_ObjectHideFlags: 0
